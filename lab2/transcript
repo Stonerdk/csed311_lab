@@ -1,0 +1,112 @@
+# vsim -c vending_machine_tb 
+# Start time: 15:42:18 on Mar 14,2021
+# Loading work.vending_machine_tb
+# Loading work.vending_machine
+# Loading work.check_time_and_coin
+# Loading work.calculate_current_state
+# Loading work.change_state
+# TEST                       InitialTest :
+# PASSED
+# TEST               Insert100CoinTest-1 :
+# PASSED
+# TEST               Insert100CoinTest-2 :
+# PASSED
+# TEST               Insert500CoinTest-1 :
+# PASSED
+# TEST               Insert500CoinTest-2 :
+# PASSED
+# TEST               Insert500CoinTest-3 :
+# PASSED
+# TEST              Insert1000CoinTest-1 :
+# PASSED
+# TEST              Insert1000CoinTest-2 :
+# PASSED
+# TEST               Select1stItemTest-1 :
+# PASSED
+# TEST               Select1stItemTest-2 :
+# PASSED
+# TEST               Select1stItemTest-3 :
+# PASSED
+# TEST               Select1stItemTest-4 :
+# PASSED
+# TEST               Select2ndItemTest-1 :
+# PASSED
+# TEST               Select2ndItemTest-2 :
+# PASSED
+# TEST               Select2ndItemTest-3 :
+# PASSED
+# TEST               Select2ndItemTest-4 :
+# PASSED
+# TEST               Select3rdItemTest-1 :
+# PASSED
+# TEST               Select3rdItemTest-2 :
+# PASSED
+# TEST               Select3rdItemTest-3 :
+# PASSED
+# TEST               Select4thItemTest-1 :
+# PASSED
+# TEST               Select4thItemTest-2 :
+# PASSED
+# TEST                    WaitReturnTest :
+# Current        2800
+# o_return_coin 000
+# o_return_coin 0
+# o_return_coin 0
+# Current        1800
+# o_return_coin 100
+# o_return_coin 4
+# o_return_coin 4
+# Current         800
+# o_return_coin 100
+# o_return_coin 4
+# o_return_coin 4
+# Current         300
+# o_return_coin 010
+# o_return_coin 2
+# o_return_coin 2
+# Current         200
+# o_return_coin 001
+# o_return_coin 1
+# o_return_coin 1
+# Current         100
+# o_return_coin 001
+# o_return_coin 1
+# o_return_coin 1
+# PASSED
+# TEST                 TriggerReturnTest :
+# Current        4800
+# o_return_coin 000
+# o_return_coin 0
+# o_return_coin 0
+# Current        3800
+# o_return_coin 100
+# o_return_coin 4
+# o_return_coin 4
+# Current        2800
+# o_return_coin 100
+# o_return_coin 4
+# o_return_coin 4
+# Current        1800
+# o_return_coin 100
+# o_return_coin 4
+# o_return_coin 4
+# Current         800
+# o_return_coin 100
+# o_return_coin 4
+# o_return_coin 4
+# Current         300
+# o_return_coin 010
+# o_return_coin 2
+# o_return_coin 2
+# Current         200
+# o_return_coin 001
+# o_return_coin 1
+# o_return_coin 1
+# Current         100
+# o_return_coin 001
+# o_return_coin 1
+# o_return_coin 1
+# PASSED
+# Passed = 23, Failed = 0
+# End time: 15:42:20 on Mar 14,2021, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 0
