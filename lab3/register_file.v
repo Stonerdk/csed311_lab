@@ -27,6 +27,5 @@ module register_file( read_out1, read_out2, read1, read2, write_reg, write_data,
         end
         
     end
-    // TODO : implement reset_n to initialization
 endmodule
 
