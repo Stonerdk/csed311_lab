@@ -26,6 +26,20 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 
 Top level modules:
 	sign_extender
 
+} {} {}} {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/register_file.v} {1 {vlog -work work -stats=none {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/register_file.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
+-- Compiling module register_file
+
+Top level modules:
+	register_file
+
+} {} {}} {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v} {1 {vlog -work work -stats=none {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
+-- Compiling module tb_cpu
+
+Top level modules:
+	tb_cpu
+
 } {} {}} {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/control_unit.v} {1 {vlog -work work -stats=none {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/control_unit.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
 -- Compiling module control_unit
@@ -39,20 +53,6 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 
 
 Top level modules:
 	adder
-
-} {} {}} {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v} {1 {vlog -work work -stats=none {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v}
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
--- Compiling module tb_cpu
-
-Top level modules:
-	tb_cpu
-
-} {} {}} {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/register_file.v} {1 {vlog -work work -stats=none {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/register_file.v}
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
--- Compiling module register_file
-
-Top level modules:
-	register_file
 
 } {} {}} {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb_f.v} {1 {vlog -work work -stats=none {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb_f.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020

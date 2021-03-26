@@ -936,3 +936,1906 @@ run -all
 #    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
 # 1
 # Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 116
+vsim -gui work.tb_cpu
+# End time: 02:35:12 on Mar 27,2021, Elapsed time: 0:22:15
+# Errors: 0, Warnings: 3
+# vsim -gui work.tb_cpu 
+# Start time: 02:35:13 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'unit_control_unit'.  Expected 10, found 9.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_cpu/UUT/unit_control_unit File: C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v Line: 108
+# ** Warning: (vsim-3722) C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v(108): [TFMPC] - Missing connection for port 'reg_write'.
+add wave -position insertpoint sim:/tb_cpu/*
+add wave -position insertpoint  \
+sim:/tb_cpu/writeM
+add wave -position insertpoint  \
+sim:/tb_cpu/address
+add wave -position insertpoint  \
+sim:/tb_cpu/data
+add wave -position insertpoint  \
+sim:/tb_cpu/clk
+add wave -position insertpoint  \
+sim:/tb_cpu/Passed
+add wave -position insertpoint  \
+sim:/tb_cpu/Failed
+add wave -position insertpoint  \
+sim:/tb_cpu/clk
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/instruction
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/instruction_address
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/instruction_address_next
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/control_reg_write
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/control_mem_read
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/control_mem_to_reg
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/control_mem_write
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/control_jp
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/control_branch
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/control_pc_to_reg
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/control_jpr
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/control_alu_src
+add wave -position insertpoint sim:/tb_cpu/UUT/#ASSIGN#59/*
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     0 (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     0 (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(116)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 116
+# Compile of control_unit.v was successful.
+# Compile of cpu.v was successful.
+# 2 compiles, 0 failed with no errors.
+vsim -gui work.tb_cpu
+# End time: 02:38:18 on Mar 27,2021, Elapsed time: 0:03:05
+# Errors: 0, Warnings: 4
+# vsim -gui work.tb_cpu 
+# Start time: 02:38:18 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'unit_control_unit'.  Expected 11, found 10.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_cpu/UUT/unit_control_unit File: C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v Line: 108
+# ** Warning: (vsim-3722) C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v(108): [TFMPC] - Missing connection for port 'reg_write'.
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/readM
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/writeM
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/address
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/data
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/inputReady
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/reset_n
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/clk
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/instruction
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/instruction_address
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/instruction_address_next
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/reg_input2_2
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/reg_input2_1
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/control_reg_write
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/control_mem_read
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/control_mem_to_reg
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/control_mem_write
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/control_jp
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/control_branch
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/control_pc_to_reg
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/control_jpr
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/control_alu_src
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     0 (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     0 (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(116)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 116
+# Compile of control_unit.v was successful.
+# Compile of cpu.v was successful.
+# 2 compiles, 0 failed with no errors.
+vsim -gui work.tb_cpu
+# End time: 02:43:12 on Mar 27,2021, Elapsed time: 0:04:54
+# Errors: 0, Warnings: 4
+# vsim -gui work.tb_cpu 
+# Start time: 02:43:13 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'unit_control_unit'.  Expected 11, found 10.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_cpu/UUT/unit_control_unit File: C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v Line: 108
+# ** Warning: (vsim-3722) C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v(108): [TFMPC] - Missing connection for port 'reg_write'.
+add wave -position insertpoint sim:/tb_cpu/*
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     0 (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     0 (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(116)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 116
+# Compile of cpu.v failed with 1 errors.
+# Compile of cpu.v was successful.
+vsim -gui work.tb_cpu
+# End time: 02:49:56 on Mar 27,2021, Elapsed time: 0:06:43
+# Errors: 0, Warnings: 5
+# vsim -gui work.tb_cpu 
+# Start time: 02:49:56 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'unit_control_unit'.  Expected 11, found 10.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_cpu/UUT/unit_control_unit File: C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v Line: 101
+# ** Warning: (vsim-3722) C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v(101): [TFMPC] - Missing connection for port 'reg_write'.
+add wave -position insertpoint sim:/tb_cpu/*
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     0 (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     0 (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(116)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 116
+# Compile of cpu.v was successful.
+vsim -gui work.tb_cpu
+# End time: 03:02:06 on Mar 27,2021, Elapsed time: 0:12:10
+# Errors: 0, Warnings: 4
+# vsim -gui work.tb_cpu 
+# Start time: 03:02:07 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'unit_control_unit'.  Expected 11, found 10.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_cpu/UUT/unit_control_unit File: C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v Line: 101
+# ** Warning: (vsim-3722) C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v(101): [TFMPC] - Missing connection for port 'reg_write'.
+add wave -position insertpoint sim:/tb_cpu/*
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     0 (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     0 (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(116)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 116
+# Compile of cpu.v was successful.
+vsim -gui work.tb_cpu
+# End time: 03:07:20 on Mar 27,2021, Elapsed time: 0:05:13
+# Errors: 0, Warnings: 4
+# vsim -gui work.tb_cpu 
+# Start time: 03:07:20 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'unit_control_unit'.  Expected 11, found 10.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_cpu/UUT/unit_control_unit File: C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v Line: 98
+# ** Warning: (vsim-3722) C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v(98): [TFMPC] - Missing connection for port 'reg_write'.
+add wave -position insertpoint sim:/tb_cpu/*
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     0 (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     0 (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(116)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 116
+# Compile of cpu.v was successful.
+# Compile of control_unit.v was successful.
+vsim -gui work.tb_cpu
+# End time: 03:15:25 on Mar 27,2021, Elapsed time: 0:08:05
+# Errors: 0, Warnings: 5
+# vsim -gui work.tb_cpu 
+# Start time: 03:15:26 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'unit_control_unit'.  Expected 11, found 10.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_cpu/UUT/unit_control_unit File: C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v Line: 98
+# ** Warning: (vsim-3722) C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v(98): [TFMPC] - Missing connection for port 'reg_write'.
+add wave -position insertpoint sim:/tb_cpu/*
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     0 (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     0 (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(116)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 116
+# Compile of cpu.v failed with 1 errors.
+# Compile of cpu_evaluation_tb.v was successful.
+# Compile of cpu.v failed with 1 errors.
+# Compile of cpu.v failed with 1 errors.
+# Compile of cpu.v was successful.
+vsim -gui work.tb_cpu
+# End time: 03:49:23 on Mar 27,2021, Elapsed time: 0:33:57
+# Errors: 0, Warnings: 8
+# vsim -gui work.tb_cpu 
+# Start time: 03:49:23 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'unit_control_unit'.  Expected 11, found 10.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_cpu/UUT/unit_control_unit File: C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v Line: 98
+# ** Warning: (vsim-3722) C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v(98): [TFMPC] - Missing connection for port 'reg_write'.
+vsim -gui work.tb_cpu
+# End time: 03:49:55 on Mar 27,2021, Elapsed time: 0:00:32
+# Errors: 0, Warnings: 4
+# vsim -gui work.tb_cpu 
+# Start time: 03:49:55 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'unit_control_unit'.  Expected 11, found 10.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_cpu/UUT/unit_control_unit File: C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v Line: 98
+# ** Warning: (vsim-3722) C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v(98): [TFMPC] - Missing connection for port 'reg_write'.
+add wave -position insertpoint sim:/tb_cpu/*
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     0 (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     0 (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(118)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 118
+# Compile of cpu.v was successful.
+# Compile of control_unit.v was successful.
+vsim -gui work.tb_cpu
+# End time: 03:54:18 on Mar 27,2021, Elapsed time: 0:04:23
+# Errors: 0, Warnings: 5
+# vsim -gui work.tb_cpu 
+# Start time: 03:54:19 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'unit_control_unit'.  Expected 11, found 10.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_cpu/UUT/unit_control_unit File: C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v Line: 98
+# ** Warning: (vsim-3722) C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v(98): [TFMPC] - Missing connection for port 'reg_write'.
+add wave -position insertpoint sim:/tb_cpu/*
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     0 (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     0 (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(118)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 118
+# Compile of control_unit.v was successful.
+vsim -gui work.tb_cpu
+# End time: 03:55:47 on Mar 27,2021, Elapsed time: 0:01:28
+# Errors: 0, Warnings: 4
+# vsim -gui work.tb_cpu 
+# Start time: 03:55:47 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'unit_control_unit'.  Expected 11, found 10.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_cpu/UUT/unit_control_unit File: C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v Line: 98
+# ** Warning: (vsim-3722) C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v(98): [TFMPC] - Missing connection for port 'reg_write'.
+add wave -position insertpoint sim:/tb_cpu/*
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     0 (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     0 (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(118)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 118
+# Compile of control_unit.v was successful.
+vsim -gui work.tb_cpu
+# End time: 03:57:32 on Mar 27,2021, Elapsed time: 0:01:45
+# Errors: 0, Warnings: 4
+# vsim -gui work.tb_cpu 
+# Start time: 03:57:32 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'unit_control_unit'.  Expected 11, found 10.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_cpu/UUT/unit_control_unit File: C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v Line: 98
+# ** Warning: (vsim-3722) C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v(98): [TFMPC] - Missing connection for port 'reg_write'.
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     0 (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     0 (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(118)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 118
+# Compile of cpu.v was successful.
+vsim -gui work.tb_cpu
+# End time: 04:06:53 on Mar 27,2021, Elapsed time: 0:09:21
+# Errors: 0, Warnings: 4
+# vsim -gui work.tb_cpu 
+# Start time: 04:06:53 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'unit_control_unit'.  Expected 11, found 10.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_cpu/UUT/unit_control_unit File: C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v Line: 98
+# ** Warning: (vsim-3722) C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v(98): [TFMPC] - Missing connection for port 'reg_write'.
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     0 (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     0 (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(118)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 118
+# Compile of cpu.v was successful.
+vsim -gui work.tb_cpu
+# End time: 04:16:50 on Mar 27,2021, Elapsed time: 0:09:57
+# Errors: 0, Warnings: 4
+# vsim -gui work.tb_cpu 
+# Start time: 04:16:50 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'unit_control_unit'.  Expected 11, found 10.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_cpu/UUT/unit_control_unit File: C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v Line: 99
+# ** Warning: (vsim-3722) C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v(99): [TFMPC] - Missing connection for port 'reg_write'.
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     0 (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     0 (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(118)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 118
+# Compile of cpu.v was successful.
+vsim -gui work.tb_cpu
+# End time: 04:21:47 on Mar 27,2021, Elapsed time: 0:04:57
+# Errors: 0, Warnings: 4
+# vsim -gui work.tb_cpu 
+# Start time: 04:21:47 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'unit_control_unit'.  Expected 11, found 10.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_cpu/UUT/unit_control_unit File: C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v Line: 99
+# ** Warning: (vsim-3722) C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v(99): [TFMPC] - Missing connection for port 'reg_write'.
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     0 (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     0 (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(118)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 118
+# Compile of cpu.v was successful.
+vsim -gui work.tb_cpu
+# End time: 04:23:43 on Mar 27,2021, Elapsed time: 0:01:56
+# Errors: 0, Warnings: 4
+# vsim -gui work.tb_cpu 
+# Start time: 04:23:43 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'unit_control_unit'.  Expected 11, found 10.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_cpu/UUT/unit_control_unit File: C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v Line: 97
+# ** Warning: (vsim-3722) C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v(97): [TFMPC] - Missing connection for port 'reg_write'.
+add wave -position insertpoint module
+# ** UI-Msg: (vish-4014) No objects found matching 'module'.
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     0 (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     0 (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(118)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 118
+# Compile of cpu.v was successful.
+vsim -gui work.tb_cpu
+# End time: 04:27:08 on Mar 27,2021, Elapsed time: 0:03:25
+# Errors: 0, Warnings: 4
+# vsim -gui work.tb_cpu 
+# Start time: 04:27:08 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'unit_control_unit'.  Expected 11, found 10.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_cpu/UUT/unit_control_unit File: C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v Line: 102
+# ** Warning: (vsim-3722) C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v(102): [TFMPC] - Missing connection for port 'reg_write'.
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     0 (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     0 (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(118)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 118
+# Compile of control_unit.v was successful.
+# Compile of cpu.v was successful.
+# Compile of cpu_evaluation_tb.v was successful.
+# Compile of register_file.v was successful.
+# 4 compiles, 0 failed with no errors.
+vsim -gui work.tb_cpu
+# End time: 04:40:02 on Mar 27,2021, Elapsed time: 0:12:54
+# Errors: 0, Warnings: 4
+# vsim -gui work.tb_cpu 
+# Start time: 04:40:02 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     0 (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     0 (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(120)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 120
+vsim -gui work.tb_cpu
+# End time: 04:40:49 on Mar 27,2021, Elapsed time: 0:00:47
+# Errors: 0, Warnings: 1
+# vsim -gui work.tb_cpu 
+# Start time: 04:40:49 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+add wave -position insertpoint sim:/tb_cpu/*
+add wave -position insertpoint  \
+sim:/tb_cpu/memory
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     0 (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     0 (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(120)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 120
+vsim -gui work.tb_cpu
+# End time: 04:42:37 on Mar 27,2021, Elapsed time: 0:01:48
+# Errors: 0, Warnings: 1
+# vsim -gui work.tb_cpu 
+# Start time: 04:42:37 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/unit_register_file/genblk1/register
+add wave -position insertpoint sim:/tb_cpu/*
+add wave -position insertpoint  \
+sim:/tb_cpu/memory
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     0 (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     0 (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(120)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 120
+vsim -gui work.tb_cpu
+# End time: 04:50:39 on Mar 27,2021, Elapsed time: 0:08:02
+# Errors: 0, Warnings: 1
+# vsim -gui work.tb_cpu 
+# Start time: 04:50:39 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+add wave -position insertpoint sim:/tb_cpu/*
+add wave -position insertpoint sim:/tb_cpu/UUT/unit_register_file/genblk1/*
+# ** UI-Msg: (vish-4014) No objects found matching '/tb_cpu/UUT/unit_register_file/genblk1/*'.
+add wave -position insertpoint  \
+sim:/tb_cpu/memory
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/unit_register_file/genblk1/register
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     0 (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     0 (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(120)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 120
+# Compile of cpu.v was successful.
+# Compile of register_file.v was successful.
+vsim -gui work.tb_cpu
+# End time: 04:53:48 on Mar 27,2021, Elapsed time: 0:03:09
+# Errors: 0, Warnings: 3
+# vsim -gui work.tb_cpu 
+# Start time: 04:53:48 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+add wave -position insertpoint sim:/tb_cpu/UUT/unit_register_file/genblk1/*
+# ** UI-Msg: (vish-4014) No objects found matching '/tb_cpu/UUT/unit_register_file/genblk1/*'.
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/unit_register_file/genblk1/register
+add wave -position insertpoint sim:/tb_cpu/*
+run -all
+#    3 :
+# PASSED
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =    10 (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 2, Failed = 13
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(120)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 120
+# Compile of cpu.v was successful.
+vsim -gui work.tb_cpu
+# End time: 05:03:34 on Mar 27,2021, Elapsed time: 0:09:46
+# Errors: 0, Warnings: 2
+# vsim -gui work.tb_cpu 
+# Start time: 05:03:35 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+add wave -position insertpoint sim:/tb_cpu/UUT/unit_register_file/genblk1/*
+# ** UI-Msg: (vish-4014) No objects found matching '/tb_cpu/UUT/unit_register_file/genblk1/*'.
+add wave -position insertpoint sim:/tb_cpu/*
+add wave -position insertpoint  \
+sim:/tb_cpu/memory
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     X (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     X (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(120)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 120
+# Compile of cpu.v was successful.
+vsim -gui work.tb_cpu
+# End time: 05:07:28 on Mar 27,2021, Elapsed time: 0:03:53
+# Errors: 0, Warnings: 2
+# vsim -gui work.tb_cpu 
+# Start time: 05:07:28 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+add wave -position insertpoint sim:/tb_cpu/*
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+add wave -position insertpoint sim:/tb_cpu/UUT/unit_register_file/genblk1/*
+# ** UI-Msg: (vish-4014) No objects found matching '/tb_cpu/UUT/unit_register_file/genblk1/*'.
+add wave -position insertpoint  \
+sim:/tb_cpu/memory
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/unit_register_file/genblk1/register
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     X (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     X (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(120)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 120
+# Compile of cpu.v was successful.
+vsim -gui work.tb_cpu
+# End time: 05:10:15 on Mar 27,2021, Elapsed time: 0:02:47
+# Errors: 0, Warnings: 2
+# vsim -gui work.tb_cpu 
+# Start time: 05:10:15 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+add wave -position insertpoint sim:/tb_cpu/*
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/unit_register_file/genblk1/register
+add wave -position insertpoint  \
+sim:/tb_cpu/memory
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     X (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     X (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(120)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 120
+# Compile of cpu.v was successful.
+vsim -gui work.tb_cpu
+# End time: 05:15:06 on Mar 27,2021, Elapsed time: 0:04:51
+# Errors: 0, Warnings: 2
+# vsim -gui work.tb_cpu 
+# Start time: 05:15:07 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+add wave -position insertpoint sim:/tb_cpu/*
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/unit_register_file/genblk1/register
+add wave -position insertpoint  \
+sim:/tb_cpu/memory
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     X (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     X (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(120)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 120
+# Compile of cpu.v was successful.
+vsim -gui work.tb_cpu
+# End time: 05:20:21 on Mar 27,2021, Elapsed time: 0:05:14
+# Errors: 0, Warnings: 2
+# vsim -gui work.tb_cpu 
+# Start time: 05:20:21 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.mux_2bit
+# Loading work.mux
+# Loading work.sign_extender
+add wave -position insertpoint sim:/tb_cpu/*
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/unit_register_file/genblk1/register
+add wave -position insertpoint  \
+sim:/tb_cpu/memory
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     X (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     X (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(120)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 120
+# WARNING: No extended dataflow license exists

@@ -46,6 +46,7 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 	wire control_pc_to_reg; 
 	wire control_jpr;
 
+
 	wire [`WORD_SIZE-1:0] read_out1; 
 	wire [`WORD_SIZE-1:0] read_out2;
 	wire [`WORD_SIZE-1:0] reg_write1;
@@ -55,6 +56,7 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 	wire [`WORD_SIZE-1:0] alu_output;
 
 	wire condition_bit;
+
 
 	assign if_read_reg1 = instruction[11:10];
 	assign if_read_reg2 = instruction[9:8];
@@ -69,28 +71,25 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 		instruction_address <= 0;
 		address <= 0;
 	end
-
 	always @(posedge inputReady) begin
-		//if (!control_mem_to_reg)	
-			instruction <= data;
+		instruction <= data;
+		instruction_address <= instruction_address_next;
 	end
 
-	always @(posedge reset_n or posedge clk or posedge control_mem_read) begin  
-		if (!reset_n)
-			instruction_address <= 0;
-		else
-			instruction_address <= instruction_address_next;
+	always @(posedge control_mem_write) begin
+		readM = 0;
+		writeM = 1;
+	end
 
-		if (!reset_n)
-			address <= 0;
-		else if (control_mem_read)
-			address <= read_out1 + extended_immediate;
-		else 
-			address <= instruction_address_next;
+	always @(posedge ackOutput) begin
+		writeM = 0;
+	end
+
+	always @(posedge clk or posedge control_mem_read) begin  
 		readM = 1;
 	end
 
-	always @(negedge clk) begin
+	always @(posedge inputReady) begin
 		readM = 0;
 	end
 
@@ -101,25 +100,28 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 	assign instruction_target_branch = instruction_address + extended_immediate;
 	assign instruction_address_next = control_jpr ? read_out1
 									: control_jp ? extended_immediate
-									: (condition_bit & control_branch) ? instruction_target_branch
+									: (control_branch & condition_bit) ? instruction_target_branch
 									: instruction_target_plus1;
-	assign address = control_mem_read ? read_out1 + extended_immediate : instruction_address;
+	assign address = reset_n ? ((control_mem_read | control_mem_write) ? alu_output : instruction_address) : 0;
 
 	control_unit unit_control_unit(
 		.instr(instruction), 
 		.alu_src(control_alu_src), 
-		//.reg_write(control_reg_write), 
+		.reg_write(control_reg_write),
 		.mem_read(control_mem_read), 
 		.mem_to_reg(control_mem_to_reg), 
 		.mem_write(control_mem_write), 
 		.jp(control_jp), 
 		.jpr(control_jpr),
 		.pc_to_reg(control_pc_to_reg),
-		.branch(control_branch));
+		.branch(control_branch),
+		.reset_n(reset_n)
+		);
 
-	assign readM = control_mem_read;
+	//assign readM = control_mem_read;
 	//reg_write_data -> data
-	assign writeM = control_mem_write;
+	assign data = writeM ? read_out2 : 16'bz;
+	
 	//data -> read_out2
 
 	register_file unit_register_file(
@@ -127,7 +129,7 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 		.read_out2(read_out2), 
 		.read1(if_read_reg1), 
 		.read2(if_read_reg2), 
-		.write_reg(if_write_reg), 
+		.write_reg(reg_input2_2), 
 		.write_data(reg_write_data), 
 		.reg_write(control_reg_write), 
 		.clk(clk), 

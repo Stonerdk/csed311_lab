@@ -11,13 +11,13 @@ module register_file(read_out1, read_out2, read1, read2, write_reg, write_data, 
     input reset_n;
     begin
 
-    reg [3:0] register [15:0];
+    reg [15:0] register [3:0];
     
     assign read_out1 = register[read1];
     assign read_out2 = register[read2];
 
-    always @(negedge clk or posedge reset_n) begin
-        if (reset_n == 1'b1) begin
+    always @(posedge clk or negedge clk) begin
+        if (reset_n == 0) begin
             register[0] <= 16'b0;
             register[1] <= 16'b0;
             register[2] <= 16'b0;
