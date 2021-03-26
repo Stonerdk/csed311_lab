@@ -6,7 +6,7 @@ module alu (alu_input_1, alu_input_2, alu_op, func_code, alu_output, condition_b
 	input [`NumBits-1:0] alu_input_1;
 	input [`NumBits-1:0] alu_input_2;
 	
-	input [4:0] alu_op; 
+	input [3:0] alu_op; 
 	input [2:0] func_code;
 
 	output reg [`NumBits-1:0] alu_output;
