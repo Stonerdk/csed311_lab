@@ -1,4 +1,4 @@
-	   `include "alu.v"
+`include "alu.v"
 `include "control_unit.v"
 `include "sign_extender.v"
 `include "mux.v"
@@ -7,6 +7,8 @@
 `include "register_file.v"
 `include "sign_extender.v"
 
+// readM writeM은 그냥 해주며되고
+//나머지 input ready 랑 ackoutput을 어떻게 해줘야 되냐.
 
 
 module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
@@ -23,6 +25,8 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 	reg [`WORD_SIZE-1:0] instruction;
 	reg [`WORD_SIZE-1:0] instruction_address;
 
+	
+
 	wire [1:0] if_read_reg1;
 	wire [1:0] if_read_reg2;
 	wire [1:0] if_write_reg;
@@ -34,17 +38,19 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 	wire[1:0] reg_input2_1;
 	wire[1:0] reg_input2_2;
 
+
 	wire control_reg_write;
 	wire control_mem_read;
 	wire control_mem_to_reg;
 	wire control_mem_write;
 	wire control_jp;
 	wire control_branch;
-	wire control_pc_to_reg;
+	wire control_pc_to_reg; 
 	wire control_jpr;
 
 	wire [`WORD_SIZE-1:0] read_out1; 
 	wire [`WORD_SIZE-1:0] read_out2;
+	wire [`WORD_SIZE-1:0] reg_write1;
 	wire [`WORD_SIZE-1:0] reg_write_data;
 
 	wire [`WORD_SIZE-1:0] alu_input2;
@@ -63,6 +69,12 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 	assign if_opcode = instruction[15:12];
 	assign if_funccode = instruction[5:0];
 	assign if_immediate = instruction[7:0];
+
+	always@(negedge clk) begin
+		assign address <= pc_address_out3; // not sure
+	end
+
+	//readm == 1 
 
 	control_unit unit_control_unit(
 		.instr(instruction), 
@@ -132,7 +144,7 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 
 	mux unit_mux_pc_adder(
 		.in1(extended_immediate),
-		.in0(1'd4),
+		.in0(1'd1),
 		.control(condition_bit & control_branch), //todo : confirm this working
 		.out(adder_to_add);
 	);
@@ -157,12 +169,23 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 		.out(pc_address_out3)
 	); // We need to assign pc_address_out3 to address and instruction_address (concerning cycle)
 
+
+	//	
 	mux nunit_mux_write_data(
 		.in0(alu_output),
 		.in1(instruction_address),
 		.control(control_pc_to_reg),
+		.out(reg_write1)
+	);
+
+	mux nunit_mux_write_data(
+		.in0(reg_write1),
+		.in1(data),
+		.control(inputReady),
 		.out(reg_write_data)
 	);
-	assign address = pc_address_out3; // not sure
+	// register write data select  1. alu_output, 2. pc,  3. memory data
+
+
 
 endmodule							  																		  
