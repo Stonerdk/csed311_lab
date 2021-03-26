@@ -62,6 +62,7 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 	wire[`WORD_SIZE-1:0] pc_address_out1;
 	wire[`WORD_SIZE-1:0] pc_address_out2;
 	wire[`WORD_SIZE-1:0] pc_address_out3;
+	wire[`WORD_SIZE-1:0] pc_address_out4;
 
 	assign if_read_reg1 = instruction[11:10];
 	assign if_read_reg2 = instruction[9:8];
@@ -70,9 +71,24 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 	assign if_funccode = instruction[5:0];
 	assign if_immediate = instruction[7:0];
 
+
 	always@(negedge clk) begin
 		address <= pc_address_out3; // not sure
 	end
+	
+	adder address_adder(
+		.in0(read_out_1),
+		.in1(extended_immediate),
+		.out(pc_address_out4)
+	);
+
+	mux unit_mux_address(
+		.in1(pc_address_out4),
+		.in0(pc_address_out3),
+		.control(control_mem_read|control_mem_write),
+		.out(address)
+	);
+
 
 	control_unit unit_control_unit(
 		.instr(instruction), 
