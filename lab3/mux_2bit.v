@@ -5,6 +5,6 @@ module mux_2bit(in1, in0, control, out);
     input control;
     output [1:0] out;
     begin
-    assign out = control ? in1 : in0;
-end
+        assign out = control ? in1 : in0;
+    end
 endmodule

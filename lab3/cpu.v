@@ -7,8 +7,8 @@
 `include "opcodes.v" 
 `include "register_file.v"
 
-// readM writeM�� �׳� ���ָ�ǰ�
-//������ input ready �� ackoutput�� ��� ����� �ǳ�.
+// readM writeM�� �׳� ���ָ�ǰ�?
+//������ input ready �� ackoutput�� ��� �����? �ǳ�.
 
 
 module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
@@ -73,8 +73,6 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 	always@(negedge clk) begin
 		address <= pc_address_out3; // not sure
 	end
-
-	//readm == 1 
 
 	control_unit unit_control_unit(
 		.instr(instruction), 
