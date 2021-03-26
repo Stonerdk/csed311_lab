@@ -7,14 +7,14 @@
 `include "opcodes.v" 
 `include "register_file.v"
 
-// readM writeM�� �׳� ���ָ�ǰ�?
-//������ input ready �� ackoutput�� ��� �����? �ǳ�.
+// readM writeM�� �׳� ���ָ�ǰ�?
+//������ input ready �� ackoutput�� ��� �����? �ǳ�.
 
 
 module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
-	output readM;									
-	output writeM;								
-	output [`WORD_SIZE-1:0] address;	
+	output reg readM;									
+	output reg writeM;								
+	output reg [`WORD_SIZE-1:0] address;	
 	inout [`WORD_SIZE-1:0] data;		
 	input ackOutput;								
 	input inputReady;								
@@ -24,7 +24,7 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 
 	reg [`WORD_SIZE-1:0] instruction;
 	reg [`WORD_SIZE-1:0] instruction_address;
-
+	wire [`WORD_SIZE-1:0] instruction_address_next;
 
 	wire [1:0] if_read_reg1;
 	wire [1:0] if_read_reg2;
@@ -56,12 +56,6 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 
 	wire condition_bit;
 
-	wire[`WORD_SIZE-1:0] adder_to_add;
-	wire[`WORD_SIZE-1:0] pc_address_out1;
-	wire[`WORD_SIZE-1:0] pc_address_out2;
-	wire[`WORD_SIZE-1:0] pc_address_out3;
-	wire[`WORD_SIZE-1:0] pc_address_out4;
-
 	assign if_read_reg1 = instruction[11:10];
 	assign if_read_reg2 = instruction[9:8];
 	assign if_write_reg = instruction[7:6];
@@ -69,24 +63,52 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 	assign if_funccode = instruction[5:0];
 	assign if_immediate = instruction[7:0];
 
-	adder address_adder(
-		.in0(read_out1),
-		.in1(extended_immediate),
-		.out(pc_address_out4)
-	);
+	initial begin 
+		readM <= 1;
+		writeM <= 0;
+		instruction_address <= 0;
+		address <= 0;
+	end
 
-	mux unit_mux_address(
-		.in1(pc_address_out4),
-		.in0(pc_address_out3),
-		.control(control_mem_read|control_mem_write),
-		.out(address)
-	);
+	always @(posedge inputReady) begin
+		//if (!control_mem_to_reg)	
+			instruction <= data;
+	end
 
+	always @(posedge reset_n or posedge clk or posedge control_mem_read) begin  
+		if (!reset_n)
+			instruction_address <= 0;
+		else
+			instruction_address <= instruction_address_next;
+
+		if (!reset_n)
+			address <= 0;
+		else if (control_mem_read)
+			address <= read_out1 + extended_immediate;
+		else 
+			address <= instruction_address_next;
+		readM = 1;
+	end
+
+	always @(negedge clk) begin
+		readM = 0;
+	end
+
+	wire [`WORD_SIZE - 1:0] instruction_target_plus1;
+	wire [`WORD_SIZE - 1:0] instruction_target_branch;
+	
+	assign instruction_target_plus1 = instruction_address + 16'd1;
+	assign instruction_target_branch = instruction_address + extended_immediate;
+	assign instruction_address_next = control_jpr ? read_out1
+									: control_jp ? extended_immediate
+									: (condition_bit & control_branch) ? instruction_target_branch
+									: instruction_target_plus1;
+	assign address = control_mem_read ? read_out1 + extended_immediate : instruction_address;
 
 	control_unit unit_control_unit(
 		.instr(instruction), 
 		.alu_src(control_alu_src), 
-		.reg_write(control_reg_write), 
+		//.reg_write(control_reg_write), 
 		.mem_read(control_mem_read), 
 		.mem_to_reg(control_mem_to_reg), 
 		.mem_write(control_mem_write), 
@@ -149,34 +171,7 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 
 	//todo : write_back
 
-	mux unit_mux_pc_adder(
-		.in1(extended_immediate),
-		.in0(16'b1),
-		.control(condition_bit & control_branch), //todo : confirm this working
-		.out(adder_to_add)
-	);
-
-	adder unit_pc_adder(
-		.in0(instruction_address),
-		.in1(adder_to_add),
-		.out(pc_address_out1)
-	);
-
-	mux unit_mux_jp(
-		.in0(pc_address_out1),
-		.in1(extended_immediate),
-		.control(control_jp),
-		.out(pc_address_out2)
-	);
-
-	mux unit_mux_jpr(
-		.in0(pc_address_out2),
-		.in1(read_out1),
-		.control(control_jpr),
-		.out(pc_address_out3)
-	); // We need to assign pc_address_out3 to address and instruction_address (concerning cycle)
-
-
+	
 	//	
 	mux nunit_mux_write_data(
 		.in0(alu_output),
@@ -188,7 +183,7 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 	mux nunit_mux_write_data2(
 		.in0(reg_write1),
 		.in1(data),
-		.control(inputReady),
+		.control(inputReady & control_mem_to_reg),
 		.out(reg_write_data)
 	);
 	// register write data select  1. alu_output, 2. pc,  3. memory data

@@ -1,0 +1,241 @@
+m255
+K4
+z2
+!s11f vlog 2020.3 2020.07, Jul 22 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA_pro/20.4
+vadder
+Z0 !s110 1616778759
+!i10b 1
+!s100 DzXU5ePoLJ[LDaDE7Jn^c0
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I_P9hZOG046Pb:[=Vf6;BK3
+Z2 dC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3_modelsim
+w1616759700
+8C:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\adder.v
+FC:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\adder.v
+!i122 22
+L0 2 8
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+Z4 OV;L;2020.3;71
+r1
+!s85 0
+31
+Z5 !s108 1616778759.000000
+!s107 C:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\register_file.v|C:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\mux_2bit.v|C:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\adder.v|C:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\mux.v|C:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\sign_extender.v|C:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\control_unit.v|C:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\opcodes.v|C:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\alu.v|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v|
+Z6 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v|
+!i113 1
+Z7 o-work work
+Z8 tCvgOpt 0
+valu
+R0
+!i10b 1
+!s100 W4jRm;?;];kKLgc2_RBWg2
+R1
+I8=U@6OdAo4g:4^1Qhj:<20
+R2
+Z9 w1616770478
+8C:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\alu.v
+FC:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\alu.v
+!i122 22
+L0 5 43
+R3
+R4
+r1
+!s85 0
+31
+R5
+Z10 !s107 C:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\register_file.v|C:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\mux_2bit.v|C:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\adder.v|C:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\mux.v|C:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\sign_extender.v|C:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\control_unit.v|C:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\opcodes.v|C:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\alu.v|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v|
+R6
+!i113 1
+R7
+R8
+vcontrol_unit
+R0
+!i10b 1
+!s100 5X[]bzCWGiWYa6A;[?jG=1
+R1
+I:T3K5b`oEH?n3]e8UecYK3
+R2
+w1616777768
+8C:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\control_unit.v
+FC:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\control_unit.v
+!i122 22
+L0 3 52
+R3
+R4
+r1
+!s85 0
+31
+R5
+R10
+R6
+!i113 1
+R7
+R8
+vcpu
+R0
+!i10b 1
+!s100 ifmaUo?Z0LcEOCTT<G8WM0
+R1
+I4GgCj?<i`DLFN1<DT:R=N0
+R2
+w1616778751
+8C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v
+FC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu.v
+!i122 22
+L0 14 180
+R3
+R4
+r1
+!s85 0
+31
+R5
+R10
+R6
+!i113 1
+R7
+R8
+vmux
+R0
+!i10b 1
+!s100 ^>kUgJ3Yd@P>K2n?Y7Nb?1
+R1
+I8Z3aeLnUz8boK8MODz9IO1
+R2
+w1616759682
+8C:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\mux.v
+FC:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\mux.v
+!i122 22
+Z11 L0 2 9
+R3
+R4
+r1
+!s85 0
+31
+R5
+R10
+R6
+!i113 1
+R7
+R8
+vmux_2bit
+R0
+!i10b 1
+!s100 mB0[0Ef?]44HUf6bCOVg_2
+R1
+I]SEBg9n38WoQT1?Q8Yi5[2
+R2
+R9
+8C:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\mux_2bit.v
+FC:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\mux_2bit.v
+!i122 22
+R11
+R3
+R4
+r1
+!s85 0
+31
+R5
+R10
+R6
+!i113 1
+R7
+R8
+vregister_file
+R0
+!i10b 1
+!s100 >kj[bGV652X:KE3WoENCB2
+R1
+In76Q3]HAR=953@9^aO=Lk2
+R2
+R9
+8C:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\register_file.v
+FC:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\register_file.v
+!i122 22
+L0 2 32
+R3
+R4
+r1
+!s85 0
+31
+R5
+R10
+R6
+!i113 1
+R7
+R8
+vsign_extender
+R0
+!i10b 1
+!s100 jB]JFDT6mCKUI89mXEzEN2
+R1
+IKH`18KF<]1lGB]IEd4[`n3
+R2
+w1616759696
+8C:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\sign_extender.v
+FC:\Users\stkd3\Desktop\3-1\Computer Architecture\Lab\lab3\sign_extender.v
+!i122 22
+L0 1 8
+R3
+R4
+r1
+!s85 0
+31
+R5
+R10
+R6
+!i113 1
+R7
+R8
+vtb_cpu
+Z12 !s110 1616770966
+!i10b 1
+!s100 PTfbR0W_OTRLDY`PmO^K[2
+R1
+I`7U5_V8EcSh;SzYZz?bhQ0
+R2
+w1615600254
+8C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v
+FC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v
+!i122 4
+L0 10 152
+R3
+R4
+r1
+!s85 0
+31
+Z13 !s108 1616770966.000000
+!s107 C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v|
+!i113 1
+R7
+R8
+vtb_cpu_f
+R12
+!i10b 1
+!s100 kBQ?MVf147zhnid8WZIXf3
+R1
+I3hkCL1`mJ[IA]RhTW7LC;3
+R2
+w1616759237
+8C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb_f.v
+FC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb_f.v
+!i122 5
+L0 10 156
+R3
+R4
+r1
+!s85 0
+31
+R13
+!s107 C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb_f.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb_f.v|
+!i113 1
+R7
+R8

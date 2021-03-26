@@ -1,0 +1,7 @@
+# OpenFile cpu_evaluation_tb.v
+vsim work.adder
+# vsim work.adder 
+# Start time: 23:58:50 on Mar 26,2021
+# Loading work.adder
+# End time: 23:59:30 on Mar 26,2021, Elapsed time: 0:00:40
+# Errors: 0, Warnings: 0
