@@ -23,9 +23,7 @@
 `define	FUNC_NOT	3'b100
 `define	FUNC_TCP	3'b101
 `define	FUNC_SHL	3'b110
-`define	FUNC_SHR	3'b111
-`define FUNC_RWD    5'b11011
-`define FUNC_WWD    5'b11100	
+`define	FUNC_SHR	3'b111	
 
 // ALU instruction function codes
 `define INST_FUNC_ADD 6'd0
