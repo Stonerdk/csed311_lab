@@ -33,7 +33,7 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 	wire [3:0] if_opcode;
 	wire [5:0] if_funccode;
 	wire [7:0] if_immediate;
-	wire [`WORD_SIZE - 1] extended_immediate;
+	wire [`WORD_SIZE- 1: 0] extended_immediate;
 
 	wire[1:0] reg_input2_1;
 	wire[1:0] reg_input2_2;
