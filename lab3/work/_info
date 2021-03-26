@@ -1,0 +1,208 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3
+vadder
+Z1 !s110 1616759723
+!i10b 1
+!s100 DzXU5ePoLJ[LDaDE7Jn^c0
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IQJUB7]HWmg>Ube3UA=R`?2
+R0
+w1616759700
+8adder.v
+Fadder.v
+!i122 4
+L0 2 8
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+Z4 OV;L;2020.3;71
+r1
+!s85 0
+31
+Z5 !s108 1616759723.000000
+!s107 sign_extender.v|register_file.v|opcodes.v|mux_2bit.v|mux.v|cpu_evaluation_tb_f.v|cpu_evaluation_tb.v|cpu.v|control_unit.v|alu.v|adder.v|
+Z6 !s90 adder.v|alu.v|control_unit.v|cpu.v|cpu_evaluation_tb.v|cpu_evaluation_tb_f.v|mux.v|mux_2bit.v|opcodes.v|register_file.v|sign_extender.v|
+!i113 1
+Z7 tCvgOpt 0
+valu
+R1
+!i10b 1
+!s100 QBNS`YJd51_KDZV]WhERb1
+R2
+IR[j1QNCIGVi7mEe27=3Ag1
+R0
+w1616759651
+8alu.v
+Falu.v
+!i122 4
+L0 5 76
+R3
+R4
+r1
+!s85 0
+31
+R5
+Z8 !s107 sign_extender.v|register_file.v|opcodes.v|mux_2bit.v|mux.v|cpu_evaluation_tb_f.v|cpu_evaluation_tb.v|cpu.v|control_unit.v|alu.v|adder.v|
+R6
+!i113 1
+R7
+vcontrol_unit
+R1
+!i10b 1
+!s100 IiG4GOHkM94T0>cml4R2=2
+R2
+I>dQ0]AVA[2_F<kgGaGiX`1
+R0
+w1616759663
+8control_unit.v
+Fcontrol_unit.v
+!i122 4
+L0 3 41
+R3
+R4
+r1
+!s85 0
+31
+R5
+R8
+R6
+!i113 1
+R7
+vmux
+R1
+!i10b 1
+!s100 k1Q@?k33i0GK4]zZXQUh?2
+R2
+ICoi`SU`1iWkb?hXhlW`5P0
+R0
+w1616759682
+8mux.v
+Fmux.v
+!i122 4
+Z9 L0 2 9
+R3
+R4
+r1
+!s85 0
+31
+R5
+R8
+R6
+!i113 1
+R7
+vmux_2bit
+R1
+!i10b 1
+!s100 FXi^6F_UK]JChmKhW=3b22
+R2
+ISSNOe?^>V?]^khkTW36ie0
+R0
+w1616759713
+8mux_2bit.v
+Fmux_2bit.v
+!i122 4
+R9
+R3
+R4
+r1
+!s85 0
+31
+R5
+R8
+R6
+!i113 1
+R7
+vregister_file
+R1
+!i10b 1
+!s100 BhQ74L_Xn]Bhd5S1Pb79j2
+R2
+IM5eS>KT027DF9=0=gX@Fz2
+R0
+w1616759479
+8register_file.v
+Fregister_file.v
+!i122 4
+L0 2 30
+R3
+R4
+r1
+!s85 0
+31
+R5
+R8
+R6
+!i113 1
+R7
+vsign_extender
+R1
+!i10b 1
+!s100 PMBz5m][QP8Yj4P4oT0E70
+R2
+IoHh=Vn6D=nYAi:eYA;WaA2
+R0
+w1616759696
+8sign_extender.v
+Fsign_extender.v
+!i122 4
+L0 1 8
+R3
+R4
+r1
+!s85 0
+31
+R5
+R8
+R6
+!i113 1
+R7
+vtb_cpu
+R1
+!i10b 1
+!s100 PTfbR0W_OTRLDY`PmO^K[2
+R2
+I`UVZnG4W7Zd1laVZJE6A00
+R0
+w1615600254
+8cpu_evaluation_tb.v
+Fcpu_evaluation_tb.v
+!i122 4
+L0 10 152
+R3
+R4
+r1
+!s85 0
+31
+R5
+R8
+R6
+!i113 1
+R7
+vtb_cpu_f
+R1
+!i10b 1
+!s100 kBQ?MVf147zhnid8WZIXf3
+R2
+I[Fi>DJXRC6ADDAj;aB]5X0
+R0
+w1616759237
+8cpu_evaluation_tb_f.v
+Fcpu_evaluation_tb_f.v
+!i122 4
+L0 10 156
+R3
+R4
+r1
+!s85 0
+31
+R5
+R8
+R6
+!i113 1
+R7

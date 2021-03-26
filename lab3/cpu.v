@@ -2,13 +2,13 @@
 `include "control_unit.v"
 `include "sign_extender.v"
 `include "mux.v"
-`include "mix_2bit.v"
+`include "adder.v"
+`include "mux_2bit.v"
 `include "opcodes.v" 
 `include "register_file.v"
-`include "sign_extender.v"
 
-// readM writeMÀº ±×³É ÇØÁÖ¸çµÇ°í
-//³ª¸ÓÁö input ready ¶û ackoutputÀ» ¾î¶»°Ô ÇØÁà¾ß µÇ³Ä.
+// readM writeMï¿½ï¿½ ï¿½×³ï¿½ ï¿½ï¿½ï¿½Ö¸ï¿½Ç°ï¿½
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ input ready ï¿½ï¿½ ackoutputï¿½ï¿½ ï¿½î¶»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç³ï¿½.
 
 
 module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
@@ -71,7 +71,7 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 	assign if_immediate = instruction[7:0];
 
 	always@(negedge clk) begin
-		assign address <= pc_address_out3; // not sure
+		address <= pc_address_out3; // not sure
 	end
 
 	//readm == 1 
@@ -88,9 +88,9 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 		.pc_to_reg(control_pc_to_reg),
 		.branch(control_branch));
 
-	assign readM = mem_read;
+	assign readM = control_mem_read;
 	//reg_write_data -> data
-	assign writeM = mem_write;
+	assign writeM = control_mem_write;
 	//data -> read_out2
 
 	register_file unit_register_file(
@@ -146,13 +146,13 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 		.in1(extended_immediate),
 		.in0(1'd1),
 		.control(condition_bit & control_branch), //todo : confirm this working
-		.out(adder_to_add);
+		.out(adder_to_add)
 	);
 
 	adder unit_pc_adder(
 		.in0(instruction_address),
-		.in1(adder_to_add);
-		.out(pc_address_out1);
+		.in1(adder_to_add),
+		.out(pc_address_out1)
 	);
 
 	mux unit_mux_jp(
@@ -178,7 +178,7 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 		.out(reg_write1)
 	);
 
-	mux nunit_mux_write_data(
+	mux nunit_mux_write_data2(
 		.in0(reg_write1),
 		.in1(data),
 		.control(inputReady),
