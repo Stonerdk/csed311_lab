@@ -12,7 +12,6 @@ module control_unit (instr, alu_src, reg_write, mem_read, mem_to_reg, mem_write,
     output reg pc_to_reg;
     output reg branch;
     begin
-
         reg[3:0] opcode;
         reg[5:0] funccode;
         assign opcode = instr[15:12];

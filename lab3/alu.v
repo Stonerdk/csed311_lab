@@ -11,8 +11,6 @@ module alu (alu_input_1, alu_input_2, alu_op, func_code, alu_output, condition_b
 
 	output reg [`NumBits-1:0] alu_output;
 	output reg condition_bit; 
-	begin
-
 		always @(*) begin
 			if (alu_op == `ALU_OP) begin
 				case(func_code)
@@ -45,5 +43,5 @@ module alu (alu_input_1, alu_input_2, alu_op, func_code, alu_output, condition_b
 			end
 		end
 
-	end
+
 endmodule
