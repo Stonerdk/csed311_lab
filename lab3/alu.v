@@ -43,7 +43,7 @@ module alu (alu_input_1, alu_input_2, alu_op, func_code, alu_output, condition_b
 		endcase
 	end
 
-	always @(func_code or alu_input_1 or alu_input_2) begin
+	/*always @(func_code or alu_input_1 or alu_input_2) begin
 		case (func_code)
 		`FUNC_ADD: begin
 			alu_output = alu_input_1 + alu_input_2;
@@ -72,5 +72,5 @@ module alu (alu_input_1, alu_input_2, alu_op, func_code, alu_output, condition_b
 		default: begin
 			alu_output = alu_input_1;
 		end
-	end
+	end*/
 endmodule

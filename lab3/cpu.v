@@ -25,12 +25,17 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 	wire [7:0] if_immediate;
 	wire [`WORD_SIZE - 1] extended_immediate;
 
+	wire[1:0] reg_input2_1;
+	wire[1:0] reg_input2_2;
+
 	wire control_reg_write;
 	wire control_mem_read;
 	wire control_mem_to_reg;
 	wire control_mem_write;
 	wire control_jp;
 	wire control_branch;
+	wire control_pc_to_reg;
+	wire control_jpr;
 
 	wire [`WORD_SIZE-1:0] read_out1; 
 	wire [`WORD_SIZE-1:0] read_out2;
@@ -40,6 +45,11 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 	wire [`WORD_SIZE-1:0] alu_output;
 
 	wire condition_bit;
+
+	wire[`WORD_SIZE-1:0] adder_to_add;
+	wire[`WORD_SIZE-1:0] pc_address_out1;
+	wire[`WORD_SIZE-1:0] pc_address_out2;
+	wire[`WORD_SIZE-1:0] pc_address_out3;
 
 	assign if_read_reg1 = instruction[11:10];
 	assign if_read_reg2 = instruction[9:8];
@@ -56,7 +66,14 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 		.mem_to_reg(control_mem_to_reg), 
 		.mem_write(control_mem_write), 
 		.jp(control_jp), 
+		.jpr(control_jpr),
+		.pc_to_reg(control_pc_to_reg),
 		.branch(control_branch));
+
+	assign readM = mem_read;
+	//reg_write_data -> data
+	assign writeM = mem_write;
+	//data -> read_out2
 
 	register_file unit_register_file(
 		.read_out1(read_out1), 
@@ -76,7 +93,21 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 		.alu_op(if_opcode), 
 		.func_code(if_funccode), 
 		.alu_output(alu_output), 
-		.condition_bit(condition_bit\)
+		.condition_bit(condition_bit)
+	);
+	
+	mux_2bit unit_mux2_write_reg_alusrc(
+		.in1(if_read_reg2),
+		.in2(if_write_reg),
+		.control(control_alu_src),
+		.out(reg_input2_1)
+	);
+
+	mux_2bit unit_mux2_write_reg_pctoreg(
+		.in1(1'b10),
+		.in0(reg_input2_1),
+		.control(control_pc_to_reg),
+		.out(reg_input2_2)
 	);
 
 	mux unit_mux_alusrc(
@@ -91,9 +122,41 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 		.out(extended_immediate)
 	);
 
-	alusrc_mux(read_data_2,immediate, alu_src, alu_input_2);
+	//todo : write_back
 
-	
+	mux unit_mux_pc_adder(
+		.in1(extended_immediate),
+		.in0(1'd4),
+		.control(condition_bit & control_branch), //todo : confirm this working
+		.out(adder_to_add);
+	);
 
+	adder unit_pc_adder(
+		.in0(instruction_address),
+		.in1(adder_to_add);
+		.out(pc_address_out1);
+	);
+
+	mux unit_mux_jp(
+		.in0(pc_address_out1),
+		.in1(extended_immediate),
+		.control(control_jp),
+		.out(pc_address_out2)
+	);
+
+	mux unit_mux_jpr(
+		.in0(pc_address_out2),
+		.in1(read_out1),
+		.control(control_jpr),
+		.out(pc_address_out3)
+	); // We need to assign pc_address_out3 to address and instruction_address (concerning cycle)
+
+	mux nunit_mux_write_data(
+		.in0(alu_output),
+		.in1(instruction_address),
+		.control(control_pc_to_reg),
+		.out(reg_write_data)
+	);
+	assign address = pc_address_out3; // not sure
 
 endmodule							  																		  
