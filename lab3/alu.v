@@ -14,7 +14,7 @@ module alu (alu_input_1, alu_input_2, func_code, alu_output);
 			alu_output = alu_input_1 + alu_input_2;
 		end
 		`FUNC_SUB: begin
-			alu_output = alu_input_1 - alu_input_2; // change order?
+			alu_output = alu_input_1 - alu_input_2;
 		end
 		`FUNC_AND: begin
 			alu_output = alu_input_1 & alu_input_2;

@@ -49,7 +49,7 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 	register_file unit_register_file(
 		.read_out1(read_out1), 
 		.read_out2(read_out2), 
-		.read1(instruction[11:10]), 
+		.read1(inst  ruction[11:10]), 
 		.read2(instruction[9:8]), 
 		.write_reg(register_write_reg), 
 		.write_data(write_data), 
