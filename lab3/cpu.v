@@ -25,19 +25,17 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 	reg [`WORD_SIZE-1:0] instruction;
 	reg [`WORD_SIZE-1:0] instruction_address;
 
-	
 
 	wire [1:0] if_read_reg1;
 	wire [1:0] if_read_reg2;
 	wire [1:0] if_write_reg;
 	wire [3:0] if_opcode;
-	wire [5:0] if_funccode;
+	wire [2:0] if_funccode;
 	wire [7:0] if_immediate;
 	wire [`WORD_SIZE- 1: 0] extended_immediate;
 
 	wire[1:0] reg_input2_1;
 	wire[1:0] reg_input2_2;
-
 
 	wire control_reg_write;
 	wire control_mem_read;
@@ -71,13 +69,8 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 	assign if_funccode = instruction[5:0];
 	assign if_immediate = instruction[7:0];
 
-
-	always@(negedge clk) begin
-		address <= pc_address_out3; // not sure
-	end
-	
 	adder address_adder(
-		.in0(read_out_1),
+		.in0(read_out1),
 		.in1(extended_immediate),
 		.out(pc_address_out4)
 	);
@@ -130,13 +123,13 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 	
 	mux_2bit unit_mux2_write_reg_alusrc(
 		.in1(if_read_reg2),
-		.in2(if_write_reg),
+		.in0(if_write_reg),
 		.control(control_alu_src),
 		.out(reg_input2_1)
 	);
 
 	mux_2bit unit_mux2_write_reg_pctoreg(
-		.in1(1'b10),
+		.in1(2'b10),
 		.in0(reg_input2_1),
 		.control(control_pc_to_reg),
 		.out(reg_input2_2)
@@ -158,7 +151,7 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 
 	mux unit_mux_pc_adder(
 		.in1(extended_immediate),
-		.in0(1'd1),
+		.in0(16'b1),
 		.control(condition_bit & control_branch), //todo : confirm this working
 		.out(adder_to_add)
 	);
