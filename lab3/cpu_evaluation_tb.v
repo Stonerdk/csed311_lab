@@ -80,6 +80,7 @@ module tb_cpu();
 		memory[12] = 16'hf183;	//	12: ORR $2, $0, $1
 		memory[13] = 16'hf404;	//	13: NOT $0, $1
 		memory[14] = 16'h8803;	//	14: SWD $0, $2, 3
+		
 		memory[15] = 16'hf881;	//	15: SUB $2, $2, $0
 		memory[16] = 16'h8210;	//	16: SWD $2, $0, 16
 		memory[17] = 16'hf845;	//	17: TCP $1, $2
