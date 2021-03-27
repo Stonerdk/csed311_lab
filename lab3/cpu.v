@@ -79,11 +79,12 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 	wire [`WORD_SIZE - 1:0] instruction_target_branch;
 	
 	assign instruction_target_plus1 = instruction_address + 16'd1;
-	assign instruction_target_branch = instruction_address + extended_immediate;
-	assign instruction_address_next = control_jpr ? read_out1
+	//assign instruction_target_branch = instruction_target_plus1;
+	assign instruction_address_next = (control_jpr ? read_out1
 									: control_jp ? extended_immediate
-									: (control_branch & condition_bit) ? instruction_target_branch
-									: instruction_target_plus1;
+									: instruction_target_plus1) +
+									((condition_bit & control_branch) ?
+									extended_immediate : 0);
 	assign address = clk ? instruction_address : alu_output;
 
 	control_unit unit_control_unit(

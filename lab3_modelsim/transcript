@@ -554,3 +554,200 @@ run -all
 #    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
 # 1
 # Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 120
+# Compile of cpu.v was successful.
+# Compile of cpu_evaluation_tb.v was successful.
+# Compile of cpu_evaluation_tb_f.v was successful.
+vsim -gui work.tb_cpu
+# End time: 21:56:16 on Mar 27,2021, Elapsed time: 2:46:23
+# Errors: 0, Warnings: 4
+# vsim -gui work.tb_cpu 
+# Start time: 21:56:16 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.sign_extender
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+add wave -position insertpoint  \
+sim:/tb_cpu/memory
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/unit_register_file/genblk1/register
+add wave -position insertpoint  \
+sim:/tb_cpu/Passed
+add wave -position insertpoint  \
+sim:/tb_cpu/Failed
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     0 (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     0 (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(121)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 121
+# Compile of cpu.v was successful.
+vsim -gui work.tb_cpu
+# End time: 21:59:21 on Mar 27,2021, Elapsed time: 0:03:05
+# Errors: 0, Warnings: 2
+# vsim -gui work.tb_cpu 
+# Start time: 21:59:21 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.sign_extender
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/unit_register_file/genblk1/register
+add wave -position insertpoint  \
+sim:/tb_cpu/memory
+add wave -position insertpoint  \
+sim:/tb_cpu/Passed
+run -all
+#    3 :
+# FAILED
+# num_cycle =     3, memory[32] =     0 (Ans :    10)
+#    7 :
+# FAILED
+# num_cycle =     7, memory[30] =     0 (Ans :     5)
+#    8 :
+# FAILED
+# num_cycle =     8, memory[31] =     0 (Ans :    10)
+#   12 :
+# FAILED
+# num_cycle =    12, memory[30] =     0 (Ans :     2)
+#   13 :
+# FAILED
+# num_cycle =    13, memory[31] =     0 (Ans :    15)
+#   17 :
+# FAILED
+# num_cycle =    17, memory[30] =     0 (Ans :     1)
+#   18 :
+# FAILED
+# num_cycle =    18, memory[31] =     0 (Ans :    17)
+#   22 :
+# PASSED
+#   23 :
+# FAILED
+# num_cycle =    23, memory[31] =     0 (Ans :    18)
+#   26 :
+# FAILED
+# num_cycle =    26, memory[33] =     0 (Ans :    18)
+#   28 :
+# FAILED
+# num_cycle =    28, memory[34] =     0 (Ans :    12)
+#   38 :
+# FAILED
+# num_cycle =    38, memory[30] =     0 (Ans :    24)
+#   39 :
+# FAILED
+# num_cycle =    39, memory[31] =     0 (Ans :     3)
+#   40 :
+# FAILED
+# num_cycle =    40, memory[32] =     0 (Ans :    12)
+#   41 :
+# FAILED
+# num_cycle =    41, memory[33] =     0 (Ans :   259)
+# Passed = 1, Failed = 14
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(121)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 121
+# Compile of cpu.v was successful.
+vsim -gui work.tb_cpu
+# End time: 22:03:36 on Mar 27,2021, Elapsed time: 0:04:15
+# Errors: 0, Warnings: 2
+# vsim -gui work.tb_cpu 
+# Start time: 22:03:36 on Mar 27,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.sign_extender
+add wave -position insertpoint sim:/tb_cpu/UUT/*
+add wave -position insertpoint  \
+sim:/tb_cpu/UUT/unit_register_file/genblk1/register
+add wave -position insertpoint  \
+sim:/tb_cpu/memory
+add wave -position insertpoint  \
+sim:/tb_cpu/Passed
+run -all
+#    3 :
+# PASSED
+#    7 :
+# PASSED
+#    8 :
+# PASSED
+#   12 :
+# PASSED
+#   13 :
+# PASSED
+#   17 :
+# PASSED
+#   18 :
+# PASSED
+#   22 :
+# PASSED
+#   23 :
+# PASSED
+#   26 :
+# PASSED
+#   28 :
+# PASSED
+#   38 :
+# PASSED
+#   39 :
+# PASSED
+#   40 :
+# PASSED
+#   41 :
+# PASSED
+# Passed = 15, Failed = 0
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v(121)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# 1
+# Break in Module tb_cpu at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab3/cpu_evaluation_tb.v line 121
