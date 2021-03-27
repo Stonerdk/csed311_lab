@@ -16,7 +16,7 @@ module register_file(read_out1, read_out2, read1, read2, write_reg, write_data, 
     assign read_out1 = register[read1];
     assign read_out2 = register[read2];
 
-    always @(posedge clk or negedge clk) begin
+    always @(posedge clk or negedge reset_n) begin
         if (reset_n == 0) begin
             register[0] <= 16'b0;
             register[1] <= 16'b0;

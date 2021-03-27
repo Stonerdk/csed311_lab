@@ -42,31 +42,37 @@ module control_unit (instr, alu_src, reg_write, mem_read, mem_to_reg, mem_write,
             pc_to_reg = 0;
         end
         else begin
-            alu_src =  ((opcode == `ADI_OP) ||
-                    (opcode == `ORI_OP) ||
-                    (opcode == `LHI_OP) ||
-                    (opcode == `LWD_OP) ||
-                    (opcode == `SWD_OP) ||
-                    (opcode == `JMP_OP) ||
-                    (opcode == `JAL_OP)); 
-            reg_write = (opcode == `ALU_OP) || 
-                        (opcode == `ORI_OP) || 
-                        (opcode == `ADI_OP) ||
-                        (opcode == `LHI_OP) ||
-                        (opcode == `LWD_OP);
+            alu_src =  
+                (opcode == `ADI_OP) ||
+                (opcode == `ORI_OP) ||
+                (opcode == `LHI_OP) ||
+                (opcode == `LWD_OP) ||
+                (opcode == `SWD_OP) ||
+                (opcode == `JMP_OP) ||
+                (opcode == `JAL_OP); 
+            reg_write = 
+                (opcode == `ALU_OP) || 
+                (opcode == `ORI_OP) || 
+                (opcode == `ADI_OP) ||
+                (opcode == `LHI_OP);
             mem_read = (opcode == `LWD_OP); 
             mem_write =  (opcode == `SWD_OP); 
             mem_to_reg =  (opcode == `LWD_OP);
 
-            jp = ((opcode == `JMP_OP) || (opcode == `JAL_OP));
-            jpr = ((opcode == `JPR_OP) || (opcode == `JRL_OP));
+            jp = 
+                (opcode == `JMP_OP) || 
+                (opcode == `JAL_OP);
+            jpr =  
+                (opcode == `JPR_OP & funccode == `INST_FUNC_JPR) || 
+                (opcode == `JRL_OP & funccode == `INST_FUNC_JRL);
             branch = 
-                ((opcode == `BNE_OP) ||
+                (opcode == `BNE_OP) ||
                 (opcode == `BEQ_OP) ||
                 (opcode == `BLZ_OP) ||
-                (opcode == `BGZ_OP));
+                (opcode == `BGZ_OP);
             pc_to_reg =
-                reset_n & ((opcode == `JAL_OP) || (opcode == `JRL_OP));  
+                (opcode == `JAL_OP) || 
+                (opcode == `JRL_OP & funccode == `INST_FUNC_JRL);  
         end  
     end
     

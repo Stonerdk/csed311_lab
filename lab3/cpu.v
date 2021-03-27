@@ -34,8 +34,9 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 	wire [7:0] if_immediate;
 	wire [`WORD_SIZE- 1: 0] extended_immediate;
 
-	wire[1:0] reg_input2_1;
-	wire[1:0] reg_input2_2;
+	reg firsttime;
+
+	wire[1:0] reg_input2;
 
 	wire control_reg_write;
 	wire control_mem_read;
@@ -70,28 +71,9 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 		writeM <= 0;
 		instruction_address <= 0;
 		address <= 0;
+		firsttime <= 0;
 	end
-	always @(posedge inputReady) begin
-		instruction <= data;
-		instruction_address <= instruction_address_next;
-	end
-
-	always @(posedge control_mem_write) begin
-		readM = 0;
-		writeM = 1;
-	end
-
-	always @(posedge ackOutput) begin
-		writeM = 0;
-	end
-
-	always @(posedge clk or posedge control_mem_read) begin  
-		readM = 1;
-	end
-
-	always @(posedge inputReady) begin
-		readM = 0;
-	end
+	
 
 	wire [`WORD_SIZE - 1:0] instruction_target_plus1;
 	wire [`WORD_SIZE - 1:0] instruction_target_branch;
@@ -102,7 +84,7 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 									: control_jp ? extended_immediate
 									: (control_branch & condition_bit) ? instruction_target_branch
 									: instruction_target_plus1;
-	assign address = reset_n ? ((control_mem_read | control_mem_write) ? alu_output : instruction_address) : 0;
+	assign address = clk ? instruction_address : alu_output;
 
 	control_unit unit_control_unit(
 		.instr(instruction), 
@@ -118,24 +100,29 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 		.reset_n(reset_n)
 		);
 
-	//assign readM = control_mem_read;
-	//reg_write_data -> data
 	assign data = writeM ? read_out2 : 16'bz;
-	
-	//data -> read_out2
 
+	wire reg_write_control_bit;
+	assign reg_write_control_bit = control_reg_write | control_mem_to_reg & ~clk;
+
+	assign reg_write_data = control_mem_to_reg ? data :
+							control_pc_to_reg ? instruction_address :
+							alu_output;
+	assign reg_input2 = control_pc_to_reg ? 2'b10 :
+						control_alu_src ? if_read_reg2 :
+						if_write_reg;
 	register_file unit_register_file(
 		.read_out1(read_out1), 
 		.read_out2(read_out2), 
 		.read1(if_read_reg1), 
 		.read2(if_read_reg2), 
-		.write_reg(reg_input2_2), 
+		.write_reg(reg_input2), 
 		.write_data(reg_write_data), 
-		.reg_write(control_reg_write), 
-		.clk(clk), 
+		.reg_write(reg_write_control_bit), 
+		.clk(inputReady), 
 		.reset_n(reset_n)
 	);
-
+	assign alu_input2 = control_alu_src ? extended_immediate : read_out2;
 	alu unit_alu(
 		.alu_input_1(read_out1), 
 		.alu_input_2(alu_input2), 
@@ -144,52 +131,44 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 		.alu_output(alu_output), 
 		.condition_bit(condition_bit)
 	);
-	
-	mux_2bit unit_mux2_write_reg_alusrc(
-		.in1(if_read_reg2),
-		.in0(if_write_reg),
-		.control(control_alu_src),
-		.out(reg_input2_1)
-	);
-
-	mux_2bit unit_mux2_write_reg_pctoreg(
-		.in1(2'b10),
-		.in0(reg_input2_1),
-		.control(control_pc_to_reg),
-		.out(reg_input2_2)
-	);
-
-	mux unit_mux_alusrc(
-		.in1(extended_immediate),
-		.in0(read_out2),
-		.control(control_alu_src),
-		.out(alu_input2)
-	);
 
 	sign_extender unit_sign_extender(
 		.in(if_immediate),
 		.out(extended_immediate)
 	);
 
-	//todo : write_back
+	always @(posedge ackOutput) begin
+		writeM <= 0;
+	end
 
-	
-	//	
-	mux nunit_mux_write_data(
-		.in0(alu_output),
-		.in1(instruction_address),
-		.control(control_pc_to_reg),
-		.out(reg_write1)
-	);
+	always @(posedge clk) begin  
+		readM <= 1;
+		if (!reset_n) begin
+			instruction_address <= 0;
+		end
+		else if (!firsttime) begin
+			instruction_address <= 0;
+			firsttime <= 1;
+		end
+		else begin
+			instruction_address <= instruction_address_next;
+		end
+	end
 
-	mux nunit_mux_write_data2(
-		.in0(reg_write1),
-		.in1(data),
-		.control(inputReady & control_mem_to_reg),
-		.out(reg_write_data)
-	);
-	// register write data select  1. alu_output, 2. pc,  3. memory data
+	always @(negedge clk) begin
+		if (control_mem_read) begin
+			readM <= 1;
+		end
+		if (control_mem_write) begin
+			writeM <= 1;
+		end
+	end
 
-
+	always @(posedge inputReady) begin
+		readM <= 0;
+		if (clk) begin
+			instruction <= data;
+		end
+	end
 
 endmodule							  																		  
