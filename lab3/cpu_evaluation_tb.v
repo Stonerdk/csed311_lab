@@ -61,13 +61,17 @@ module tb_cpu();
   	// store programs and data in the memory
 	initial begin
     	#`PERIOD1;   // delay for a while
-		memory[0]  = 16'h530a;	//	0: ORI $3, $0, 10
-		memory[1]  = 16'h421e;	//	1: ADI $2, $0, 30
- 		memory[2]  = 16'h8b02;	//	2: SWD $3, $2, 2
-		memory[3]  = 16'h7320;	//	3: LWD $3, $0, 32
-		memory[4]  = 16'hf300;	//	4: ADD $0, $0, $3
-		memory[5]  = 16'hfcc7;	//	5: SHR $3, $3
-		memory[6]  = 16'h8b00;	//	6: SWD $3, $2, 0
+		memory[0]  = 16'h530a;	//	0: ORI $3(rt), $0(rs), 10 -> $3 = 10
+		//0101 0011 0000 1010
+		// rs : 0, rt : 3, imm : 10
+		// rt <- rs | 10;
+		memory[1]  = 16'h421e;	//	1: ADI $2, $0, 30 -> $2 = 30
+ 		memory[2]  = 16'h8b02;	//	2: SWD $3(rt), $2(rs), 2 -> mem[32] = 10 
+		memory[3]  = 16'h7320;	//	3: LWD $3(rt), $0(rs), 32 -> $3 = mem[32] = 10
+		memory[4]  = 16'hf300;	//	4: ADD $0, $0, $3 ->  $0 = 10
+		// 1111 00 11 00 000000
+		memory[5]  = 16'hfcc7;	//	5: SHR $3, $3 -> $3 = 20
+		memory[6]  = 16'h8b00;	//	6: SWD $3(rt), $2(rs), 0 -> mem[10] = 20
 		memory[7]  = 16'h8801;	//	7: SWD $0, $2, 1
 		memory[8]  = 16'h07fb;	//	8: BNE $1, $3, -5
 		memory[9]  = 16'h900e;	//	9: JMP 14
@@ -76,6 +80,7 @@ module tb_cpu();
 		memory[12] = 16'hf183;	//	12: ORR $2, $0, $1
 		memory[13] = 16'hf404;	//	13: NOT $0, $1
 		memory[14] = 16'h8803;	//	14: SWD $0, $2, 3
+		
 		memory[15] = 16'hf881;	//	15: SUB $2, $2, $0
 		memory[16] = 16'h8210;	//	16: SWD $2, $0, 16
 		memory[17] = 16'hf845;	//	17: TCP $1, $2
@@ -93,10 +98,10 @@ module tb_cpu();
 		memory[29] = 16'h8309;	//	29: SWD $3, $0, 9
 		memory[30] = 0;
 		memory[31] = 0;
-		memory[32] = 0;
-		memory[33] = 0;
-		memory[34] = 0;
-		memory[35] = 0;
+		memory[32] = 0; // 10 : $3
+		memory[33] = 0; //$2
+		memory[34] = 0; //$1
+		memory[35] = 0; //$0
  	end
   
  	// Test cpu behavior 									
