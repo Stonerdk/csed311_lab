@@ -19,13 +19,11 @@ module alu (alu_input_1, alu_input_2, alu_op, func_code, alu_output, condition_b
 		always @(*) begin
 			if (alu_op == `ALU_OP) begin
 				case(func_code)
-				`FUNC_ADD: begin
-				alu_output = alu_input_1 + alu_input_2;
-				end
+				`FUNC_ADD: alu_output = alu_input_1 + alu_input_2;
 				`FUNC_SUB: alu_output = alu_input_1 - alu_input_2;		 
 				`FUNC_AND: alu_output = alu_input_1 & alu_input_2;
 				`FUNC_ORR: alu_output = alu_input_1 | alu_input_2;								     
-					`FUNC_NOT: alu_output = ~alu_input_1;
+				`FUNC_NOT: alu_output = ~alu_input_1;
 				`FUNC_TCP: alu_output = ~alu_input_1 + 1;
 				`FUNC_SHL: alu_output = alu_input_1 << 1;
 				`FUNC_SHR: alu_output = alu_input_1 >> 1;	

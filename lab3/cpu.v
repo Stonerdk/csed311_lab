@@ -1,14 +1,8 @@
 `include "alu.v"
 `include "control_unit.v"
 `include "sign_extender.v"
-`include "mux.v"
-`include "adder.v"
-`include "mux_2bit.v"
 `include "opcodes.v" 
 `include "register_file.v"
-
-// readM writeM�� �׳� ���ָ�ǰ�?
-//������ input ready �� ackoutput�� ��� �����? �ǳ�.
 
 
 module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
@@ -79,7 +73,6 @@ module cpu (readM, writeM, address, data, ackOutput, inputReady, reset_n, clk);
 	wire [`WORD_SIZE - 1:0] instruction_target_branch;
 	
 	assign instruction_target_plus1 = instruction_address + 16'd1;
-	//assign instruction_target_branch = instruction_target_plus1;
 	assign instruction_address_next = (control_jpr ? read_out1
 									: control_jp ? extended_immediate
 									: instruction_target_plus1) +

@@ -1,7 +1,43 @@
-# OpenFile cpu_evaluation_tb.v
-vsim work.adder
-# vsim work.adder 
-# Start time: 23:58:50 on Mar 26,2021
-# Loading work.adder
-# End time: 23:59:30 on Mar 26,2021, Elapsed time: 0:00:40
+# vsim -c tb_cpu 
+# Start time: 23:38:29 on Mar 28,2021
+# Loading work.tb_cpu
+# Loading work.cpu
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu
+# Loading work.sign_extender
+#    3 :
+# PASSED
+#    7 :
+# PASSED
+#    8 :
+# PASSED
+#   12 :
+# PASSED
+#   13 :
+# PASSED
+#   17 :
+# PASSED
+#   18 :
+# PASSED
+#   22 :
+# PASSED
+#   23 :
+# PASSED
+#   26 :
+# PASSED
+#   28 :
+# PASSED
+#   38 :
+# PASSED
+#   39 :
+# PASSED
+#   40 :
+# PASSED
+#   41 :
+# PASSED
+# Passed = 15, Failed = 0
+# ** Note: $finish    : cpu_evaluation_tb.v(121)
+#    Time: 4650 ns  Iteration: 1  Instance: /tb_cpu
+# End time: 23:38:34 on Mar 28,2021, Elapsed time: 0:00:05
 # Errors: 0, Warnings: 0
