@@ -28,6 +28,7 @@ module cpu(clk, reset_n, read_m, write_m, address, data, num_inst, output_port, 
 	wire control_halt; 
 	wire control_wwd; 
 	wire control_new_inst;
+	wire control_pc_temp_write;
 	wire [1:0] control_reg_write;
 	wire control_alu_src_A; 
 	wire [1:0] control_alu_src_B;
@@ -42,12 +43,14 @@ module cpu(clk, reset_n, read_m, write_m, address, data, num_inst, output_port, 
 
 	wire [15:0] memory_address_input;
 	wire [15:0] reg_write_data;
+	wire [15:0] reg_write_middle;
 	wire [15:0] reg_out1; 
 	wire [15:0] reg_out2;
 	wire [15:0] alu_input1;
 	wire [15:0] alu_input2;
 	wire [15:0] alu_output;
 	wire [15:0] immediate_extended;
+	wire [15:0] immediate_j;
 	wire [15:0] next_pc;
 
 	reg [15:0] PC;
@@ -58,6 +61,7 @@ module cpu(clk, reset_n, read_m, write_m, address, data, num_inst, output_port, 
 	reg [15:0] ALU_OUT;
 	reg [15:0] NUM_INST;
 	reg [15:0] OUTPUT_PORT;
+	reg [15:0] REG_PC_TEMP;
 	reg WRITE_M;
 	reg READ_M;
 
@@ -80,14 +84,14 @@ module cpu(clk, reset_n, read_m, write_m, address, data, num_inst, output_port, 
 		.i1(REG_B),
 		.i2(16'd1),
 		.i3(immediate_extended),
-		.i4(16'd0),
+		.i4(immediate_j),
 		.o(alu_input2)
 	);
 	mux2_1 m3(
-		.sel(control_mem_to_reg),
+		.sel(control_mem_to_reg || control_pc_to_reg),
 		.i1(ALU_OUT),
 		.i2(MEMDATA),
-		.o(reg_write_data)
+		.o(reg_write_middle)
 	);
 	mux2_1 m4(
 		.sel(control_pc_src),
@@ -95,13 +99,20 @@ module cpu(clk, reset_n, read_m, write_m, address, data, num_inst, output_port, 
 		.i2(ALU_OUT),
 		.o(next_pc)
 	);
-	
+
+	mux2_1 m5(
+		.sel(control_pc_to_reg),
+		.i1(reg_write_middle),
+		.i2(REG_PC_TEMP),
+		.o(reg_write_data)
+	);
 	
 	control_unit u2(
 		.reset_n(reset_n),
 		.opcode(INSTR[15:12]), 
 		.func_code(INSTR[5:0]), 
 		.clk(clk), 
+		.pc_temp_write(control_pc_temp_write),
 		.pc_write_cond(control_pc_write_cond), 
 		.pc_write(control_pc_write), 
 		.i_or_d(control_i_or_d), 
@@ -148,10 +159,11 @@ module cpu(clk, reset_n, read_m, write_m, address, data, num_inst, output_port, 
 		.overflow_flag(overflow_flag), 
 		.bcond(bcond)
 	);
-
+	assign immediate_j[11:0] = INSTR[11:0];
+	assign immediate_j[15:12] = 4'b0000;
 	assign immediate_extended[7:0] = INSTR[7:0];
     assign immediate_extended[15:8] = INSTR[7] ? 8'b11111111 : 8'b0;
-	assign pc_update = (control_pc_write_cond & ~bcond) | control_pc_write & reset_n;
+	assign pc_update = (control_pc_write_cond & bcond) | control_pc_write & reset_n;
 	assign reg_write_port = 
 		control_reg_write == 2'b10 ? INSTR[7:6] :
 		control_reg_write == 2'b01 ? 2'b10 :
@@ -187,5 +199,7 @@ module cpu(clk, reset_n, read_m, write_m, address, data, num_inst, output_port, 
 		REG_A <= reg_out1;
 		REG_B <= reg_out2;
 		ALU_OUT <= alu_output;
+		if (control_pc_temp_write)
+			REG_PC_TEMP <= PC;
 	end
 endmodule

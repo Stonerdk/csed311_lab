@@ -40,8 +40,6 @@ module alu_control_unit(funct, opcode, ALUOp, clk, funcCode, branchType);
         8: funcCode = `ac_add;
         9: funcCode = `ac_jmp;
         10: funcCode = `ac_jmp;
-        11: funcCode = `ac_jr;
-        12: funcCode = `ac_jr;
         15: begin 
           case (funct) 
             0: funcCode = `ac_add;
@@ -52,6 +50,8 @@ module alu_control_unit(funct, opcode, ALUOp, clk, funcCode, branchType);
             5: funcCode = `ac_tcp;
             6: funcCode = `ac_shl;
             7: funcCode = `ac_shr;
+            25: funcCode = `ac_jr;
+            26: funcCode = `ac_jr;
             28: funcCode = `ac_wwd;
             default: funcCode = `ac_add;
           endcase
