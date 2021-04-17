@@ -1,0 +1,243 @@
+m255
+K4
+z2
+!s11f MIXED_VERSIONS
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4
+valu
+Z1 !s110 1618664250
+!i10b 1
+!s100 00?lJCIed^nB:b8VFFFNc1
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+ID3Rd0>AXMH8FX[N8LS3I?1
+R0
+w1618664183
+8C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/alu.v
+FC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/alu.v
+!i122 50
+L0 4 38
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+Z4 OV;L;2020.3;71
+r1
+!s85 0
+31
+Z5 !s108 1618664250.000000
+!s107 opcodes.v|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/alu.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/alu.v|
+!i113 1
+Z6 o-work work
+Z7 tCvgOpt 0
+valu_control_unit
+R1
+!i10b 1
+!s100 C5L41j[D;M?Xm<l8QU03Z0
+R2
+I6J6_ToPfdjgijZce3ez@[2
+R0
+w1618664246
+8C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/alu_control_unit.v
+FC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/alu_control_unit.v
+!i122 51
+L0 3 61
+R3
+R4
+r1
+!s85 0
+31
+R5
+!s107 opcodes.v|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/alu_control_unit.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/alu_control_unit.v|
+!i113 1
+R6
+R7
+vcontrol_unit
+!s110 1618663294
+!i10b 1
+!s100 :ILRE3@?9GRC]2I2l:zNg1
+R2
+IZN3Kn?OGV>;zd44^T2^CI1
+R0
+w1618663285
+8C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/control_unit.v
+FC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/control_unit.v
+!i122 49
+L0 30 100
+R3
+R4
+r1
+!s85 0
+31
+!s108 1618663294.000000
+!s107 opcodes.v|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/control_unit.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/control_unit.v|
+!i113 1
+R6
+R7
+vcpu
+!s110 1618661110
+!i10b 1
+!s100 >o:[97i6][HGfoG8E;D;Z2
+R2
+IOWkk?4_CA9V9jizcIhB4Y2
+R0
+w1618661098
+8C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/cpu.v
+FC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/cpu.v
+!i122 46
+L0 5 187
+R3
+R4
+r1
+!s85 0
+31
+!s108 1618661109.000000
+!s107 C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/cpu.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/cpu.v|
+!i113 1
+R6
+R7
+vcpu_TB
+!s110 1618589035
+!i10b 1
+!s100 MceC9SNeTkJ@Mh?A5MQlJ2
+R2
+Ifj`PTgTz45;_FbjaozIRF2
+R0
+w1616985642
+8C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/cpu_TB.v
+FC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/cpu_TB.v
+!i122 18
+L0 8 147
+R3
+R4
+r1
+!s85 0
+31
+Z8 !s108 1618589035.000000
+!s107 C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/cpu_TB.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/cpu_TB.v|
+!i113 1
+R6
+R7
+ncpu_@t@b
+vcpu_TB_f
+Z9 !s110 1618589036
+!i10b 1
+!s100 <:0fc_6Kcm1FdSA7;z2C]2
+R2
+IRBd5:TQ^]IZ`MT77_VmJG2
+R0
+w1616987229
+8C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/cpu_TB_f.v
+FC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/cpu_TB_f.v
+!i122 19
+L0 8 150
+R3
+R4
+r1
+!s85 0
+31
+R8
+!s107 C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/cpu_TB_f.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/cpu_TB_f.v|
+!i113 1
+R6
+R7
+ncpu_@t@b_f
+vmemory
+R9
+!i10b 1
+!s100 l;DaUAZM214`mMRnGAUSS0
+R2
+IC5`Y8b16Hk]3@fWLFR=FK2
+R0
+w1617362706
+8C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/memory.v
+FC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/memory.v
+!i122 20
+L0 7 229
+R3
+R4
+r1
+!s85 0
+31
+Z10 !s108 1618589036.000000
+!s107 C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/memory.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/memory.v|
+!i113 1
+R6
+R7
+vmux2_1
+R9
+!i10b 1
+!s100 @lFLR5XGIIYOE`j8O@N:F3
+R2
+ISzh7>PR6PUU6L>P1TN@A<3
+R0
+Z11 w1618588008
+Z12 8C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/util.v
+Z13 FC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/util.v
+!i122 22
+L0 18 13
+R3
+R4
+r1
+!s85 0
+31
+R10
+Z14 !s107 C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/util.v|
+Z15 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/util.v|
+!i113 1
+R6
+R7
+vmux4_1
+R9
+!i10b 1
+!s100 1EKZ5g>OOXE_bULJF`lAa0
+R2
+IzOzlP5?Jz;k[DY_36^F;W1
+R0
+R11
+R12
+R13
+!i122 22
+L0 1 15
+R3
+R4
+r1
+!s85 0
+31
+R10
+R14
+R15
+!i113 1
+R6
+R7
+vregister_file
+!s110 1618655313
+!i10b 1
+!s100 RaC[cGN=I8NdieU3_JE_M1
+R2
+INOKB8PTU`HA]l40A=]?T`0
+R0
+w1618655281
+8C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/register_file.v
+FC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/register_file.v
+!i122 42
+L0 1 25
+R3
+R4
+r1
+!s85 0
+31
+!s108 1618655313.000000
+!s107 C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/register_file.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/register_file.v|
+!i113 1
+R6
+R7
