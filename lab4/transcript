@@ -225,3 +225,28 @@ run -all
 #    Time: 853450 ns  Iteration: 2  Instance: /cpu_TB
 # 1
 # Break in Module cpu_TB at cpu_TB.v line 151
+clear
+# invalid command name "clear"
+add wave -position insertpoint sim:/cpu_TB/UUT/*
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: stkd3  Hostname: LAPTOP-NTUKN4JD  ProcessID: 22272
+#           Attempting to use alternate WLF file "./wlftzfi3za".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftzfi3za
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (1) for port 'alu_src_A'. The port definition is at: C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/control_unit.v(32).
+#    Time: 0 ns  Iteration: 0  Instance: /cpu_TB/UUT/u2 File: C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab4/cpu.v Line: 110
+run -all
+# GetModuleFileName: 지정된 모듈을 찾을 수 없습니다.
+# 
+# 
+# Clock # 8533
+# The testbench is finished. Summarizing...
+# All Pass!
+# ** Note: $finish    : cpu_TB.v(151)
+#    Time: 853450 ns  Iteration: 2  Instance: /cpu_TB
+# 1
+# Break in Module cpu_TB at cpu_TB.v line 151
+# End time: 14:27:27 on Apr 18,2021, Elapsed time: 12:14:57
+# Errors: 0, Warnings: 2
