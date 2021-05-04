@@ -10,7 +10,7 @@ module alu_control(funct, opcode, ALUOp, clk, funcCode, branchType);
   input [3:0] opcode;
 
   output reg [3:0] funcCode;
-  output reg [1:0] branchType;
+  output reg [2:0] branchType;
 
    //TODO: implement ALU control unit
 
@@ -60,6 +60,7 @@ module alu_control(funct, opcode, ALUOp, clk, funcCode, branchType);
           endcase
         end
         default: funcCode = `ac_add;
+                brach_type = `none;
       endcase
     end
   end

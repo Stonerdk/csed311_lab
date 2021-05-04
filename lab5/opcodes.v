@@ -60,6 +60,7 @@
 `define bt_eq 1
 `define bt_gz 2
 `define bt_lz 3
+`define none 4
 
 `define	WORD_SIZE	16			
 `define	NUM_REGS	4

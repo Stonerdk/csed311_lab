@@ -27,11 +27,16 @@ module control_unit (opcode, func_code, clk, reset_n, pc_write_cond, pc_write, i
 	mem_read = opcode == 7;
 	mem_to_reg = opcode == 7;
 	pc_to_reg = reg_dst[1];
+
+
+	// 다음 pc를 결정하는 insturction memory 앞에 위치하고 있는 mux.
 	// 00 : pc+1, 01 : pc+1+imm(branch), 10 : imm (jmp, jal), 11 : rs (jpr, jrl)
 	wire jpr_jrl;
 	jal_jrl = opcode == 15 && (func_code == 25 || func_code == 26);
 	pc_src[1] = opcode == 9 || opcode == 10 || jpr_jrl; //JMP, JAL, JPR, JRL
 	pc_src[0] = opcode == 0 || opcode == 1 || opcode == 2 || opcode == 3 || jpr_jrl; //bne, beq, bgz, blz, jpr, jrl
+
+
 
 	halt = opcode == 15 && func_code == 29;
 	wwd = opcode == 15 && func_code == 28;
