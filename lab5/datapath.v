@@ -93,6 +93,7 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 	assign id_instr_jmp = id_instruction[11:0];
 	assign id_immediate[7:0] = id_instr_imm;
 	assign id_immediate[15:8] = id_instr_imm[7] == 1 ? 8'hff : 8'h00;
+	
 	assign id_next_pc_branch = id_immediate + IFID_PC;
 	assign id_next_pc = PC + 1;
 	assign id_next_pc_jmp[11:0] = id_instr_jmp;
