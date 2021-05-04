@@ -42,5 +42,24 @@
 `define INST_FUNC_WWD 6'd28
 `define INST_FUNC_HLT 6'd29
 
+`define ac_add 0
+`define ac_sub 1
+`define ac_and 2
+`define ac_orr 3
+`define ac_not 4
+`define ac_tcp 5
+`define ac_shl 6
+`define ac_shr 7
+`define ac_lhi 8
+`define ac_wwd 9
+`define ac_jmp 10
+`define ac_jr 11
+`define ac_branch 12 
+
+`define bt_ne 0
+`define bt_eq 1
+`define bt_gz 2
+`define bt_lz 3
+
 `define	WORD_SIZE	16			
 `define	NUM_REGS	4

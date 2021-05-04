@@ -1,3 +1,8 @@
+
+// IF/ID 직후에 control 값을 생성함.
+// 이후에 mux에서 이 control 값드링 모두 0으로 flush 될 지를 결정.
+
+
 module control_unit (opcode, func_code, clk, reset_n, pc_write_cond, pc_write, i_or_d, mem_read, mem_to_reg, mem_write, ir_write, pc_to_reg, pc_src, halt, wwd, new_inst, reg_write, alu_src_A, alu_src_B, alu_op);
 
 	input [3:0] opcode;
@@ -13,7 +18,10 @@ module control_unit (opcode, func_code, clk, reset_n, pc_write_cond, pc_write, i
 	//00 -> rs, 01 -> rt, 10 -> 2
 	reg_dst[1] = opcode == 10 || (opcode == 15 && func_code == 26); //JAL, JRL
 	reg_dst[0] = opcode == 4 || opcode == 5 || opcode == 6 || opcode == 7; //ADI< ORI, LHI, LWD
-	alu_op = 0; // TODO
+	
+	//alu_op = 0; // TODO
+	//alu_op = J-type ? 0 : 1;
+
 	alu_src = (opcode != 15); // I-Type
 	mem_write = opcode == 8;
 	mem_read = opcode == 7;
