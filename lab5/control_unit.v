@@ -1,39 +1,49 @@
-module control_unit (opcode, func_code, clk, reset_n, pc_write_cond, pc_write, i_or_d, mem_read, mem_to_reg, mem_write, ir_write, pc_to_reg, pc_src, halt, wwd, new_inst, reg_write, alu_src_A, alu_src_B, alu_op);
-
+module control_unit (opcode, func_code, clk, reset_n, branch, reg_dst, alu_op, alu_src, mem_write, mem_read, mem_to_reg, pc_src, pc_to_reg, halt, wwd, new_inst, reg_write;
 	input [3:0] opcode;
 	input [5:0] func_code;
 	input clk;
 	input reset_n;
 
-	output reg branch, reg_dst[1:0], alu_op, alu_src, mem_write, mem_read, mem_to_reg, pc_src;
-  	output reg pc_to_reg /*JALR, JAL*/, halt, wwd, new_inst;
-  	output reg [1:0] reg_write;
+	output branch, reg_dst[1:0], alu_op[2:0], alu_src, mem_write, mem_read, mem_to_reg;
+  	output pc_to_reg /*JALR, JAL*/, halt, wwd, new_inst;
+  	output [1:0] reg_write, pc_src;
+	wire br, alu, alui, lwd, swd, jmp, jal, jpr, jrl, rtype;
 
-	branch = opcode == 0 || opcode == 1 || opcode == 2 || opcode == 3; //BNE, BEQ, BGZ, BlZ	
-	//00 -> rs, 01 -> rt, 10 -> 2
-	reg_dst[1] = opcode == 10 || (opcode == 15 && func_code == 26); //JAL, JRL
-	reg_dst[0] = opcode == 4 || opcode == 5 || opcode == 6 || opcode == 7; //ADI< ORI, LHI, LWD
-	alu_op = 0; // TODO
-	alu_src = (opcode != 15); // I-Type
-	mem_write = opcode == 8;
-	mem_read = opcode == 7;
-	mem_to_reg = opcode == 7;
-	pc_to_reg = reg_dst[1];
-	// 00 : pc+1, 01 : pc+1+imm(branch), 10 : imm (jmp, jal), 11 : rs (jpr, jrl)
-	wire jpr_jrl;
-	jal_jrl = opcode == 15 && (func_code == 25 || func_code == 26);
-	pc_src[1] = opcode == 9 || opcode == 10 || jpr_jrl; //JMP, JAL, JPR, JRL
-	pc_src[0] = opcode == 0 || opcode == 1 || opcode == 2 || opcode == 3 || jpr_jrl; //bne, beq, bgz, blz, jpr, jrl
-
-	halt = opcode == 15 && func_code == 29;
-	wwd = opcode == 15 && func_code == 28;
-	new_inst = 1; 
-	reg_write = (opcode == 15 && (func_code == 0 || func_code == 1 || func_code == 2 || func_code == 3 || func_code == 4 || func_code == 5 || func_code == 6 || func_code == 7 || func_code == 26))
-				|| opcode == 4 || opcode == 5 || opcode == 6 || opcode = 7 || opcode == 10;
-				//(add, sub, and, orr, not, tcp shl, shr), adi, ori, lhi, lwd, jal, jrl
-
-
+	assign rtype = opcode == 15;
+	assign branch = ~opcode[3] & ~opcode[2];
+	assign alu = rtype && ~func_code[5] && ~func_code[4] && ~func_code[3];
+	assign alui = opcode == 4 || opcode == 5 || opcode == 6;
+	assign lwd = opcode == 7;
+	assign swd = opcode == 8;
+	assign jmp = opcode == 9;
+	assign jal = opcode == 10;
+	assign jpr = rtype && func_code == 25;
+	assign jrl = rtype && func_code == 26;
 	
-	//TODO : implement control unit
+	assign reg_dst[1] = jal || jrl;
+	assign reg_dst[0] = lwd || alui;
+	// 00 -> rs, 01 -> rt, 10 -> 2
+
+	assign alu_src = ~rtype;
+	assign mem_write = swd;
+	assign mem_read = lwd;
+	assign mem_to_reg = lwd;
+	assign pc_to_reg = jal || jrl;
+	
+	assign pc_src[1] = jmp || jal || jpr || jrl;
+	assign pc_src[0] = branch || jpr || jrl;
+	// 00 : pc+1
+	// 01 : pc+1+imm(branch)
+	// 10 : imm (jmp, jal)
+	// 11 : rs (jpr, jrl)
+
+	assign wwd = rtype && func_code == 28;
+	assign halt = rtype && func_code == 29;
+	assign new_inst = 1; 
+	assign reg_write = alu || alui || lwd || jal || jrl;
+	assign alu_op = alu ? func_code[2:0] :
+					opcode == 5 ? 3 :
+					opcode == 6 ? 8 :
+					wwd || jpr || jrl : 9 : 0;
 
 endmodule

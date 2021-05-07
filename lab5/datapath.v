@@ -20,51 +20,19 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 	output is_halted;
 
 	reg [`WORD_SIZE-1:0] PC;
-	
-	reg [`WORD_SIZE-1:0] IFID_PC;
-	reg [`WORD_SIZE-1:0] IFID_INSTR;
+	reg [`WORD_SIZE-1:0] IFID_PC, IFID_INSTR;
+	reg [`WORD_SIZE-1:0] IDEX_PC, IDEX_REG1, IDEX_REG2, IDEX_IMM;
+	reg [`WORD_SIZE-1:0] EXMEM_PC, EXMEM_ALUOUT, EXMEM_ALUIN2;
+	reg [`WORD_SIZE-1:0] MEMWB_PC, MEMWB_MEMOUT, MEMWB_OUT;
+	reg IDEXC_REGDST[1:0], IDEXC_ALUOP[2:0], IDEXC_ALUSRC, IDEXC_MEMWRITE, IDEXC_MEMREAD, IDEXC_MEMTOREG;
+	reg IDEXC_PCTOREG, IDEXC_REGWRITE[1:0], IDEXC_WWD, IDEXC_NEWINST;
+	reg EXMEMC_MEMWRITE, EXMEMC_MEMREAD, EXMEMC_MEMTOREG, EXMEMC_PCTOREG, EXMEMC_REGWRITE[1:0], EXMEMC_WWD, EXMEMC_NEWINST;
+	reg MEMWBC_PCTOREG, MEMWBC_REGWRITE[1:0], MEMWBC_WWD, MEMWBC_NEWINST;
+	reg [1:0] IDEX_RS, IDEX_RT, IDEX_RDEST, EXMEM_RDEST, MEMWB_RDEST; 
 
-	reg [`WORD_SIZE-1:0] IDEX_REG1;
-	reg [`WORD_SIZE-1:0] IDEX_REG2;
-	reg [`WORD_SIZE-1:0] IDEX_IMM;
-	reg [1:0] IDEX_RS;
-	reg [1:0] IDEX_RT;
-	reg [1:0] IDEX_RDEST; 
-	reg IDEXC_REGDST;
-	reg IDEXC_ALUOP;
-	reg IDEXC_ALUSRC;
-	reg IDEXC_MEMWRITE;
-	reg IDEXC_MEMREAD;
-	reg IDEXC_MEMTOREG;
-	reg IDEXC_PCTOREG;
-	reg IDEXC_REGWRITE;
-	reg IDEXC_WWD;
-	reg IDEXC_NEWINST;
-
-	reg [`WORD_SIZE-1:0] EXMEM_ALUOUT;
-	reg [`WORD_SIZE-1:0] EXMEM_ALUIN2;
-	reg [1:0] EXMEM_RDEST;
-	reg EXMEMC_MEMWRITE;
-	reg EXMEMC_MEMREAD;
-	reg EXMEMC_MEMTOREG;
-	reg EXMEMC_PCTOREG;
-	reg EXMEMC_REGWRITE;
-	reg EXMEMC_WWD;
-	reg EXMEMC_NEWINST;
-
-	reg [`WORD_SIZE-1:0] MEMWB_MEMOUT;
-	reg [`WORD_SIZE-1:0] MEMWB_ALUOUT;
-	reg [1:0] MEMWB_RDEST;
-	reg MEMWBC_MEMTOREG;
-	reg MEMWBC_PCTOREG;
-	reg MEMWBC_REGWRITE;
-	reg MEMWBC_WWD;
-	reg MEMWBC_NEWINST;
-
-	wire [`WORD_SIZE-1:0] id_next_pc;
-	wire [`WORD_SIZE-1:0] id_next_pc_branch;
-	wire [`WORD_SIZE-1:0] id_next_pc_jmp;
-	wire [`WORD_SIZE-1:0] id_next_mp_jalr;
+	wire c_aluop [2:0], c_alusrc, c_memwrite, c_memread, c_memtoreg, c_pctoreg, c_wwd, c_newinst, c_branch;
+	wire [1:0] c_pcsrc, c_regwrite, regdst;
+	wire [`WORD_SIZE-1:0] id_next_pc, id_next_pc_branch, id_next_pc_jmp, id_next_mp_jalr;
 	wire [3:0] id_instr_opcode;
 	wire [1:0] id_instr_rs;
 	wire [1:0] id_instr_rt;
@@ -101,23 +69,47 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 
 	assign data2 = write_m2 ? EXMEM_ALUIN2 : 16'bz;
 	assign address2 = EXMEM_ALUOUT;
-	assign wb_writedata = memread ? MEMWB_MEMOUT : MEMWB_ALUOUT; // todo
+	assign read_m2 = EXMEMC_MEMREAD;
+	assign write_m2 = EXMEMC_MEMWRITE;
+	assign wb_writedata = MEMWBC_PCTOREG ? MEMWB_PC : MEMWB_OUT; 
+
+	control_unit unit_control(
+		opcode(id_instr_opcode), 
+		func_code(id_instr_func), 
+		clk(clk), 
+		reset_n(reset_n), 
+		branch(c_branch), 
+		reg_dst(c_regdst), 
+		alu_op(c_aluop), 
+		alu_src(c_alusrc), 
+		mem_write(c_memwrite), 
+		mem_read(c_memread), 
+		mem_to_reg(c_memtoreg), 
+		pc_src(c_pcsrc), 
+		pc_to_reg(c_pctoreg), 
+		halt(is_halted), 
+		wwd(c_wwd), 
+		new_inst(c_newinst), 
+		reg_write(c_regwrite)
+	);
+
 	register_file unit_register(
 		.read_out1(id_reg1), 
 		.read_out2(id_reg2), 
 		.read1(id_instr_rs), 
 		.read2(id_instr_rt), 
-		.dest(MEMWB_RDEST), //todo 
-		.write_data(wb_writedata), //todo
-		.reg_write(), //todo 
+		.dest(MEMWB_RDEST),
+		.write_data(wb_writedata),
+		.reg_write(MEMWBC_REGWRITE),
 		.clk(clk), 
 		.reset_n(reset_n)
 	);
 
+	assign ex_alu_input2 = IDEXC_ALUSRC ? id_immediate : id_reg1;
 	alu unit_alu(
 		.A(ex_alu_input1), 
 		.B(ex_alu_input2), 
-		.func_code(), //todo
+		.func_code(IDEXC_ALUOP), //todo
 		.branch_type(), //todo
 		.alu_out(ex_alu_output), 
 		.overflow_flag(), //todo
@@ -125,24 +117,41 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 	);
 
 	//TODO: implement datapath of pipelined CPU
+	initial begin
+		new_inst <= 0;
+	end
 	always @(posedge clk) begin
 		IFID_PC <= ifid_next_pc;
 		IFID_INSTR <= data1;
 
-		IDEX_RS <= ifid_instr_rs;
-		IDEX_RT <= ifid_instr_rt;
-		IDEX_RDEST <= Rtype ? ifid_instr_rd : Itype ? ifid_instr_rt : JALR ? 2; //todo
-		IDEX_IMM <= ifid_immediate;
-		IDEX_REG1 <= ifid_reg1;
-		IDEX_REG2 <= ifid_reg2;
+		IDEX_RS <= if_instr_rs;
+		IDEX_RT <= if_instr_rt;
+		IDEX_RDEST <= IDEXC_REGDST == 0 ? if_instr_rd : IDEXC_REGDST == 1 ? if_instr_rt : 2;
+		IDEX_IMM <= if_immediate;
+		IDEX_REG1 <= if_reg1;
+		IDEX_REG2 <= if_reg2;
+		IDEX_PC <= IFID_PC;
 
 		EXMEM_ALUOUT <= ex_alu_output;
 		EXMEM_ALUIN2 <= ex_alu_input2;
 		EXMEM_RDEST <= IDEX_RDEST;
+		EXMEM_PC <= IDEX_PC;
 
 		MEMWB_MEMOUT <= data2;
-		MEMWB_ALUOUT <= EXMEM_ALUOUT;
+		MEMWB_OUT <= TMEMWBC_MEMTOREG ? MEMWB_MEMOUT : MEMWB_ALUOUT;
 		MEMWB_RDEST <= EXMEM_RDEST;
+		MEMWB_PC <= EXMEM_PC;
+
+		IDEXC_REGDST <= c_regdst;
+		IDEXC_ALUOP <= c_aluop;
+		IDEXC_ALUSRC <= c_alusrc;
+		IDEXC_MEMWRITE <= c_memwrite;
+		IDEXC_MEMREAD <= c_memread;
+		IDEXC_MEMTOREG <= c_memtoreg;
+		IDEXC_PCTOREG <= c_pctoreg;
+		IDEXC_REGWRITE <= c_regwrite;
+		IDEXC_WWD <= c_wwd;
+		IDEXC_NEWINST <= c_newinst;
 
 		EXMEMC_MEMWRITE <= IDEXC_MEMWRITE;
 		EXMEMC_MEMREAD <= IDEXC_MEMREAD;
@@ -157,6 +166,11 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 		MEMWBC_REGWRITE <= EXMEMC_REGWRITE;
 		MEMWBC_WWD <= EXMEMC_WWD;
 		MEMWBC_NEWINST <= EXMEMC_NEWINST;
+
+		if (MEMWBC_NEWINST)
+			new_inst <= new_inst + 1;
+		if (MEMWBC_WWD)
+			output_port <= MEMWB_OUT;
 	end
 	
 	//
