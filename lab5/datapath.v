@@ -43,6 +43,8 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 	wire [`WORD_SIZE-1:0] id_immediate;
 	wire [`WORD_SIZE-1:0] id_reg1;
 	wire [`WORD_SIZE-1:0] id_reg2;
+	wire id_bcond;
+	wire id_flush;
 
 	wire [`WORD_SIZE-1:0] ex_alu_input1;
 	wire [`WORD_SIZE-1:0] ex_alu_input2;
@@ -61,6 +63,7 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 	assign id_instr_jmp = id_instruction[11:0];
 	assign id_immediate[7:0] = id_instr_imm;
 	assign id_immediate[15:8] = id_instr_imm[7] == 1 ? 8'hff : 8'h00;
+
 	assign id_next_pc_branch = id_immediate + IFID_PC;
 	assign id_next_pc = PC + 1;
 	assign id_next_pc_jmp[11:0] = id_instr_jmp;
@@ -71,8 +74,7 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 	assign address2 = EXMEM_ALUOUT;
 	assign read_m2 = EXMEMC_MEMREAD;
 	assign write_m2 = EXMEMC_MEMWRITE;
-	assign wb_writedata = MEMWBC_PCTOREG ? MEMWB_PC : MEMWB_OUT; 
-
+	
 	control_unit unit_control(
 		opcode(id_instr_opcode), 
 		func_code(id_instr_func), 
@@ -93,6 +95,7 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 		reg_write(c_regwrite)
 	);
 
+	assign wb_writedata = MEMWBC_PCTOREG ? MEMWB_PC : MEMWB_OUT; 
 	register_file unit_register(
 		.read_out1(id_reg1), 
 		.read_out2(id_reg2), 
@@ -105,15 +108,15 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 		.reset_n(reset_n)
 	);
 
+	branch_alu unit_branch_alu(id_reg1, id_reg2, id_instr_opcode, id_bcond);
+	assign id_flush = c_pcsrc[1] || c_pcsrc[0] && id_bcond;
+
 	assign ex_alu_input2 = IDEXC_ALUSRC ? id_immediate : id_reg1;
 	alu unit_alu(
 		.A(ex_alu_input1), 
 		.B(ex_alu_input2), 
-		.func_code(IDEXC_ALUOP), //todo
-		.branch_type(), //todo
-		.alu_out(ex_alu_output), 
-		.overflow_flag(), //todo
-		.bcond() //todo
+		.func_code(IDEXC_ALUOP),
+		.alu_out(ex_alu_output)
 	);
 
 	//TODO: implement datapath of pipelined CPU
@@ -121,8 +124,14 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 		new_inst <= 0;
 	end
 	always @(posedge clk) begin
-		IFID_PC <= ifid_next_pc;
-		IFID_INSTR <= data1;
+		case (c_pcsrc)
+			0: IFID_PC <= id_next_pc;
+			1: IFID_PC <= id_bcond ? id_next_pc_branch : id_next_pc;
+			2: IFID_PC <= id_next_pc_jmp;
+			3: IFID_PC <= id_next_pc_jalr;
+			default: IFID_PC <= id_next_pc;
+		endcase
+		IFID_INSTR <= id_flush ? data1 : 0;
 
 		IDEX_RS <= if_instr_rs;
 		IDEX_RT <= if_instr_rt;

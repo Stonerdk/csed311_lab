@@ -4,9 +4,9 @@ module control_unit (opcode, func_code, clk, reset_n, branch, reg_dst, alu_op, a
 	input clk;
 	input reset_n;
 
-	output branch, reg_dst[1:0], alu_op[2:0], alu_src, mem_write, mem_read, mem_to_reg;
-  	output pc_to_reg /*JALR, JAL*/, halt, wwd, new_inst;
-  	output [1:0] reg_write, pc_src;
+	output branch, alu_op[2:0], alu_src, mem_write, mem_read, mem_to_reg;
+  	output pc_to_reg, halt, wwd, new_inst;
+  	output [1:0] reg_dst, reg_write, pc_src;
 	wire br, alu, alui, lwd, swd, jmp, jal, jpr, jrl, rtype;
 
 	assign rtype = opcode == 15;
@@ -42,8 +42,8 @@ module control_unit (opcode, func_code, clk, reset_n, branch, reg_dst, alu_op, a
 	assign new_inst = 1; 
 	assign reg_write = alu || alui || lwd || jal || jrl;
 	assign alu_op = alu ? func_code[2:0] :
-					opcode == 5 ? 3 :
-					opcode == 6 ? 8 :
-					wwd || jpr || jrl : 9 : 0;
+					opcode == 5 ? 3'd3 :
+					opcode == 6 ? 3'd8 :
+					(wwd || jpr || jrl) ? 9 : 3'd0;
 
 endmodule
