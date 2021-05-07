@@ -1,5 +1,5 @@
 # vsim -c cpu_TB 
-# Start time: 00:32:36 on May 08,2021
+# Start time: 01:43:20 on May 08,2021
 # Loading work.cpu_TB
 # Loading work.cpu
 # Loading work.datapath
@@ -10,14 +10,6 @@
 # Loading work.hazard_detect
 # Loading work.forwarding
 # Loading work.Memory
-# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (2) for port 'reg_write'. The port definition is at: register_file.v(3).
-#    Time: 0 ns  Iteration: 0  Instance: /cpu_TB/UUT/main/unit_register File: datapath.v Line: 104
-# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (4) for port 'opcode'. The port definition is at: alu.v(3).
-#    Time: 0 ns  Iteration: 0  Instance: /cpu_TB/UUT/main/unit_branch_alu File: datapath.v Line: 116
-# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (2) for port 'EXMEMC_regwrite'. The port definition is at: hazard.v(3).
-#    Time: 0 ns  Iteration: 0  Instance: /cpu_TB/UUT/main/forwarding_unit File: datapath.v Line: 135
-# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (2) for port 'MEMWBC_regwrite'. The port definition is at: hazard.v(3).
-#    Time: 0 ns  Iteration: 0  Instance: /cpu_TB/UUT/main/forwarding_unit File: datapath.v Line: 135
 # Test #  2-1 has been failed!
 # output_port = 0x0 (Ans : 0x1)
 # Clock #   13
@@ -77,5 +69,5 @@
 # Pass : 4/56
 # ** Note: $finish    : cpu_TB.v(153)
 #    Time: 1450 ns  Iteration: 2  Instance: /cpu_TB
-# End time: 00:32:41 on May 08,2021, Elapsed time: 0:00:05
-# Errors: 0, Warnings: 4
+# End time: 01:43:23 on May 08,2021, Elapsed time: 0:00:03
+# Errors: 0, Warnings: 0

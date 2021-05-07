@@ -20,11 +20,11 @@ with open("./memory.txt", "r") as f:
     for line in f.readlines():
         binary = d[line[0]] + d[line[1]] + d[line[2]] + d[line[3]]
         opcode = int(binary[:4], 2)
-        rs = "$" + str(int(binary[5:7], 2))
-        rt = "$" + str(int(binary[7:9], 2))
-        rd = "$" + str(int(binary[9:11], 2))
+        rs = "$" + str(int(binary[4:6], 2))
+        rt = "$" + str(int(binary[6:8], 2))
+        rd = "$" + str(int(binary[8:10], 2))
         func = int(binary[12:15], 2)
-        imm = str(int(binary[9:], 2) - 128 * int(binary[8]))
+        imm = str(int(binary[8:], 2) - 128 * int(binary[8]))
         target = str(int(binary[4:], 2))
         i = str(j)
         if opcode == 15:

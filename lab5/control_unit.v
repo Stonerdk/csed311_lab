@@ -5,8 +5,8 @@ module control_unit (opcode, func_code, clk, reset_n, branch, reg_dst, alu_op, a
 	input reset_n;
 
 	output branch, alu_src, mem_write, mem_read, mem_to_reg;
-  	output pc_to_reg, halt, wwd, new_inst;
-  	output [1:0] reg_dst, reg_write, pc_src;
+  	output pc_to_reg, halt, wwd, new_inst, reg_write;
+  	output [1:0] reg_dst, pc_src;
 	output [2:0] alu_op;
 	wire br, alu, alui, lwd, swd, jmp, jal, jpr, jrl, rtype;
 

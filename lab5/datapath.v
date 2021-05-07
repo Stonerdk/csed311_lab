@@ -24,18 +24,16 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 	reg [`WORD_SIZE-1:0] IDEX_PC, IDEX_REG1, IDEX_REG2, IDEX_IMM;
 	reg [`WORD_SIZE-1:0] EXMEM_PC, EXMEM_ALUOUT, EXMEM_ALUIN2;
 	reg [`WORD_SIZE-1:0] MEMWB_PC, MEMWB_MEMOUT, MEMWB_OUT;
-	reg IDEXC_ALUSRC, IDEXC_MEMWRITE, IDEXC_MEMREAD, IDEXC_MEMTOREG, IDEXC_PCTOREG, IDEXC_WWD, IDEXC_NEWINST;
-	reg [1:0] IDEXC_REGDST, IDEXC_REGWRITE;
+	reg IDEXC_ALUSRC, IDEXC_REGWRITE, IDEXC_MEMWRITE, IDEXC_MEMREAD, IDEXC_MEMTOREG, IDEXC_PCTOREG, IDEXC_WWD, IDEXC_NEWINST;
+	reg [1:0] IDEXC_REGDST;
 	reg [2:0] IDEXC_ALUOP;
-	reg EXMEMC_MEMWRITE, EXMEMC_MEMREAD, EXMEMC_MEMTOREG, EXMEMC_PCTOREG, EXMEMC_WWD, EXMEMC_NEWINST;
-	reg [1:0] EXMEMC_REGWRITE;
-	reg MEMWBC_PCTOREG, MEMWBC_WWD, MEMWBC_NEWINST, MEMWBC_MEMTOREG;
-	reg [1:0] MEMWBC_REGWRITE;
+	reg EXMEMC_MEMWRITE, EXMEMC_MEMREAD, EXMEMC_REGWRITE, EXMEMC_MEMTOREG, EXMEMC_PCTOREG, EXMEMC_WWD, EXMEMC_NEWINST;
+	reg MEMWBC_PCTOREG, MEMWBC_WWD, MEMWBC_NEWINST, MEMWBC_MEMTOREG, MEMWBC_REGWRITE;
 	reg [1:0] IDEX_RS, IDEX_RT, IDEX_RDEST, EXMEM_RDEST, MEMWB_RDEST; 
 
-	wire c_alusrc, c_memwrite, c_memread, c_memtoreg, c_pctoreg, c_wwd, c_newinst, c_branch;
+	wire c_alusrc, c_memwrite, c_regwrite, c_memread, c_memtoreg, c_pctoreg, c_wwd, c_newinst, c_branch;
 	wire [2:0] c_aluop;
-	wire [1:0] c_pcsrc, c_regwrite, c_regdst;
+	wire [1:0] c_pcsrc, c_regdst;
 	wire if_stall;
 	wire [`WORD_SIZE-1:0] id_next_pc, id_next_pc_branch, id_next_pc_jmp, id_next_pc_jalr;
 	wire [`WORD_SIZE-1:0] id_instruction, id_immediate, id_reg1, id_reg2;

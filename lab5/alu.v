@@ -2,7 +2,7 @@
 
 module branch_alu (A, B, opcode, bcond);
 	input [`WORD_SIZE-1:0] A, B;
-	input [5:0] opcode;
+	input [3:0] opcode;
 	output reg bcond;
 	always @(*) begin
 		case (opcode)
