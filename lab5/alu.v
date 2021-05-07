@@ -11,6 +11,7 @@ module branch_alu (A, B, opcode, bcond);
 			2: bcond = A > 0;
 			3: bcond = A < 0;
 			default: bcond = 0;
+		endcase
 	end
 endmodule		
 

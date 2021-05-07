@@ -1,5 +1,4 @@
 `timescale 1ns/1ns
-`define WORD_SIZE 16    // data and address word size
 
 `include "datapath.v"
 
@@ -22,7 +21,7 @@ module cpu(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, address2, 
 	output is_halted;
 
 	//TODO: implement pipelined CPU
-
+	datapath main(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, address2, data2, num_inst, output_port, is_halted);
 
 endmodule
 

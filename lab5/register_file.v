@@ -12,6 +12,7 @@ module register_file (read_out1, read_out2, read1, read2, dest, write_data, reg_
 
 	output [`WORD_SIZE-1:0] read_out1;
 	output [`WORD_SIZE-1:0] read_out2;
+	reg [15:0] register[3:0];
 	
 	//TODO: implement register file
 
