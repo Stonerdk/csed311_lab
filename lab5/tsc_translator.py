@@ -23,10 +23,11 @@ with open("./memory.txt", "r") as f:
         rs = "$" + str(int(binary[4:6], 2))
         rt = "$" + str(int(binary[6:8], 2))
         rd = "$" + str(int(binary[8:10], 2))
-        func = int(binary[12:15], 2)
+        func = int(binary[10:16], 2)
         imm = str(int(binary[8:], 2) - 128 * int(binary[8]))
         target = str(int(binary[4:], 2))
         i = str(j)
+        # print(line[:4], opcode, func)
         if opcode == 15:
             if func == 0:
                 print(i + ". " +rd, "<-", rs, "+", rt)
