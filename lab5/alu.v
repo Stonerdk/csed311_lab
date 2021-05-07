@@ -32,7 +32,7 @@ module alu (A, B, func_code, alu_out);
 			5 : alu_out = -A;
 			6 : alu_out = A << 1;
 			7 : alu_out = A >> 1;
-			8 : alu_out = A << 8;
+			8 : alu_out = B << 8;
 			9 : alu_out = A;
 			default: alu_out = A + B;
 		endcase

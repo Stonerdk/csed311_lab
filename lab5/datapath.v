@@ -141,6 +141,16 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 		if (!reset_n) begin
 			IFID_PC <= 0;
 			num_inst <= 0;
+			output_port <= 0;
+			IFID_INSTR <= 16'h4000;
+			IDEX_RDEST <= 0;
+			IDEX_RS <= 0;
+			IDEX_RT <= 0;
+			IDEX_RDEST <= 0;
+			IDEX_IMM <= 0;
+			IDEX_REG1 <= 0;
+			IDEX_REG2 <= 0;
+			IDEX_PC <= 0;
 		end
 
 		if (if_stall) begin
@@ -152,7 +162,7 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 				default: IFID_PC <= id_next_pc;
 			endcase
 		end
-		IFID_INSTR <= id_flush ? data1 : 0;
+		IFID_INSTR <= id_flush ? data1 : 16'h4000; // adi x0 0
 
 		IDEX_RS <= id_instr_rs;
 		IDEX_RT <= id_instr_rt;

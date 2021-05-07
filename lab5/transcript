@@ -1,5 +1,5 @@
-# vsim cpu_TB 
-# Start time: 23:11:10 on May 07,2021
+# vsim -c cpu_TB 
+# Start time: 00:32:36 on May 08,2021
 # Loading work.cpu_TB
 # Loading work.cpu
 # Loading work.datapath
@@ -18,17 +18,11 @@
 #    Time: 0 ns  Iteration: 0  Instance: /cpu_TB/UUT/main/forwarding_unit File: datapath.v Line: 135
 # ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (2) for port 'MEMWBC_regwrite'. The port definition is at: hazard.v(3).
 #    Time: 0 ns  Iteration: 0  Instance: /cpu_TB/UUT/main/forwarding_unit File: datapath.v Line: 135
-add wave -position insertpoint sim:/cpu_TB/UUT/main/*
-run -all
-# Test #  1-1 has been failed!
-# output_port = 0xx (Ans : 0x0)
-# Clock #    5
+# Test #  2-1 has been failed!
+# output_port = 0x0 (Ans : 0x1)
+# Clock #   13
 # The testbench is finished. Summarizing...
-# Test #  1-1 :     Wrong
-# Test #  1-2 : No Result
-# Test #  1-3 : No Result
-# Test #  1-4 : No Result
-# Test #  2-1 : No Result
+# Test #  2-1 :     Wrong
 # Test #  2-2 : No Result
 # Test #  3-1 : No Result
 # Test #  3-2 : No Result
@@ -80,10 +74,8 @@ run -all
 # Test # 19-2 : No Result
 # Test # 19-3 : No Result
 # Test #   20 : No Result
-# Pass : 0/56
+# Pass : 4/56
 # ** Note: $finish    : cpu_TB.v(153)
-#    Time: 650 ns  Iteration: 2  Instance: /cpu_TB
-# 1
-# Break in Module cpu_TB at cpu_TB.v line 153
-# End time: 00:09:39 on May 08,2021, Elapsed time: 0:58:29
+#    Time: 1450 ns  Iteration: 2  Instance: /cpu_TB
+# End time: 00:32:41 on May 08,2021, Elapsed time: 0:00:05
 # Errors: 0, Warnings: 4

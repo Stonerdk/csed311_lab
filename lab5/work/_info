@@ -10,7 +10,7 @@ z2
 cModel Technology
 Z0 dC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5
 valu
-Z1 !s110 1620396545
+Z1 !s110 1620401552
 !i10b 1
 !s100 V4B`F8W08izcF[bC9=BYQ3
 Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
@@ -19,14 +19,14 @@ R0
 Z3 w1620395375
 Z4 8alu.v
 Z5 Falu.v
-!i122 15
+!i122 16
 L0 18 23
 Z6 VDg1SIo80bB@j0V0VzS_@n1
 Z7 OV;L;2020.3;71
 r1
 !s85 0
 31
-Z8 !s108 1620396545.000000
+Z8 !s108 1620401552.000000
 !s107 register_file.v|opcodes.v|Memory.v|hazard.v|datapath.v|cpu_TB.v|cpu.v|control_unit.v|branch_predictor.v|alu.v|
 Z9 !s90 alu.v|branch_predictor.v|control_unit.v|cpu.v|cpu_TB.v|datapath.v|hazard.v|Memory.v|opcodes.v|register_file.v|
 !i113 1
@@ -41,7 +41,7 @@ R0
 R3
 R4
 R5
-!i122 15
+!i122 16
 Z11 L0 3 14
 R6
 R7
@@ -63,7 +63,7 @@ R0
 w1620394855
 8branch_predictor.v
 Fbranch_predictor.v
-!i122 15
+!i122 16
 R11
 R6
 R7
@@ -85,7 +85,7 @@ R0
 w1620396034
 8control_unit.v
 Fcontrol_unit.v
-!i122 15
+!i122 16
 L0 1 50
 R6
 R7
@@ -107,7 +107,7 @@ R0
 w1620395441
 8cpu.v
 Fcpu.v
-!i122 15
+!i122 16
 L0 5 22
 R6
 R7
@@ -129,7 +129,7 @@ R0
 Z13 w1619798043
 8cpu_TB.v
 Fcpu_TB.v
-!i122 15
+!i122 16
 L0 8 149
 R6
 R7
@@ -145,15 +145,15 @@ ncpu_@t@b
 vdatapath
 R1
 !i10b 1
-!s100 PR`@Rkl0TkT`ddlmP<kHK0
+!s100 `jREXIO^>D`FZH[m@`T:c0
 R2
-I=:ddVXinAfH1I3Xmz0fo:1
+I_YmEQYkIIekmT?U5dhJJ21
 R0
-w1620396540
+w1620401439
 8datapath.v
 Fdatapath.v
-!i122 15
-L0 8 195
+!i122 16
+L0 8 210
 R6
 R7
 r1
@@ -174,7 +174,7 @@ R0
 Z14 w1620395480
 Z15 8hazard.v
 Z16 Fhazard.v
-!i122 15
+!i122 16
 L0 3 10
 R6
 R7
@@ -196,7 +196,7 @@ R0
 R14
 R15
 R16
-!i122 15
+!i122 16
 L0 13 12
 R6
 R7
@@ -218,7 +218,7 @@ R0
 R13
 8Memory.v
 FMemory.v
-!i122 15
+!i122 16
 L0 7 237
 R6
 R7
@@ -241,7 +241,7 @@ R0
 w1620396070
 8register_file.v
 Fregister_file.v
-!i122 15
+!i122 16
 L0 3 32
 R6
 R7
