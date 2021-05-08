@@ -27,8 +27,16 @@ module register_file (read_out1, read_out2, read1, read2, dest, write_data, reg_
 	assign read_out2 = register[read2];
 
 	always @(negedge clk)begin
-		if (reg_write == 1)
-			register[dest] <= write_data;
+		if (!reset_n) begin
+			register[0] <= 16'b0;
+			register[1] <= 16'b0;
+			register[2] <= 16'b0;
+			register[3] <= 16'b0;	
+		end
+		else begin
+			if (reg_write == 1)
+				register[dest] <= write_data;
+		end
 	end
 
 endmodule

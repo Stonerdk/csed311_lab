@@ -5,10 +5,15 @@ module forwarding(IDEX_rs, IDEX_rt, EXMEM_rdest, MEMWB_rdest, EXMEMC_regwrite, M
 	input EXMEMC_regwrite, MEMWBC_regwrite;
 	output [1:0] ALU1_sel, ALU2_sel;
 
-	assign ALU1_sel[1] = EXMEMC_regwrite && IDEX_rs == EXMEM_rdest;
-	assign ALU1_sel[0] = MEMWBC_regwrite && IDEX_rs == MEMWB_rdest;
-	assign ALU2_sel[1] = EXMEMC_regwrite && IDEX_rt == EXMEM_rdest;
-	assign ALU2_sel[0] = MEMWBC_regwrite && IDEX_rt == EXMEM_rdest;
+	// assign ALU1_sel[1] = EXMEMC_regwrite && IDEX_rs == EXMEM_rdest;
+	// assign ALU1_sel[0] = MEMWBC_regwrite && IDEX_rs == MEMWB_rdest;
+	// assign ALU2_sel[1] = EXMEMC_regwrite && IDEX_rt == EXMEM_rdest;
+	// assign ALU2_sel[0] = MEMWBC_regwrite && IDEX_rt == EXMEM_rdest;
+
+	assign ALU1_sel[1] = 0;
+	assign ALU1_sel[0] = 0;
+	assign ALU2_sel[1] = 0;
+	assign ALU2_sel[0] = 0;
 endmodule
 module hazard_detect(IFID_IR, IDEX_rd, IDEX_M_mem_read, is_stall);
 

@@ -18,7 +18,7 @@ endmodule
 module alu (A, B, func_code, alu_out);
 	input [`WORD_SIZE-1:0] A;
 	input [`WORD_SIZE-1:0] B;
-	input [2:0] func_code;
+	input [3:0] func_code;
 
 	output reg [`WORD_SIZE-1:0] alu_out;
 

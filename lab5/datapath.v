@@ -19,20 +19,19 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 	output reg [`WORD_SIZE-1:0] output_port;
 	output is_halted;
 
-	reg [`WORD_SIZE-1:0] PC;
 	reg [`WORD_SIZE-1:0] IFID_PC, IFID_INSTR;
 	reg [`WORD_SIZE-1:0] IDEX_PC, IDEX_REG1, IDEX_REG2, IDEX_IMM;
 	reg [`WORD_SIZE-1:0] EXMEM_PC, EXMEM_ALUOUT, EXMEM_ALUIN2;
 	reg [`WORD_SIZE-1:0] MEMWB_PC, MEMWB_MEMOUT, MEMWB_OUT;
 	reg IDEXC_ALUSRC, IDEXC_REGWRITE, IDEXC_MEMWRITE, IDEXC_MEMREAD, IDEXC_MEMTOREG, IDEXC_PCTOREG, IDEXC_WWD, IDEXC_NEWINST;
 	reg [1:0] IDEXC_REGDST;
-	reg [2:0] IDEXC_ALUOP;
+	reg [3:0] IDEXC_ALUOP;
 	reg EXMEMC_MEMWRITE, EXMEMC_MEMREAD, EXMEMC_REGWRITE, EXMEMC_MEMTOREG, EXMEMC_PCTOREG, EXMEMC_WWD, EXMEMC_NEWINST;
 	reg MEMWBC_PCTOREG, MEMWBC_WWD, MEMWBC_NEWINST, MEMWBC_MEMTOREG, MEMWBC_REGWRITE;
 	reg [1:0] IDEX_RS, IDEX_RT, IDEX_RDEST, EXMEM_RDEST, MEMWB_RDEST; 
 
 	wire c_alusrc, c_memwrite, c_regwrite, c_memread, c_memtoreg, c_pctoreg, c_wwd, c_newinst, c_branch;
-	wire [2:0] c_aluop;
+	wire [3:0] c_aluop;
 	wire [1:0] c_pcsrc, c_regdst;
 	wire if_stall;
 	wire [`WORD_SIZE-1:0] id_next_pc, id_next_pc_branch, id_next_pc_jmp, id_next_pc_jalr;
@@ -68,7 +67,7 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 	assign id_immediate[15:8] = id_instr_imm[7] == 1 ? 8'hff : 8'h00;
 
 	assign id_next_pc_branch = id_immediate + IFID_PC;
-	assign id_next_pc = PC + 1;
+	assign id_next_pc = IFID_PC + 1;
 	assign id_next_pc_jmp[11:0] = id_instr_jmp;
 	assign id_next_pc_jmp[15:12] = 4'h0;
 	assign id_next_pc_jalr = id_reg1;
@@ -141,7 +140,7 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 			IFID_PC <= 0;
 			num_inst <= 0;
 			output_port <= 0;
-			IFID_INSTR <= 16'h4000;
+			IFID_INSTR <= 16'h0;
 			IDEX_RDEST <= 0;
 			IDEX_RS <= 0;
 			IDEX_RT <= 0;
@@ -187,7 +186,7 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 			MEMWBC_NEWINST <= 0;
 		end
 		else begin
-			if (if_stall) begin
+			if (!if_stall) begin
 				case (c_pcsrc)
 					0: IFID_PC <= id_next_pc;
 					1: IFID_PC <= id_bcond ? id_next_pc_branch : id_next_pc;
@@ -196,7 +195,7 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 					default: IFID_PC <= id_next_pc;
 				endcase
 			end
-			IFID_INSTR <= id_flush ? 15'h4000 : data1; // adi x0 0
+			IFID_INSTR <= id_flush ? 0 : data1; // adi x0 0
 
 			IDEX_RS <= id_instr_rs;
 			IDEX_RT <= id_instr_rt;

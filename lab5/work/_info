@@ -10,23 +10,23 @@ z2
 cModel Technology
 Z0 dC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5
 valu
-Z1 !s110 1620451379
+Z1 !s110 1620466320
 !i10b 1
-!s100 MQ`?EnL9FJVZNnYXgBD7I0
+!s100 Ti]J@gcZDEN9nfaCB7PgO3
 Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
-IWPd@J7JM@h;?<k9RdbPJE0
+I=DmCC_PZWBbEi6Yl7QkKR0
 R0
-Z3 w1620405715
+Z3 w1620457370
 Z4 8alu.v
 Z5 Falu.v
-!i122 39
+!i122 48
 L0 18 23
 Z6 VDg1SIo80bB@j0V0VzS_@n1
 Z7 OV;L;2020.3;71
 r1
 !s85 0
 31
-Z8 !s108 1620451379.000000
+Z8 !s108 1620466320.000000
 !s107 hazard.v|branch_predictor.v|control_unit.v|alu.v|register_file.v|opcodes.v|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/datapath.v|
 Z9 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/datapath.v|
 !i113 1
@@ -42,7 +42,7 @@ R0
 R3
 R4
 R5
-!i122 39
+!i122 48
 Z12 L0 3 14
 R6
 R7
@@ -65,7 +65,7 @@ R0
 w1620394855
 8branch_predictor.v
 Fbranch_predictor.v
-!i122 39
+!i122 48
 R12
 R6
 R7
@@ -81,14 +81,14 @@ R11
 vcontrol_unit
 R1
 !i10b 1
-!s100 [_lBIX4@WU`AL6hEU<JA]0
+!s100 K_H_nlmn3P:PVJ^LBiocM1
 R2
-Iadm[_@UaClBEhbg_kX9l_3
+IKM:B894W[@DQFR5kCicjQ2
 R0
-w1620405637
+w1620457386
 8control_unit.v
 Fcontrol_unit.v
-!i122 39
+!i122 48
 L0 1 50
 R6
 R7
@@ -151,15 +151,15 @@ ncpu_@t@b
 vdatapath
 R1
 !i10b 1
-!s100 1:[d_2R?1h7<DSX_KE83;0
+!s100 B@nzO1`:XZX9UOc;NNF[d0
 R2
-Ihj=lT2fmC<7TETh0hH`fb3
+I;@Ze]o6C^2;oD?7l4`Ii<1
 R0
-w1620451321
+w1620466317
 8C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/datapath.v
 FC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/datapath.v
-!i122 39
-L0 8 245
+!i122 48
+L0 8 244
 R6
 R7
 r1
@@ -174,15 +174,15 @@ R11
 vforwarding
 R1
 !i10b 1
-!s100 ;?3EP;54C6l_GYJ0EXISz0
+!s100 02Ui9oDSl9LFF`mC1D0HQ3
 R2
-Ih21VFINFPHbgH?cS8n_4@1
+IR4f^0OoYI:ic=Z0ge96<l2
 R0
-Z16 w1620395480
+Z16 w1620456170
 Z17 8hazard.v
 Z18 Fhazard.v
-!i122 39
-L0 3 10
+!i122 48
+L0 3 15
 R6
 R7
 r1
@@ -197,15 +197,15 @@ R11
 vhazard_detect
 R1
 !i10b 1
-!s100 RD]QHMzfZ?GDi<Df[j`Rm3
+!s100 7KRhD=Tk;n0CD=Z<GX3Fo0
 R2
-I0m8j@U9oOTm?CJ9ooZRj@0
+IPT2Z1DEoRnVilie?mI?o41
 R0
 R16
 R17
 R18
-!i122 39
-L0 13 12
+!i122 48
+L0 18 12
 R6
 R7
 r1
@@ -244,15 +244,15 @@ n@memory
 vregister_file
 R1
 !i10b 1
-!s100 Xb1@>lZfHg`MRUmo7L=]A1
+!s100 a4D>IlYMZg:iSF`0aPTI>1
 R2
-IU9nnF0<SL<Rih2C_TTM?_0
+IM3W8:3?Jd1F=IJ:6cWITM2
 R0
-w1620396070
+w1620453611
 8register_file.v
 Fregister_file.v
-!i122 39
-L0 3 32
+!i122 48
+L0 3 40
 R6
 R7
 r1
