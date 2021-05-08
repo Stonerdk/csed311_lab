@@ -1,9 +1,9 @@
-{C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/register_file.v} {1 {vlog -work work -stats=none {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/register_file.v}
+{C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/control_unit.v} {1 {vlog -work work -stats=none {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/control_unit.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
--- Compiling module register_file
+-- Compiling module control_unit
 
 Top level modules:
-	register_file
+	control_unit
 
 } {} {}} {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu.v} {1 {vlog -work work -stats=none {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
@@ -21,29 +21,12 @@ Top level modules:
 	branch_predictor
 	cpu
 
-} {} {}} {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/control_unit.v} {1 {vlog -work work -stats=none {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/control_unit.v}
+} {} {}} {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/register_file.v} {1 {vlog -work work -stats=none {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/register_file.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
--- Compiling module control_unit
+-- Compiling module register_file
 
 Top level modules:
-	control_unit
-
-} {} {}} {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/opcodes.v} {1 {vlog -work work -stats=none {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/opcodes.v}
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
-
-} {} {}} {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/Memory.v} {1 {vlog -work work -stats=none {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/Memory.v}
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
--- Compiling module Memory
-
-Top level modules:
-	Memory
-
-} {} {}} {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v} {1 {vlog -work work -stats=none {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v}
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
--- Compiling module cpu_TB
-
-Top level modules:
-	cpu_TB
+	register_file
 
 } {} {}} {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/branch_predictor.v} {1 {vlog -work work -stats=none {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/branch_predictor.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
@@ -52,14 +35,22 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 
 Top level modules:
 	branch_predictor
 
-} {} {}} {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/hazard.v} {1 {vlog -work work -stats=none {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/hazard.v}
+} {} {}} {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v} {1 {vlog -work work -stats=none {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
--- Compiling module forwarding
--- Compiling module hazard_detect
+-- Compiling module cpu_TB
 
 Top level modules:
-	forwarding
-	hazard_detect
+	cpu_TB
+
+} {} {}} {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/Memory.v} {1 {vlog -work work -stats=none {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/Memory.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
+-- Compiling module Memory
+
+Top level modules:
+	Memory
+
+} {} {}} {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/opcodes.v} {1 {vlog -work work -stats=none {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/opcodes.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
 
 } {} {}} {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/alu.v} {1 {vlog -work work -stats=none {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/alu.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
@@ -69,6 +60,15 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 
 Top level modules:
 	branch_alu
 	alu
+
+} {} {}} {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/hazard.v} {1 {vlog -work work -stats=none {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/hazard.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
+-- Compiling module forwarding
+-- Compiling module hazard_detect
+
+Top level modules:
+	forwarding
+	hazard_detect
 
 } {} {}} {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/datapath.v} {1 {vlog -work work -stats=none {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/datapath.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020

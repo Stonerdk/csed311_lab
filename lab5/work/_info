@@ -10,7 +10,7 @@ z2
 cModel Technology
 Z0 dC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5
 valu
-Z1 !s110 1620466320
+Z1 !s110 1620471237
 !i10b 1
 !s100 Ti]J@gcZDEN9nfaCB7PgO3
 Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
@@ -19,14 +19,14 @@ R0
 Z3 w1620457370
 Z4 8alu.v
 Z5 Falu.v
-!i122 48
+!i122 52
 L0 18 23
 Z6 VDg1SIo80bB@j0V0VzS_@n1
 Z7 OV;L;2020.3;71
 r1
 !s85 0
 31
-Z8 !s108 1620466320.000000
+Z8 !s108 1620471237.000000
 !s107 hazard.v|branch_predictor.v|control_unit.v|alu.v|register_file.v|opcodes.v|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/datapath.v|
 Z9 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/datapath.v|
 !i113 1
@@ -42,7 +42,7 @@ R0
 R3
 R4
 R5
-!i122 48
+!i122 52
 Z12 L0 3 14
 R6
 R7
@@ -65,7 +65,7 @@ R0
 w1620394855
 8branch_predictor.v
 Fbranch_predictor.v
-!i122 48
+!i122 52
 R12
 R6
 R7
@@ -88,7 +88,7 @@ R0
 w1620457386
 8control_unit.v
 Fcontrol_unit.v
-!i122 48
+!i122 52
 L0 1 50
 R6
 R7
@@ -151,15 +151,15 @@ ncpu_@t@b
 vdatapath
 R1
 !i10b 1
-!s100 B@nzO1`:XZX9UOc;NNF[d0
+!s100 ikfnj5Uc6G;8INhac7PmQ3
 R2
-I;@Ze]o6C^2;oD?7l4`Ii<1
+IK9YOK19<6L>WdUIW<RH__1
 R0
-w1620466317
+w1620471231
 8C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/datapath.v
 FC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/datapath.v
-!i122 48
-L0 8 244
+!i122 52
+L0 8 250
 R6
 R7
 r1
@@ -174,15 +174,15 @@ R11
 vforwarding
 R1
 !i10b 1
-!s100 02Ui9oDSl9LFF`mC1D0HQ3
+!s100 oQ^[c7c4z0heC2>lK7Rda2
 R2
-IR4f^0OoYI:ic=Z0ge96<l2
+I>nYG1fhVG<ndakd1f@dFA2
 R0
-Z16 w1620456170
+Z16 w1620468055
 Z17 8hazard.v
 Z18 Fhazard.v
-!i122 48
-L0 3 15
+!i122 52
+L0 3 11
 R6
 R7
 r1
@@ -197,15 +197,15 @@ R11
 vhazard_detect
 R1
 !i10b 1
-!s100 7KRhD=Tk;n0CD=Z<GX3Fo0
+!s100 ;1VTnPP^]A0b[@KM;m_W_0
 R2
-IPT2Z1DEoRnVilie?mI?o41
+Ib7^I`QfV[gF5S<5PHC`Ze1
 R0
 R16
 R17
 R18
-!i122 48
-L0 18 12
+!i122 52
+L0 14 12
 R6
 R7
 r1
@@ -251,7 +251,7 @@ R0
 w1620453611
 8register_file.v
 Fregister_file.v
-!i122 48
+!i122 52
 L0 3 40
 R6
 R7
