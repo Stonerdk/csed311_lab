@@ -55,8 +55,8 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 
 	wire [`WORD_SIZE-1:0] wb_writedata;
 
-	assign address1 = PC;
-	
+	assign address1 = IFID_PC;
+	assign id_instruction = IFID_INSTR;
 	assign id_instr_opcode = id_instruction[15:12];
 	assign id_instr_rs = id_instruction[11:10];
 	assign id_instr_rt = id_instruction[9:8];
@@ -74,9 +74,10 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 	assign id_next_pc_jalr = id_reg1;
 
 	assign data2 = write_m2 ? EXMEM_ALUIN2 : 16'bz;
-	assign address2 = EXMEM_ALUOUT;
-	assign read_m2 = EXMEMC_MEMREAD;
-	assign write_m2 = EXMEMC_MEMWRITE;
+	assign address2 = reset_n && EXMEM_ALUOUT;
+	assign read_m1 = 1;
+	assign read_m2 = reset_n && EXMEMC_MEMREAD;
+	assign write_m2 = reset_n && EXMEMC_MEMWRITE;
 	
 	control_unit unit_control(
 		.opcode(id_instr_opcode), 
@@ -149,66 +150,102 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 			IDEX_REG1 <= 0;
 			IDEX_REG2 <= 0;
 			IDEX_PC <= 0;
+
+			EXMEM_ALUOUT <= 0;
+			EXMEM_ALUIN2 <= 0;
+			EXMEM_RDEST <= 0;
+			EXMEM_PC <= 0;
+
+			MEMWB_MEMOUT <= 0;
+			MEMWB_OUT <= 0;
+			MEMWB_RDEST <= 0;
+			MEMWB_PC <= 0;
+
+			IDEXC_REGDST <= 0;
+			IDEXC_ALUOP <= 0;
+			IDEXC_ALUSRC <= 0;
+			IDEXC_MEMWRITE <= 0;
+			IDEXC_MEMREAD <= 0;
+			IDEXC_MEMTOREG <= 0;
+			IDEXC_PCTOREG <= 0;
+			IDEXC_REGWRITE <= 0;
+			IDEXC_WWD <= 0;
+			IDEXC_NEWINST <= 0;
+
+			EXMEMC_MEMWRITE <= 0;
+			EXMEMC_MEMREAD <= 0;
+			EXMEMC_MEMTOREG <= 0;
+			EXMEMC_PCTOREG <= 0;
+			EXMEMC_REGWRITE <= 0;
+			EXMEMC_WWD <= 0;
+			EXMEMC_NEWINST <= 0;
+
+			MEMWBC_MEMTOREG <= 0;
+			MEMWBC_PCTOREG <= 0;
+			MEMWBC_REGWRITE <= 0;
+			MEMWBC_WWD <= 0;
+			MEMWBC_NEWINST <= 0;
 		end
+		else begin
+			if (if_stall) begin
+				case (c_pcsrc)
+					0: IFID_PC <= id_next_pc;
+					1: IFID_PC <= id_bcond ? id_next_pc_branch : id_next_pc;
+					2: IFID_PC <= id_next_pc_jmp;
+					3: IFID_PC <= id_next_pc_jalr;
+					default: IFID_PC <= id_next_pc;
+				endcase
+			end
+			IFID_INSTR <= id_flush ? 15'h4000 : data1; // adi x0 0
 
-		if (if_stall) begin
-			case (c_pcsrc)
-				0: IFID_PC <= id_next_pc;
-				1: IFID_PC <= id_bcond ? id_next_pc_branch : id_next_pc;
-				2: IFID_PC <= id_next_pc_jmp;
-				3: IFID_PC <= id_next_pc_jalr;
-				default: IFID_PC <= id_next_pc;
-			endcase
+			IDEX_RS <= id_instr_rs;
+			IDEX_RT <= id_instr_rt;
+			IDEX_RDEST <= IDEXC_REGDST == 0 ? id_instr_rd : IDEXC_REGDST == 1 ? id_instr_rt : 2;
+			IDEX_IMM <= id_immediate;
+			IDEX_REG1 <= id_reg1;
+			IDEX_REG2 <= id_reg2;
+			IDEX_PC <= IFID_PC;
+
+			EXMEM_ALUOUT <= ex_alu_output;
+			EXMEM_ALUIN2 <= ex_alu_input2;
+			EXMEM_RDEST <= IDEX_RDEST;
+			EXMEM_PC <= IDEX_PC;
+
+			MEMWB_MEMOUT <= data2;
+			MEMWB_OUT <= MEMWBC_MEMTOREG ? data2 : EXMEM_ALUOUT;
+			MEMWB_RDEST <= EXMEM_RDEST;
+			MEMWB_PC <= EXMEM_PC;
+
+			IDEXC_REGDST <= c_regdst;
+			IDEXC_ALUOP <= c_aluop;
+			IDEXC_ALUSRC <= c_alusrc;
+			IDEXC_MEMWRITE <= c_memwrite;
+			IDEXC_MEMREAD <= c_memread;
+			IDEXC_MEMTOREG <= c_memtoreg;
+			IDEXC_PCTOREG <= c_pctoreg;
+			IDEXC_REGWRITE <= c_regwrite;
+			IDEXC_WWD <= c_wwd;
+			IDEXC_NEWINST <= c_newinst;
+
+			EXMEMC_MEMWRITE <= IDEXC_MEMWRITE;
+			EXMEMC_MEMREAD <= IDEXC_MEMREAD;
+			EXMEMC_MEMTOREG <= IDEXC_MEMTOREG;
+			EXMEMC_PCTOREG <= IDEXC_PCTOREG;
+			EXMEMC_REGWRITE <= IDEXC_REGWRITE;
+			EXMEMC_WWD <= IDEXC_WWD;
+			EXMEMC_NEWINST <= IDEXC_NEWINST;
+
+			MEMWBC_MEMTOREG <= EXMEMC_MEMTOREG;
+			MEMWBC_PCTOREG <= EXMEMC_PCTOREG;
+			MEMWBC_REGWRITE <= EXMEMC_REGWRITE;
+			MEMWBC_WWD <= EXMEMC_WWD;
+			MEMWBC_NEWINST <= EXMEMC_NEWINST;
+
+			if (MEMWBC_NEWINST)
+				num_inst <= num_inst + 1;
+			if (MEMWBC_WWD)
+				output_port <= MEMWB_OUT;
 		end
-		IFID_INSTR <= id_flush ? data1 : 16'h4000; // adi x0 0
-
-		IDEX_RS <= id_instr_rs;
-		IDEX_RT <= id_instr_rt;
-		IDEX_RDEST <= IDEXC_REGDST == 0 ? id_instr_rd : IDEXC_REGDST == 1 ? id_instr_rt : 2;
-		IDEX_IMM <= id_immediate;
-		IDEX_REG1 <= id_reg1;
-		IDEX_REG2 <= id_reg2;
-		IDEX_PC <= IFID_PC;
-
-		EXMEM_ALUOUT <= ex_alu_output;
-		EXMEM_ALUIN2 <= ex_alu_input2;
-		EXMEM_RDEST <= IDEX_RDEST;
-		EXMEM_PC <= IDEX_PC;
-
-		MEMWB_MEMOUT <= data2;
-		MEMWB_OUT <= MEMWBC_MEMTOREG ? data2 : EXMEM_ALUOUT;
-		MEMWB_RDEST <= EXMEM_RDEST;
-		MEMWB_PC <= EXMEM_PC;
-
-		IDEXC_REGDST <= c_regdst;
-		IDEXC_ALUOP <= c_aluop;
-		IDEXC_ALUSRC <= c_alusrc;
-		IDEXC_MEMWRITE <= c_memwrite;
-		IDEXC_MEMREAD <= c_memread;
-		IDEXC_MEMTOREG <= c_memtoreg;
-		IDEXC_PCTOREG <= c_pctoreg;
-		IDEXC_REGWRITE <= c_regwrite;
-		IDEXC_WWD <= c_wwd;
-		IDEXC_NEWINST <= c_newinst;
-
-		EXMEMC_MEMWRITE <= IDEXC_MEMWRITE;
-		EXMEMC_MEMREAD <= IDEXC_MEMREAD;
-		EXMEMC_MEMTOREG <= IDEXC_MEMTOREG;
-		EXMEMC_PCTOREG <= IDEXC_PCTOREG;
-		EXMEMC_REGWRITE <= IDEXC_REGWRITE;
-		EXMEMC_WWD <= IDEXC_WWD;
-		EXMEMC_NEWINST <= IDEXC_NEWINST;
-
-		MEMWBC_MEMTOREG <= EXMEMC_MEMTOREG;
-		MEMWBC_PCTOREG <= EXMEMC_PCTOREG;
-		MEMWBC_REGWRITE <= EXMEMC_REGWRITE;
-		MEMWBC_WWD <= EXMEMC_WWD;
-		MEMWBC_NEWINST <= EXMEMC_NEWINST;
-
-		if (MEMWBC_NEWINST)
-			num_inst <= num_inst + 1;
-		if (MEMWBC_WWD)
-			output_port <= MEMWB_OUT;
 	end
 	
 	//

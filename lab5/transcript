@@ -1,5 +1,6 @@
-# vsim -c cpu_TB 
-# Start time: 01:43:20 on May 08,2021
+vsim -gui work.cpu_TB
+# vsim -gui work.cpu_TB 
+# Start time: 13:44:07 on May 08,2021
 # Loading work.cpu_TB
 # Loading work.cpu
 # Loading work.datapath
@@ -10,9 +11,13 @@
 # Loading work.hazard_detect
 # Loading work.forwarding
 # Loading work.Memory
+add wave -position insertpoint sim:/cpu_TB/*
+add wave -position insertpoint sim:/cpu_TB/NUUT/*
+add wave -position insertpoint sim:/cpu_TB/UUT/*
+run -all
 # Test #  2-1 has been failed!
 # output_port = 0x0 (Ans : 0x1)
-# Clock #   13
+# Clock #   15
 # The testbench is finished. Summarizing...
 # Test #  2-1 :     Wrong
 # Test #  2-2 : No Result
@@ -67,7 +72,571 @@
 # Test # 19-3 : No Result
 # Test #   20 : No Result
 # Pass : 4/56
-# ** Note: $finish    : cpu_TB.v(153)
-#    Time: 1450 ns  Iteration: 2  Instance: /cpu_TB
-# End time: 01:43:23 on May 08,2021, Elapsed time: 0:00:03
-# Errors: 0, Warnings: 0
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v(153)
+#    Time: 1650 ns  Iteration: 2  Instance: /cpu_TB
+# 1
+# Break in Module cpu_TB at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v line 153
+# Compile of datapath.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.datapath
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.branch_alu
+# Loading work.alu
+# Loading work.hazard_detect
+# Loading work.forwarding
+run -all
+# GetModuleFileName: 지정된 모듈을 찾을 수 없습니다.
+# 
+# 
+# Test #  2-1 has been failed!
+# output_port = 0x0 (Ans : 0x1)
+# Clock #   15
+# The testbench is finished. Summarizing...
+# Test #  2-1 :     Wrong
+# Test #  2-2 : No Result
+# Test #  3-1 : No Result
+# Test #  3-2 : No Result
+# Test #  3-3 : No Result
+# Test #  4-1 : No Result
+# Test #  4-2 : No Result
+# Test #  4-3 : No Result
+# Test #  5-1 : No Result
+# Test #  5-2 : No Result
+# Test #  5-3 : No Result
+# Test #  5-4 : No Result
+# Test #  5-5 : No Result
+# Test #  5-6 : No Result
+# Test #  6-1 : No Result
+# Test #  6-2 : No Result
+# Test #  6-3 : No Result
+# Test #  7-1 : No Result
+# Test #  7-2 : No Result
+# Test #  7-3 : No Result
+# Test #  8-1 : No Result
+# Test #  8-2 : No Result
+# Test #  8-3 : No Result
+# Test #  9-1 : No Result
+# Test #  9-2 : No Result
+# Test #  9-3 : No Result
+# Test # 10-1 : No Result
+# Test # 10-2 : No Result
+# Test # 10-3 : No Result
+# Test # 11-1 : No Result
+# Test # 11-2 : No Result
+# Test # 11-3 : No Result
+# Test # 12-1 : No Result
+# Test # 12-2 : No Result
+# Test # 13-1 : No Result
+# Test # 13-2 : No Result
+# Test # 14-1 : No Result
+# Test # 14-2 : No Result
+# Test # 15-1 : No Result
+# Test # 15-2 : No Result
+# Test # 16-1 : No Result
+# Test # 16-2 : No Result
+# Test # 17-1 : No Result
+# Test # 17-2 : No Result
+# Test # 17-3 : No Result
+# Test # 18-1 : No Result
+# Test # 18-2 : No Result
+# Test # 18-3 : No Result
+# Test # 19-1 : No Result
+# Test # 19-2 : No Result
+# Test # 19-3 : No Result
+# Test #   20 : No Result
+# Pass : 4/56
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v(153)
+#    Time: 1650 ns  Iteration: 2  Instance: /cpu_TB
+# 1
+# Break in Module cpu_TB at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v line 153
+add wave -position insertpoint  \
+sim:/cpu_TB/NUUT/memory
+run -all
+# Test #  2-2 has been failed!
+# output_port = 0x0 (Ans : 0x2)
+# Clock #   17
+# The testbench is finished. Summarizing...
+# Test #  2-1 :     Wrong
+# Test #  2-2 :     Wrong
+# Test #  3-1 : No Result
+# Test #  3-2 : No Result
+# Test #  3-3 : No Result
+# Test #  4-1 : No Result
+# Test #  4-2 : No Result
+# Test #  4-3 : No Result
+# Test #  5-1 : No Result
+# Test #  5-2 : No Result
+# Test #  5-3 : No Result
+# Test #  5-4 : No Result
+# Test #  5-5 : No Result
+# Test #  5-6 : No Result
+# Test #  6-1 : No Result
+# Test #  6-2 : No Result
+# Test #  6-3 : No Result
+# Test #  7-1 : No Result
+# Test #  7-2 : No Result
+# Test #  7-3 : No Result
+# Test #  8-1 : No Result
+# Test #  8-2 : No Result
+# Test #  8-3 : No Result
+# Test #  9-1 : No Result
+# Test #  9-2 : No Result
+# Test #  9-3 : No Result
+# Test # 10-1 : No Result
+# Test # 10-2 : No Result
+# Test # 10-3 : No Result
+# Test # 11-1 : No Result
+# Test # 11-2 : No Result
+# Test # 11-3 : No Result
+# Test # 12-1 : No Result
+# Test # 12-2 : No Result
+# Test # 13-1 : No Result
+# Test # 13-2 : No Result
+# Test # 14-1 : No Result
+# Test # 14-2 : No Result
+# Test # 15-1 : No Result
+# Test # 15-2 : No Result
+# Test # 16-1 : No Result
+# Test # 16-2 : No Result
+# Test # 17-1 : No Result
+# Test # 17-2 : No Result
+# Test # 17-3 : No Result
+# Test # 18-1 : No Result
+# Test # 18-2 : No Result
+# Test # 18-3 : No Result
+# Test # 19-1 : No Result
+# Test # 19-2 : No Result
+# Test # 19-3 : No Result
+# Test #   20 : No Result
+# Pass : 8/56
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v(153)
+#    Time: 1850 ns  Iteration: 2  Instance: /cpu_TB
+# 1
+# Break in Module cpu_TB at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v line 153
+restart
+run -all
+# GetModuleFileName: 지정된 모듈을 찾을 수 없습니다.
+# 
+# 
+# Test #  2-1 has been failed!
+# output_port = 0x0 (Ans : 0x1)
+# Clock #   15
+# The testbench is finished. Summarizing...
+# Test #  2-1 :     Wrong
+# Test #  2-2 : No Result
+# Test #  3-1 : No Result
+# Test #  3-2 : No Result
+# Test #  3-3 : No Result
+# Test #  4-1 : No Result
+# Test #  4-2 : No Result
+# Test #  4-3 : No Result
+# Test #  5-1 : No Result
+# Test #  5-2 : No Result
+# Test #  5-3 : No Result
+# Test #  5-4 : No Result
+# Test #  5-5 : No Result
+# Test #  5-6 : No Result
+# Test #  6-1 : No Result
+# Test #  6-2 : No Result
+# Test #  6-3 : No Result
+# Test #  7-1 : No Result
+# Test #  7-2 : No Result
+# Test #  7-3 : No Result
+# Test #  8-1 : No Result
+# Test #  8-2 : No Result
+# Test #  8-3 : No Result
+# Test #  9-1 : No Result
+# Test #  9-2 : No Result
+# Test #  9-3 : No Result
+# Test # 10-1 : No Result
+# Test # 10-2 : No Result
+# Test # 10-3 : No Result
+# Test # 11-1 : No Result
+# Test # 11-2 : No Result
+# Test # 11-3 : No Result
+# Test # 12-1 : No Result
+# Test # 12-2 : No Result
+# Test # 13-1 : No Result
+# Test # 13-2 : No Result
+# Test # 14-1 : No Result
+# Test # 14-2 : No Result
+# Test # 15-1 : No Result
+# Test # 15-2 : No Result
+# Test # 16-1 : No Result
+# Test # 16-2 : No Result
+# Test # 17-1 : No Result
+# Test # 17-2 : No Result
+# Test # 17-3 : No Result
+# Test # 18-1 : No Result
+# Test # 18-2 : No Result
+# Test # 18-3 : No Result
+# Test # 19-1 : No Result
+# Test # 19-2 : No Result
+# Test # 19-3 : No Result
+# Test #   20 : No Result
+# Pass : 4/56
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v(153)
+#    Time: 1650 ns  Iteration: 2  Instance: /cpu_TB
+# 1
+# Break in Module cpu_TB at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v line 153
+restart
+# Compile of datapath.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.datapath
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.branch_alu
+# Loading work.alu
+# Loading work.hazard_detect
+# Loading work.forwarding
+run -all
+# GetModuleFileName: 지정된 모듈을 찾을 수 없습니다.
+# 
+# 
+# Test #  2-1 has been failed!
+# output_port = 0x0 (Ans : 0x1)
+# Clock #   15
+# The testbench is finished. Summarizing...
+# Test #  2-1 :     Wrong
+# Test #  2-2 : No Result
+# Test #  3-1 : No Result
+# Test #  3-2 : No Result
+# Test #  3-3 : No Result
+# Test #  4-1 : No Result
+# Test #  4-2 : No Result
+# Test #  4-3 : No Result
+# Test #  5-1 : No Result
+# Test #  5-2 : No Result
+# Test #  5-3 : No Result
+# Test #  5-4 : No Result
+# Test #  5-5 : No Result
+# Test #  5-6 : No Result
+# Test #  6-1 : No Result
+# Test #  6-2 : No Result
+# Test #  6-3 : No Result
+# Test #  7-1 : No Result
+# Test #  7-2 : No Result
+# Test #  7-3 : No Result
+# Test #  8-1 : No Result
+# Test #  8-2 : No Result
+# Test #  8-3 : No Result
+# Test #  9-1 : No Result
+# Test #  9-2 : No Result
+# Test #  9-3 : No Result
+# Test # 10-1 : No Result
+# Test # 10-2 : No Result
+# Test # 10-3 : No Result
+# Test # 11-1 : No Result
+# Test # 11-2 : No Result
+# Test # 11-3 : No Result
+# Test # 12-1 : No Result
+# Test # 12-2 : No Result
+# Test # 13-1 : No Result
+# Test # 13-2 : No Result
+# Test # 14-1 : No Result
+# Test # 14-2 : No Result
+# Test # 15-1 : No Result
+# Test # 15-2 : No Result
+# Test # 16-1 : No Result
+# Test # 16-2 : No Result
+# Test # 17-1 : No Result
+# Test # 17-2 : No Result
+# Test # 17-3 : No Result
+# Test # 18-1 : No Result
+# Test # 18-2 : No Result
+# Test # 18-3 : No Result
+# Test # 19-1 : No Result
+# Test # 19-2 : No Result
+# Test # 19-3 : No Result
+# Test #   20 : No Result
+# Pass : 4/56
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v(153)
+#    Time: 1650 ns  Iteration: 2  Instance: /cpu_TB
+# 1
+# Break in Module cpu_TB at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v line 153
+add wave -position insertpoint sim:/cpu_TB/UUT/main/*
+restart
+run -all
+# GetModuleFileName: 지정된 모듈을 찾을 수 없습니다.
+# 
+# 
+# Test #  2-1 has been failed!
+# output_port = 0x0 (Ans : 0x1)
+# Clock #   15
+# The testbench is finished. Summarizing...
+# Test #  2-1 :     Wrong
+# Test #  2-2 : No Result
+# Test #  3-1 : No Result
+# Test #  3-2 : No Result
+# Test #  3-3 : No Result
+# Test #  4-1 : No Result
+# Test #  4-2 : No Result
+# Test #  4-3 : No Result
+# Test #  5-1 : No Result
+# Test #  5-2 : No Result
+# Test #  5-3 : No Result
+# Test #  5-4 : No Result
+# Test #  5-5 : No Result
+# Test #  5-6 : No Result
+# Test #  6-1 : No Result
+# Test #  6-2 : No Result
+# Test #  6-3 : No Result
+# Test #  7-1 : No Result
+# Test #  7-2 : No Result
+# Test #  7-3 : No Result
+# Test #  8-1 : No Result
+# Test #  8-2 : No Result
+# Test #  8-3 : No Result
+# Test #  9-1 : No Result
+# Test #  9-2 : No Result
+# Test #  9-3 : No Result
+# Test # 10-1 : No Result
+# Test # 10-2 : No Result
+# Test # 10-3 : No Result
+# Test # 11-1 : No Result
+# Test # 11-2 : No Result
+# Test # 11-3 : No Result
+# Test # 12-1 : No Result
+# Test # 12-2 : No Result
+# Test # 13-1 : No Result
+# Test # 13-2 : No Result
+# Test # 14-1 : No Result
+# Test # 14-2 : No Result
+# Test # 15-1 : No Result
+# Test # 15-2 : No Result
+# Test # 16-1 : No Result
+# Test # 16-2 : No Result
+# Test # 17-1 : No Result
+# Test # 17-2 : No Result
+# Test # 17-3 : No Result
+# Test # 18-1 : No Result
+# Test # 18-2 : No Result
+# Test # 18-3 : No Result
+# Test # 19-1 : No Result
+# Test # 19-2 : No Result
+# Test # 19-3 : No Result
+# Test #   20 : No Result
+# Pass : 4/56
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v(153)
+#    Time: 1650 ns  Iteration: 2  Instance: /cpu_TB
+# 1
+# Break in Module cpu_TB at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v line 153
+# Compile of datapath.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.datapath
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.branch_alu
+# Loading work.alu
+# Loading work.hazard_detect
+# Loading work.forwarding
+run -all
+# GetModuleFileName: 지정된 모듈을 찾을 수 없습니다.
+# 
+# 
+# Test #  2-1 has been failed!
+# output_port = 0x0 (Ans : 0x1)
+# Clock #   15
+# The testbench is finished. Summarizing...
+# Test #  2-1 :     Wrong
+# Test #  2-2 : No Result
+# Test #  3-1 : No Result
+# Test #  3-2 : No Result
+# Test #  3-3 : No Result
+# Test #  4-1 : No Result
+# Test #  4-2 : No Result
+# Test #  4-3 : No Result
+# Test #  5-1 : No Result
+# Test #  5-2 : No Result
+# Test #  5-3 : No Result
+# Test #  5-4 : No Result
+# Test #  5-5 : No Result
+# Test #  5-6 : No Result
+# Test #  6-1 : No Result
+# Test #  6-2 : No Result
+# Test #  6-3 : No Result
+# Test #  7-1 : No Result
+# Test #  7-2 : No Result
+# Test #  7-3 : No Result
+# Test #  8-1 : No Result
+# Test #  8-2 : No Result
+# Test #  8-3 : No Result
+# Test #  9-1 : No Result
+# Test #  9-2 : No Result
+# Test #  9-3 : No Result
+# Test # 10-1 : No Result
+# Test # 10-2 : No Result
+# Test # 10-3 : No Result
+# Test # 11-1 : No Result
+# Test # 11-2 : No Result
+# Test # 11-3 : No Result
+# Test # 12-1 : No Result
+# Test # 12-2 : No Result
+# Test # 13-1 : No Result
+# Test # 13-2 : No Result
+# Test # 14-1 : No Result
+# Test # 14-2 : No Result
+# Test # 15-1 : No Result
+# Test # 15-2 : No Result
+# Test # 16-1 : No Result
+# Test # 16-2 : No Result
+# Test # 17-1 : No Result
+# Test # 17-2 : No Result
+# Test # 17-3 : No Result
+# Test # 18-1 : No Result
+# Test # 18-2 : No Result
+# Test # 18-3 : No Result
+# Test # 19-1 : No Result
+# Test # 19-2 : No Result
+# Test # 19-3 : No Result
+# Test #   20 : No Result
+# Pass : 4/56
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v(153)
+#    Time: 1650 ns  Iteration: 2  Instance: /cpu_TB
+# 1
+# Break in Module cpu_TB at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v line 153
+restart
+run -all
+# GetModuleFileName: 지정된 모듈을 찾을 수 없습니다.
+# 
+# 
+# Test #  2-1 has been failed!
+# output_port = 0x0 (Ans : 0x1)
+# Clock #   15
+# The testbench is finished. Summarizing...
+# Test #  2-1 :     Wrong
+# Test #  2-2 : No Result
+# Test #  3-1 : No Result
+# Test #  3-2 : No Result
+# Test #  3-3 : No Result
+# Test #  4-1 : No Result
+# Test #  4-2 : No Result
+# Test #  4-3 : No Result
+# Test #  5-1 : No Result
+# Test #  5-2 : No Result
+# Test #  5-3 : No Result
+# Test #  5-4 : No Result
+# Test #  5-5 : No Result
+# Test #  5-6 : No Result
+# Test #  6-1 : No Result
+# Test #  6-2 : No Result
+# Test #  6-3 : No Result
+# Test #  7-1 : No Result
+# Test #  7-2 : No Result
+# Test #  7-3 : No Result
+# Test #  8-1 : No Result
+# Test #  8-2 : No Result
+# Test #  8-3 : No Result
+# Test #  9-1 : No Result
+# Test #  9-2 : No Result
+# Test #  9-3 : No Result
+# Test # 10-1 : No Result
+# Test # 10-2 : No Result
+# Test # 10-3 : No Result
+# Test # 11-1 : No Result
+# Test # 11-2 : No Result
+# Test # 11-3 : No Result
+# Test # 12-1 : No Result
+# Test # 12-2 : No Result
+# Test # 13-1 : No Result
+# Test # 13-2 : No Result
+# Test # 14-1 : No Result
+# Test # 14-2 : No Result
+# Test # 15-1 : No Result
+# Test # 15-2 : No Result
+# Test # 16-1 : No Result
+# Test # 16-2 : No Result
+# Test # 17-1 : No Result
+# Test # 17-2 : No Result
+# Test # 17-3 : No Result
+# Test # 18-1 : No Result
+# Test # 18-2 : No Result
+# Test # 18-3 : No Result
+# Test # 19-1 : No Result
+# Test # 19-2 : No Result
+# Test # 19-3 : No Result
+# Test #   20 : No Result
+# Pass : 4/56
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v(153)
+#    Time: 1650 ns  Iteration: 2  Instance: /cpu_TB
+# 1
+# Break in Module cpu_TB at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v line 153
+# Compile of datapath.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.datapath
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.branch_alu
+# Loading work.alu
+# Loading work.hazard_detect
+# Loading work.forwarding
+run -all
+# GetModuleFileName: 지정된 모듈을 찾을 수 없습니다.
+# 
+# 
+# Test #  2-1 has been failed!
+# output_port = 0x0 (Ans : 0x1)
+# Clock #   15
+# The testbench is finished. Summarizing...
+# Test #  2-1 :     Wrong
+# Test #  2-2 : No Result
+# Test #  3-1 : No Result
+# Test #  3-2 : No Result
+# Test #  3-3 : No Result
+# Test #  4-1 : No Result
+# Test #  4-2 : No Result
+# Test #  4-3 : No Result
+# Test #  5-1 : No Result
+# Test #  5-2 : No Result
+# Test #  5-3 : No Result
+# Test #  5-4 : No Result
+# Test #  5-5 : No Result
+# Test #  5-6 : No Result
+# Test #  6-1 : No Result
+# Test #  6-2 : No Result
+# Test #  6-3 : No Result
+# Test #  7-1 : No Result
+# Test #  7-2 : No Result
+# Test #  7-3 : No Result
+# Test #  8-1 : No Result
+# Test #  8-2 : No Result
+# Test #  8-3 : No Result
+# Test #  9-1 : No Result
+# Test #  9-2 : No Result
+# Test #  9-3 : No Result
+# Test # 10-1 : No Result
+# Test # 10-2 : No Result
+# Test # 10-3 : No Result
+# Test # 11-1 : No Result
+# Test # 11-2 : No Result
+# Test # 11-3 : No Result
+# Test # 12-1 : No Result
+# Test # 12-2 : No Result
+# Test # 13-1 : No Result
+# Test # 13-2 : No Result
+# Test # 14-1 : No Result
+# Test # 14-2 : No Result
+# Test # 15-1 : No Result
+# Test # 15-2 : No Result
+# Test # 16-1 : No Result
+# Test # 16-2 : No Result
+# Test # 17-1 : No Result
+# Test # 17-2 : No Result
+# Test # 17-3 : No Result
+# Test # 18-1 : No Result
+# Test # 18-2 : No Result
+# Test # 18-3 : No Result
+# Test # 19-1 : No Result
+# Test # 19-2 : No Result
+# Test # 19-3 : No Result
+# Test #   20 : No Result
+# Pass : 4/56
+# ** Note: $finish    : C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v(153)
+#    Time: 1650 ns  Iteration: 2  Instance: /cpu_TB
+# 1
+# Break in Module cpu_TB at C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v line 153

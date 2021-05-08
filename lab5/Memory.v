@@ -14,8 +14,7 @@ module Memory(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, address
 	wire read_m1;
 	input [`WORD_SIZE-1:0] address1;
 	wire [`WORD_SIZE-1:0] address1;
-	output data1;
-	reg [`WORD_SIZE-1:0] data1;
+	output reg [`WORD_SIZE-1:0] data1;
 	
 	input read_m2;
 	wire read_m2;
