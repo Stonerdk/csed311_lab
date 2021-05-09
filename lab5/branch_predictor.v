@@ -1,16 +1,37 @@
 `include "opcodes.v" 
 
-module branch_predictor(clk, reset_n, PC, is_flush, is_BJ_type, actual_next_PC, actual_PC, next_PC);
+module branch_predictor(clk, reset_n, PC, instruction, ifid_branch, bcond, next_PC, eval_bcond);
 
 	input clk;
 	input reset_n;
 	input [`WORD_SIZE-1:0] PC;
-	input is_flush;
-	input is_BJ_type;
-	input [`WORD_SIZE-1:0] actual_next_PC; //computed actual next PC from branch resolve stage
-	input [`WORD_SIZE-1:0] actual_PC; // PC from branch resolve stage
+	input [`WORD_SIZE-1:0] instruction;
+	input ifid_branch;
+	input bcond; // not taken
 
 	output [`WORD_SIZE-1:0] next_PC;
-	//TODO: implement branch predictor
-	assign next_PC = PC + 1;
+	output eval_bcond;
+
+	reg[1:0] saturation;
+	wire [`WORD_SIZE-1:0] imm;
+
+	// assign next_PC = PC + 1;
+
+	assign imm[7:0] = instruction[7:0];
+	assign imm[15:8] = imm[7] ? 8'hff : 8'h00;
+	assign eval_bcond = saturation[1];
+	assign next_PC = saturation[1] ? PC + imm + 1 : PC + 1;
+
+	always @(posedge clk) begin
+		if (!reset_n) begin
+			saturation <= 2'b01;
+		end	
+
+		if (ifid_branch) begin
+			if (bcond)
+				saturation <= saturation != 2'b00 ? saturation - 1 : 0;
+			else
+				saturation <= saturation != 2'b11 ? saturation + 1 : 0;
+		end
+	end 
 endmodule

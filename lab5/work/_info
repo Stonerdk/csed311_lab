@@ -10,7 +10,7 @@ z2
 cModel Technology
 Z0 dC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5
 valu
-Z1 !s110 1620570279
+Z1 !s110 1620588678
 !i10b 1
 !s100 LnRm2W]oTj[L<YnT_9K9K0
 Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
@@ -19,14 +19,14 @@ R0
 Z3 w1620535157
 Z4 8alu.v
 Z5 Falu.v
-!i122 121
+!i122 186
 L0 18 23
 Z6 VDg1SIo80bB@j0V0VzS_@n1
 Z7 OV;L;2020.3;71
 r1
 !s85 0
 31
-Z8 !s108 1620570279.000000
+Z8 !s108 1620588678.000000
 !s107 register_file.v|opcodes.v|Memory.v|hazard.v|datapath.v|cpu_TB.v|cpu.v|control_unit.v|branch_predictor.v|alu.v|
 Z9 !s90 alu.v|branch_predictor.v|control_unit.v|cpu.v|cpu_TB.v|datapath.v|hazard.v|Memory.v|opcodes.v|register_file.v|
 !i113 1
@@ -41,37 +41,37 @@ R0
 R3
 R4
 R5
-!i122 121
-Z11 L0 3 14
+!i122 186
+L0 3 14
 R6
 R7
 r1
 !s85 0
 31
 R8
-Z12 !s107 register_file.v|opcodes.v|Memory.v|hazard.v|datapath.v|cpu_TB.v|cpu.v|control_unit.v|branch_predictor.v|alu.v|
+Z11 !s107 register_file.v|opcodes.v|Memory.v|hazard.v|datapath.v|cpu_TB.v|cpu.v|control_unit.v|branch_predictor.v|alu.v|
 R9
 !i113 1
 R10
 vbranch_predictor
 R1
 !i10b 1
-!s100 9QK=A31WUA=Fh_z]>IT_?2
+!s100 JYbf^Y1[6H9hFC3WFIDO73
 R2
-I4lI2<P<SZ?>go3d97BdFB3
+Ih>z2Fz7Y4OBcn[=bTncWT3
 R0
-Z13 w1620530905
+w1620586941
 8branch_predictor.v
 Fbranch_predictor.v
-!i122 121
-R11
+!i122 186
+L0 3 35
 R6
 R7
 r1
 !s85 0
 31
 R8
-R12
+R11
 R9
 !i113 1
 R10
@@ -85,7 +85,7 @@ R0
 R3
 8control_unit.v
 Fcontrol_unit.v
-!i122 121
+!i122 186
 L0 1 50
 R6
 R7
@@ -93,7 +93,7 @@ r1
 !s85 0
 31
 R8
-R12
+R11
 R9
 !i113 1
 R10
@@ -107,7 +107,7 @@ R0
 w1620570204
 8cpu.v
 Fcpu.v
-!i122 121
+!i122 186
 L0 5 22
 R6
 R7
@@ -115,7 +115,7 @@ r1
 !s85 0
 31
 R8
-R12
+R11
 R9
 !i113 1
 R10
@@ -129,7 +129,7 @@ R0
 w1619798043
 8cpu_TB.v
 Fcpu_TB.v
-!i122 121
+!i122 186
 L0 8 149
 R6
 R7
@@ -137,7 +137,7 @@ r1
 !s85 0
 31
 R8
-R12
+R11
 R9
 !i113 1
 R10
@@ -145,22 +145,22 @@ ncpu_@t@b
 vdatapath
 R1
 !i10b 1
-!s100 j7]<:]CmeTc;?CC`PQ<iE1
+!s100 Pocj3<P0JUzX2CAn=cXSi1
 R2
-IM833J`LN7BmH]450:D=`N1
+I6E@4M:>ZjXLeAhHgLkWGF3
 R0
-w1620570261
+w1620588674
 8datapath.v
 Fdatapath.v
-!i122 121
-L0 8 313
+!i122 186
+L0 8 371
 R6
 R7
 r1
 !s85 0
 31
 R8
-R12
+R11
 R9
 !i113 1
 R10
@@ -171,10 +171,10 @@ R1
 R2
 IEAUF15Y?48eL<n7ZciB6T2
 R0
-R3
-Z14 8hazard.v
-Z15 Fhazard.v
-!i122 121
+Z12 w1620588501
+Z13 8hazard.v
+Z14 Fhazard.v
+!i122 186
 L0 3 11
 R6
 R7
@@ -182,29 +182,29 @@ r1
 !s85 0
 31
 R8
-R12
+R11
 R9
 !i113 1
 R10
 vhazard_detect
 R1
 !i10b 1
-!s100 o7mZjmg>HK>P_5ifnjU<C1
+!s100 AbeRUFL_E4Z5<gL1KMVH_3
 R2
-IMB`OW2UZAaUOGHMYOZ^523
+I6fIDJeYnXjYeEBK_UI?CL2
 R0
-R3
+R12
+R13
 R14
-R15
-!i122 121
-L0 14 12
+!i122 186
+L0 15 22
 R6
 R7
 r1
 !s85 0
 31
 R8
-R12
+R11
 R9
 !i113 1
 R10
@@ -215,10 +215,10 @@ R1
 R2
 IdOTgaal5jS5h[9o>Ioe4a1
 R0
-R13
+Z15 w1620530905
 8Memory.v
 FMemory.v
-!i122 121
+!i122 186
 L0 7 236
 R6
 R7
@@ -226,7 +226,7 @@ r1
 !s85 0
 31
 R8
-R12
+R11
 R9
 !i113 1
 R10
@@ -238,10 +238,10 @@ R1
 R2
 I]:d@d13WUl3QCebUNz5LP1
 R0
-R13
+R15
 8register_file.v
 Fregister_file.v
-!i122 121
+!i122 186
 L0 3 40
 R6
 R7
@@ -249,7 +249,7 @@ r1
 !s85 0
 31
 R8
-R12
+R11
 R9
 !i113 1
 R10

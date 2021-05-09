@@ -1,19 +1,20 @@
 # vsim -c cpu_TB 
-# Start time: 23:24:46 on May 09,2021
+# Start time: 04:31:25 on May 10,2021
 # Loading work.cpu_TB
 # Loading work.cpu
 # Loading work.datapath
 # Loading work.control_unit
 # Loading work.register_file
+# Loading work.branch_predictor
 # Loading work.branch_alu
-# Loading work.alu
 # Loading work.hazard_detect
+# Loading work.alu
 # Loading work.forwarding
 # Loading work.Memory
-# Clock # 1524
+# Clock # 1539
 # The testbench is finished. Summarizing...
 # All Pass!
 # ** Note: $finish    : cpu_TB.v(153)
-#    Time: 152550 ns  Iteration: 2  Instance: /cpu_TB
-# End time: 23:24:54 on May 09,2021, Elapsed time: 0:00:08
+#    Time: 154050 ns  Iteration: 2  Instance: /cpu_TB
+# End time: 04:31:28 on May 10,2021, Elapsed time: 0:00:03
 # Errors: 0, Warnings: 0
