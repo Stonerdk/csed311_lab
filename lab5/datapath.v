@@ -19,19 +19,20 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 	output reg [`WORD_SIZE-1:0] output_port;
 	output is_halted;
 
+	reg [`WORD_SIZE-1:0] PRE_PC;
 	reg [`WORD_SIZE-1:0] IFID_PC, IFID_INSTR;
 	reg [`WORD_SIZE-1:0] IDEX_PC, IDEX_REG1, IDEX_REG2, IDEX_IMM;
 	reg [`WORD_SIZE-1:0] EXMEM_PC, EXMEM_ALUOUT, EXMEM_ALUIN2;
 	reg [`WORD_SIZE-1:0] MEMWB_PC, MEMWB_MEMOUT, MEMWB_OUT;
-	reg [`WORD_SIZE-1:0] IDEX_INSTR, EXMEM_INSTR, MEMWB_INSTR;
-	reg IDEXC_ALUSRC, IDEXC_REGWRITE, IDEXC_MEMWRITE, IDEXC_MEMREAD, IDEXC_MEMTOREG, IDEXC_PCTOREG, IDEXC_WWD, IDEXC_NEWINST;
+	reg [`WORD_SIZE-1:0] IDEX_INSTR, EXMEM_REG2, EXMEM_INSTR, MEMWB_INSTR;
+	reg IDEXC_ALUSRC, IDEXC_REGWRITE, IDEXC_MEMWRITE, IDEXC_MEMREAD, IDEXC_MEMTOREG, IDEXC_PCTOREG, IDEXC_WWD, IDEXC_NEWINST, IDEXC_ALU, IDEXC_HALTED;
 	reg [1:0] IDEXC_REGDST;
 	reg [3:0] IDEXC_ALUOP;
 	reg EXMEMC_MEMWRITE, EXMEMC_MEMREAD, EXMEMC_REGWRITE, EXMEMC_MEMTOREG, EXMEMC_PCTOREG, EXMEMC_WWD, EXMEMC_NEWINST;
 	reg MEMWBC_PCTOREG, MEMWBC_WWD, MEMWBC_NEWINST, MEMWBC_MEMTOREG, MEMWBC_REGWRITE;
 	reg [1:0] IDEX_RS, IDEX_RT, IDEX_RDEST, EXMEM_RDEST, MEMWB_RDEST; 
 
-	wire c_alusrc, c_memwrite, c_regwrite, c_memread, c_memtoreg, c_pctoreg, c_wwd, c_newinst, c_branch;
+	wire c_alusrc, c_memwrite, c_regwrite, c_memread, c_memtoreg, c_pctoreg, c_wwd, c_newinst, c_branch, c_alu, c_halted;
 	wire [3:0] c_aluop;
 	wire [1:0] c_pcsrc, c_regdst;
 	wire if_stall;
@@ -41,11 +42,14 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 	wire [1:0] id_instr_rs;
 	wire [1:0] id_instr_rt;
 	wire [1:0] id_instr_rd;
+	wire [1:0] id_rdest;
 	wire [5:0] id_instr_func;
 	wire [7:0] id_instr_imm;
 	wire [11:0] id_instr_jmp;
 	wire id_bcond;
 	wire id_flush;
+	wire is_jpr_stall;
+	wire is_branch_stall;
 
 	wire [`WORD_SIZE-1:0] ex_alu_input1;
 	wire [`WORD_SIZE-1:0] ex_alu_input2;
@@ -55,7 +59,7 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 
 	wire [`WORD_SIZE-1:0] wb_writedata;
 
-	assign address1 = IFID_PC;
+	assign address1 = PRE_PC;
 	assign id_instruction = IFID_INSTR;
 	assign id_instr_opcode = id_instruction[15:12];
 	assign id_instr_rs = id_instruction[11:10];
@@ -67,17 +71,18 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 	assign id_immediate[7:0] = id_instr_imm;
 	assign id_immediate[15:8] = id_instr_imm[7] == 1 ? 8'hff : 8'h00;
 
-	assign id_next_pc_branch = id_immediate + IFID_PC;
-	assign id_next_pc = IFID_PC + 1;
+	assign id_next_pc_branch = id_immediate + PRE_PC;
+	assign id_next_pc = PRE_PC + 1;
 	assign id_next_pc_jmp[11:0] = id_instr_jmp;
 	assign id_next_pc_jmp[15:12] = 4'h0;
 	assign id_next_pc_jalr = id_reg1;
 
-	assign data2 = write_m2 ? EXMEM_ALUIN2 : 16'bz;
-	assign address2 = reset_n && EXMEM_ALUOUT;
+	assign data2 = write_m2 ? EXMEM_REG2 : 16'bz;
+	assign address2 = reset_n ? EXMEM_ALUOUT : 0;
 	assign read_m1 = 1;
 	assign read_m2 = reset_n && EXMEMC_MEMREAD;
 	assign write_m2 = reset_n && EXMEMC_MEMWRITE;
+	assign is_halted = IDEXC_HALTED;
 
 	wire c_newinst_temp;
 	control_unit unit_control(
@@ -94,13 +99,13 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 		.mem_to_reg(c_memtoreg), 
 		.pc_src(c_pcsrc), 
 		.pc_to_reg(c_pctoreg), 
-		.halt(is_halted), 
+		.halt(c_halted), 
 		.wwd(c_wwd), 
 		.new_inst(c_newinst_temp), 
-		.reg_write(c_regwrite)
+		.reg_write(c_regwrite),
+		.alu(c_alu)
 	);
-
-	assign wb_writedata = MEMWBC_PCTOREG ? MEMWB_PC : MEMWB_OUT; 
+	assign wb_writedata = MEMWBC_PCTOREG ? MEMWB_PC + 1 : MEMWB_OUT; 
 	register_file unit_register(
 		.read_out1(id_reg1), 
 		.read_out2(id_reg2), 
@@ -115,23 +120,30 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 
 	branch_alu unit_branch_alu(id_reg1, id_reg2, id_instr_opcode, id_bcond);
 	assign id_flush = c_pcsrc[1] || c_pcsrc[0] && id_bcond;
-	assign c_newinst = !id_flush;
+	assign is_jpr_stall = (c_pcsrc[0] && c_pcsrc[1]) && 
+		(id_instr_rs == IDEX_RDEST || id_instr_rs == EXMEM_RDEST || id_instr_rs == MEMWB_RDEST);
+	assign is_branch_stall = c_branch && 
+		((id_instr_rs == IDEX_RDEST || id_instr_rs == EXMEM_RDEST || id_instr_rs == MEMWB_RDEST) ||
+		(id_instr_rt == IDEX_RDEST || id_instr_rt == EXMEM_RDEST || id_instr_rt == MEMWB_RDEST));
+	assign c_newinst = !(id_flush || if_stall || is_jpr_stall || is_branch_stall);
 
-	wire ex_alu2_temp;
-	assign ex_alu2_temp = IDEXC_ALUSRC ? id_immediate : id_reg1;
+	wire [`WORD_SIZE-1:0] ex_alu2_temp;
+	wire [1:0] ex_alu_temp_sel2;
+	assign ex_alu_temp_sel2 = ex_alu_sel2 && IDEXC_ALU;
+	assign ex_alu2_temp = IDEXC_ALUSRC ? IDEX_IMM : IDEX_REG2;
 	assign ex_alu_input1 = ex_alu_sel1 == 2'b00 ? IDEX_REG1 :
-						   ex_alu_sel1 == 2'b01 ? MEMWB_OUT :
+						   ex_alu_sel1 == 2'b01 ? wb_writedata :
 						   ex_alu_sel1 == 2'b10 ? EXMEM_ALUOUT : IDEX_REG1;
-	assign ex_alu_input2 = ex_alu_sel2 == 2'b00 ? ex_alu2_temp :
-						   ex_alu_sel2 == 2'b01 ? MEMWB_OUT :
-						   ex_alu_sel2 == 2'b10 ? EXMEM_ALUOUT : ex_alu2_temp;
+	assign ex_alu_input2 = ex_alu_temp_sel2 == 2'b00 ? ex_alu2_temp :
+						   ex_alu_temp_sel2 == 2'b01 ? wb_writedata :
+						   ex_alu_temp_sel2 == 2'b10 ? EXMEM_ALUOUT : ex_alu2_temp;
 	alu unit_alu(
 		.A(ex_alu_input1), 
 		.B(ex_alu_input2), 
 		.func_code(IDEXC_ALUOP),
 		.alu_out(ex_alu_output)
 	);
-
+	assign id_rdest = c_regdst == 0 ? id_instr_rd : c_regdst == 1 ? id_instr_rt : 2;
 	hazard_detect hazard_detect_unit(IFID_INSTR, IDEX_RDEST, IDEXC_MEMREAD, if_stall);
 	forwarding forwarding_unit(IDEX_RS, IDEX_RT, EXMEM_RDEST, MEMWB_RDEST, EXMEMC_REGWRITE, MEMWBC_REGWRITE, ex_alu_sel1, ex_alu_sel2);
 
@@ -140,10 +152,11 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 	end
 	always @(posedge clk) begin
 		if (!reset_n) begin
+			PRE_PC <= 0;
 			IFID_PC <= 0;
 			num_inst <= -1;
 			output_port <= 0;
-			IFID_INSTR <= 16'h0;
+			IFID_INSTR <= 16'h4000;
 			IDEX_RDEST <= 0;
 			IDEX_RS <= 0;
 			IDEX_RT <= 0;
@@ -157,6 +170,7 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 			EXMEM_ALUIN2 <= 0;
 			EXMEM_RDEST <= 0;
 			EXMEM_PC <= 0;
+			EXMEM_REG2 <= 0;
 
 			MEMWB_MEMOUT <= 0;
 			MEMWB_OUT <= 0;
@@ -173,6 +187,8 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 			IDEXC_REGWRITE <= 0;
 			IDEXC_WWD <= 0;
 			IDEXC_NEWINST <= 0;
+			IDEXC_ALU <= 0;
+			IDEXC_HALTED <= 0;
 
 			EXMEMC_MEMWRITE <= 0;
 			EXMEMC_MEMREAD <= 0;
@@ -189,49 +205,84 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 			MEMWBC_NEWINST <= 0;
 		end
 		else begin
-			if (!if_stall) begin
+			
+			if (!if_stall && !is_jpr_stall) begin
 				case (c_pcsrc)
-					0: IFID_PC <= id_next_pc;
-					1: IFID_PC <= id_bcond ? id_next_pc_branch : id_next_pc;
-					2: IFID_PC <= id_next_pc_jmp;
-					3: IFID_PC <= id_next_pc_jalr;
-					default: IFID_PC <= id_next_pc;
+					0: PRE_PC <= id_next_pc;
+					1: PRE_PC <= id_bcond ? id_next_pc_branch : id_next_pc;
+					2: PRE_PC <= id_next_pc_jmp;
+					3: PRE_PC <= id_next_pc_jalr;
+					default: PRE_PC <= id_next_pc;
 				endcase
+				IFID_PC <= PRE_PC;
+				IFID_INSTR <= id_flush ? 16'h4000 : data1; // adi x0 0
 			end
-			IFID_INSTR <= id_flush ? 0 : data1; // adi x0 0
+			
 
-			IDEX_RS <= id_instr_rs;
-			IDEX_RT <= id_instr_rt;
-			IDEX_RDEST <= c_regdst == 0 ? id_instr_rd : c_regdst == 1 ? id_instr_rt : 2;
-			IDEX_IMM <= id_immediate;
-			IDEX_REG1 <= id_reg1;
-			IDEX_REG2 <= id_reg2;
-			IDEX_PC <= IFID_PC;
-			IDEX_INSTR <= IFID_INSTR;
+			if (!is_jpr_stall && !if_stall && !is_branch_stall) begin
+				IDEX_RS <= id_instr_rs;
+				IDEX_RT <= id_instr_rt;
+				IDEX_RDEST <= id_rdest;
+				IDEX_IMM <= id_immediate;
+				IDEX_REG1 <= id_reg1;
+				IDEX_REG2 <= id_reg2;
+				IDEX_PC <= IFID_PC;
+				IDEX_INSTR <= IFID_INSTR;
+			end
+
+			else begin
+				IDEX_RS <= 0;
+				IDEX_RT <= 0;
+				IDEX_RDEST <= 0;
+				IDEX_IMM <= 0;
+				IDEX_REG1 <=0;
+				IDEX_REG2 <= 0;
+				IDEX_PC <= 0;
+				IDEX_INSTR <= 16'h4000;
+			end
 
 			EXMEM_ALUOUT <= ex_alu_output;
 			EXMEM_ALUIN2 <= ex_alu_input2;
 			EXMEM_RDEST <= IDEX_RDEST;
 			EXMEM_PC <= IDEX_PC;
 			EXMEM_INSTR <= IDEX_INSTR;
+			EXMEM_REG2 <= IDEX_REG2;
 
 			MEMWB_MEMOUT <= data2;
-			MEMWB_OUT <= MEMWBC_MEMTOREG ? data2 : EXMEM_ALUOUT;
+			MEMWB_OUT <= EXMEMC_MEMTOREG ? data2 : EXMEM_ALUOUT;
 			MEMWB_RDEST <= EXMEM_RDEST;
 			MEMWB_PC <= EXMEM_PC;
 			MEMWB_INSTR <= EXMEM_INSTR;
 
-			IDEXC_REGDST <= c_regdst;
-			IDEXC_ALUOP <= c_aluop;
-			IDEXC_ALUSRC <= c_alusrc;
-			IDEXC_MEMWRITE <= c_memwrite;
-			IDEXC_MEMREAD <= c_memread;
-			IDEXC_MEMTOREG <= c_memtoreg;
-			IDEXC_PCTOREG <= c_pctoreg;
-			IDEXC_REGWRITE <= c_regwrite;
-			IDEXC_WWD <= c_wwd;
-			IDEXC_NEWINST <= c_newinst;
+			if (!is_jpr_stall && !if_stall && !is_branch_stall) begin
+				IDEXC_REGDST <= c_regdst;
+				IDEXC_ALUOP <= c_aluop;
+				IDEXC_ALUSRC <= c_alusrc;
+				IDEXC_MEMWRITE <= c_memwrite;
+				IDEXC_MEMREAD <= c_memread;
+				IDEXC_MEMTOREG <= c_memtoreg;
+				IDEXC_PCTOREG <= c_pctoreg;
+				IDEXC_REGWRITE <= c_regwrite;
+				IDEXC_WWD <= c_wwd;
+				IDEXC_NEWINST <= c_newinst;
+				IDEXC_ALU <= c_alu;
+				IDEXC_HALTED <= c_halted;
+			end
 
+			else begin
+				IDEXC_REGDST <= 0;
+				IDEXC_ALUOP <= 0;
+				IDEXC_ALUSRC <= 0;
+				IDEXC_MEMWRITE <= 0;
+				IDEXC_MEMREAD <= 0;
+				IDEXC_MEMTOREG <= 0;
+				IDEXC_PCTOREG <= 0;
+				IDEXC_REGWRITE <= 0;
+				IDEXC_WWD <= 0;
+				IDEXC_NEWINST <= 0;
+				IDEXC_ALU <= 0;
+				IDEXC_HALTED <= 0;
+			end
 			EXMEMC_MEMWRITE <= IDEXC_MEMWRITE;
 			EXMEMC_MEMREAD <= IDEXC_MEMREAD;
 			EXMEMC_MEMTOREG <= IDEXC_MEMTOREG;

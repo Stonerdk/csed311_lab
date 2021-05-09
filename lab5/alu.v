@@ -8,8 +8,8 @@ module branch_alu (A, B, opcode, bcond);
 		case (opcode)
 			0: bcond = A != B;
 			1: bcond = A == B;
-			2: bcond = A > 0;
-			3: bcond = A < 0;
+			2: bcond = (A[15] == 0) && (A != 0);
+			3: bcond = A[15] == 1;
 			default: bcond = 0;
 		endcase
 	end

@@ -1,17 +1,17 @@
-module control_unit (opcode, func_code, clk, reset_n, branch, reg_dst, alu_op, alu_src, mem_write, mem_read, mem_to_reg, pc_src, pc_to_reg, halt, wwd, new_inst, reg_write);
+module control_unit (opcode, func_code, clk, reset_n, branch, reg_dst, alu_op, alu_src, mem_write, mem_read, mem_to_reg, pc_src, pc_to_reg, halt, wwd, new_inst, reg_write, alu);
 	input [3:0] opcode;
 	input [5:0] func_code;
 	input clk;
 	input reset_n;
 
 	output branch, alu_src, mem_write, mem_read, mem_to_reg;
-  	output pc_to_reg, halt, wwd, new_inst, reg_write;
+  	output pc_to_reg, halt, wwd, new_inst, reg_write, alu;
   	output [1:0] reg_dst, pc_src;
 	output [3:0] alu_op;
-	wire br, alu, alui, lwd, swd, jmp, jal, jpr, jrl, rtype;
+	wire br, alui, lwd, swd, jmp, jal, jpr, jrl, rtype;
 
 	assign rtype = opcode == 15;
-	assign branch = ~opcode[3] & ~opcode[2];
+	assign branch = opcode == 0 || opcode == 1 || opcode == 2 || opcode == 3;
 	assign alu = rtype && ~func_code[5] && ~func_code[4] && ~func_code[3];
 	assign alui = opcode == 4 || opcode == 5 || opcode == 6;
 	assign lwd = opcode == 7;
@@ -23,7 +23,7 @@ module control_unit (opcode, func_code, clk, reset_n, branch, reg_dst, alu_op, a
 	
 	assign reg_dst[1] = jal || jrl;
 	assign reg_dst[0] = lwd || alui;
-	// 00 -> rs, 01 -> rt, 10 -> 2
+	// 00 -> rd, 01 -> rt, 10 -> 2
 
 	assign alu_src = ~rtype;
 	assign mem_write = swd;

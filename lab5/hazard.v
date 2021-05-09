@@ -8,7 +8,7 @@ module forwarding(IDEX_rs, IDEX_rt, EXMEM_rdest, MEMWB_rdest, EXMEMC_regwrite, M
 	assign ALU1_sel[1] = EXMEMC_regwrite && IDEX_rs == EXMEM_rdest;
 	assign ALU1_sel[0] = MEMWBC_regwrite && IDEX_rs == MEMWB_rdest;
 	assign ALU2_sel[1] = EXMEMC_regwrite && IDEX_rt == EXMEM_rdest;
-	assign ALU2_sel[0] = MEMWBC_regwrite && IDEX_rt == EXMEM_rdest;
+	assign ALU2_sel[0] = MEMWBC_regwrite && IDEX_rt == MEMWB_rdest;
 
 endmodule
 module hazard_detect(IFID_IR, IDEX_rd, IDEX_M_mem_read, is_stall);
@@ -18,7 +18,7 @@ module hazard_detect(IFID_IR, IDEX_rd, IDEX_M_mem_read, is_stall);
 	input IDEX_M_mem_read;
 
 	output is_stall;
-
+	//insruction type
 	assign is_stall = IDEX_M_mem_read && (IDEX_rd == IFID_IR[11:10] || IDEX_rd == IFID_IR[9:8]);
 	//TODO: implement hazard detection unit
 
