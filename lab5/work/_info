@@ -10,23 +10,23 @@ z2
 cModel Technology
 Z0 dC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5
 valu
-Z1 !s110 1620496811
+Z1 !s110 1620535056
 !i10b 1
 !s100 Ti]J@gcZDEN9nfaCB7PgO3
 Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
 I=DmCC_PZWBbEi6Yl7QkKR0
 R0
-Z3 w1620482382
+Z3 w1620531668
 Z4 8alu.v
 Z5 Falu.v
-!i122 102
+!i122 120
 L0 18 23
 Z6 VDg1SIo80bB@j0V0VzS_@n1
 Z7 OV;L;2020.3;71
 r1
 !s85 0
 31
-Z8 !s108 1620496811.000000
+Z8 !s108 1620535056.000000
 !s107 hazard.v|branch_predictor.v|control_unit.v|alu.v|register_file.v|opcodes.v|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/datapath.v|
 Z9 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/datapath.v|
 !i113 1
@@ -42,7 +42,7 @@ R0
 R3
 R4
 R5
-!i122 102
+!i122 120
 Z12 L0 3 14
 R6
 R7
@@ -62,10 +62,10 @@ R1
 R2
 IMYC?X0Xf3YWk84fPC5LIW2
 R0
-w1620394855
+Z14 w1620530905
 8branch_predictor.v
 Fbranch_predictor.v
-!i122 102
+!i122 120
 R12
 R6
 R7
@@ -85,10 +85,10 @@ R1
 R2
 IT0EB62BQZn^Xfja_zbBCT0
 R0
-w1620484822
+R3
 8control_unit.v
 Fcontrol_unit.v
-!i122 102
+!i122 120
 L0 1 50
 R6
 R7
@@ -102,64 +102,63 @@ R9
 R10
 R11
 vcpu
-Z14 !s110 1620414385
+Z15 !s110 1620531731
 !i10b 1
 !s100 0L^819a7<P_X;6We_BDk:1
 R2
 IaO:;X0DC[i4HYgX@oSTg>1
 R0
-w1620395441
+R14
 8C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu.v
 FC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu.v
-!i122 25
+!i122 107
 L0 5 22
 R6
 R7
 r1
 !s85 0
 31
-Z15 !s108 1620414385.000000
+Z16 !s108 1620531731.000000
 !s107 hazard.v|branch_predictor.v|control_unit.v|alu.v|register_file.v|opcodes.v|datapath.v|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu.v|
 !i113 1
 R10
 R11
 vcpu_TB
-R14
+!s110 1620531679
 !i10b 1
 !s100 SL`[e<3DcncYj1OEad1Ek2
 R2
-Ik>jnn^_UmbjWm>inoP[E32
+I51X@2eH^B2YWPMl9NfcVY0
 R0
 w1619798043
-8C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v
-FC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v
-!i122 26
+8cpu_TB.v
+Fcpu_TB.v
+!i122 103
 L0 8 149
 R6
 R7
 r1
 !s85 0
 31
-R15
-!s107 C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v|
-!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v|
+!s108 1620531679.000000
+!s107 register_file.v|opcodes.v|Memory.v|hazard.v|datapath.v|cpu_TB.v|cpu.v|control_unit.v|branch_predictor.v|alu.v|
+!s90 alu.v|branch_predictor.v|control_unit.v|cpu.v|cpu_TB.v|datapath.v|hazard.v|Memory.v|opcodes.v|register_file.v|
 !i113 1
-R10
 R11
 ncpu_@t@b
 vdatapath
 R1
 !i10b 1
-!s100 dkl:dC^DESW7nMfkH_:`]0
+!s100 VFNifO@^^:cHf[V`BPZ2l2
 R2
-I<PYIdzj::ijenIoFzHPDR1
+ICEV:lB`W=^jzPKdGUdziT0
 R0
-w1620496804
+w1620535053
 8C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/datapath.v
 FC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/datapath.v
-!i122 102
-L0 8 301
+!i122 120
+L0 8 313
 R6
 R7
 r1
@@ -178,10 +177,10 @@ R1
 R2
 IV]VmM`<RGj?`iOo=F=J<c3
 R0
-Z16 w1620484266
+R3
 Z17 8hazard.v
 Z18 Fhazard.v
-!i122 102
+!i122 120
 L0 3 11
 R6
 R7
@@ -201,10 +200,10 @@ R1
 R2
 Ib7^I`QfV[gF5S<5PHC`Ze1
 R0
-R16
+R3
 R17
 R18
-!i122 102
+!i122 120
 L0 14 12
 R6
 R7
@@ -218,23 +217,23 @@ R9
 R10
 R11
 vMemory
-!s110 1620416187
+R15
 !i10b 1
 !s100 7EEiel<70G1^Y==>hC`BC3
 R2
 IGEMkR0S5>YOQ<b@`TNiXO3
 R0
-w1620416181
+R14
 8C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/Memory.v
 FC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/Memory.v
-!i122 33
+!i122 110
 L0 7 236
 R6
 R7
 r1
 !s85 0
 31
-!s108 1620416187.000000
+R16
 !s107 C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/Memory.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/Memory.v|
 !i113 1
@@ -248,10 +247,10 @@ R1
 R2
 IM3W8:3?Jd1F=IJ:6cWITM2
 R0
-w1620453611
+R14
 8register_file.v
 Fregister_file.v
-!i122 102
+!i122 120
 L0 3 40
 R6
 R7

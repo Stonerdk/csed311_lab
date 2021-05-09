@@ -28,11 +28,11 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 	reg IDEXC_ALUSRC, IDEXC_REGWRITE, IDEXC_MEMWRITE, IDEXC_MEMREAD, IDEXC_MEMTOREG, IDEXC_PCTOREG, IDEXC_WWD, IDEXC_NEWINST, IDEXC_ALU, IDEXC_HALTED;
 	reg [1:0] IDEXC_REGDST;
 	reg [3:0] IDEXC_ALUOP;
-	reg EXMEMC_MEMWRITE, EXMEMC_MEMREAD, EXMEMC_REGWRITE, EXMEMC_MEMTOREG, EXMEMC_PCTOREG, EXMEMC_WWD, EXMEMC_NEWINST;
-	reg MEMWBC_PCTOREG, MEMWBC_WWD, MEMWBC_NEWINST, MEMWBC_MEMTOREG, MEMWBC_REGWRITE;
+	reg EXMEMC_MEMWRITE, EXMEMC_MEMREAD, EXMEMC_REGWRITE, EXMEMC_MEMTOREG, EXMEMC_PCTOREG, EXMEMC_WWD, EXMEMC_NEWINST, EXMEMC_HALTED;
+	reg MEMWBC_PCTOREG, MEMWBC_WWD, MEMWBC_NEWINST, MEMWBC_MEMTOREG, MEMWBC_REGWRITE, MEMWBC_HALTED;
 	reg [1:0] IDEX_RS, IDEX_RT, IDEX_RDEST, EXMEM_RDEST, MEMWB_RDEST; 
 
-	wire c_alusrc, c_memwrite, c_regwrite, c_memread, c_memtoreg, c_pctoreg, c_wwd, c_newinst, c_branch, c_alu, c_halted;
+	wire c_alusrc, c_memwrite, c_regwrite, c_memread, c_memtoreg, c_pctoreg, c_wwd, c_newinst, c_tmp_branch, c_branch, c_alu, c_halted;
 	wire [3:0] c_aluop;
 	wire [1:0] c_pcsrc, c_regdst;
 	wire if_stall;
@@ -82,7 +82,7 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 	assign read_m1 = 1;
 	assign read_m2 = reset_n && EXMEMC_MEMREAD;
 	assign write_m2 = reset_n && EXMEMC_MEMWRITE;
-	assign is_halted = IDEXC_HALTED;
+	assign is_halted = MEMWBC_HALTED;
 
 	wire c_newinst_temp;
 	control_unit unit_control(
@@ -90,7 +90,7 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 		.func_code(id_instr_func), 
 		.clk(clk), 
 		.reset_n(reset_n), 
-		.branch(c_branch), 
+		.branch(c_tmp_branch), 
 		.reg_dst(c_regdst), 
 		.alu_op(c_aluop), 
 		.alu_src(c_alusrc), 
@@ -105,6 +105,7 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 		.reg_write(c_regwrite),
 		.alu(c_alu)
 	);
+	assign c_branch = (id_instruction != 0) & c_tmp_branch;
 	assign wb_writedata = MEMWBC_PCTOREG ? MEMWB_PC + 1 : MEMWB_OUT; 
 	register_file unit_register(
 		.read_out1(id_reg1), 
@@ -121,11 +122,18 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 	branch_alu unit_branch_alu(id_reg1, id_reg2, id_instr_opcode, id_bcond);
 	assign id_flush = c_pcsrc[1] || c_pcsrc[0] && id_bcond;
 	assign is_jpr_stall = (c_pcsrc[0] && c_pcsrc[1]) && 
-		(id_instr_rs == IDEX_RDEST || id_instr_rs == EXMEM_RDEST || id_instr_rs == MEMWB_RDEST);
+		(id_instr_rs == IDEX_RDEST && IDEX_INSTR != 0
+		|| id_instr_rs == EXMEM_RDEST && EXMEM_INSTR != 0 
+		|| id_instr_rs == MEMWB_RDEST && EXMEM_INSTR != 0);
 	assign is_branch_stall = c_branch && 
-		((id_instr_rs == IDEX_RDEST || id_instr_rs == EXMEM_RDEST || id_instr_rs == MEMWB_RDEST) ||
-		(id_instr_rt == IDEX_RDEST || id_instr_rt == EXMEM_RDEST || id_instr_rt == MEMWB_RDEST));
-	assign c_newinst = !(id_flush || if_stall || is_jpr_stall || is_branch_stall);
+		((id_instr_rs == IDEX_RDEST && IDEX_INSTR != 0)
+		|| (id_instr_rs == EXMEM_RDEST && EXMEM_INSTR != 0)
+		|| (id_instr_rs == MEMWB_RDEST  && MEMWB_INSTR != 0)
+		|| (id_instr_rt == IDEX_RDEST  && IDEX_INSTR != 0)
+		|| (id_instr_rt == EXMEM_RDEST  && EXMEM_INSTR != 0)
+		|| (id_instr_rt == MEMWB_RDEST && MEMWB_INSTR != 0)
+		);
+	assign c_newinst = !(if_stall || is_jpr_stall || is_branch_stall || id_flush);
 
 	wire [`WORD_SIZE-1:0] ex_alu2_temp;
 	wire [1:0] ex_alu_temp_sel2;
@@ -156,7 +164,7 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 			IFID_PC <= 0;
 			num_inst <= -1;
 			output_port <= 0;
-			IFID_INSTR <= 16'h4000;
+			IFID_INSTR <= 16'h0000;
 			IDEX_RDEST <= 0;
 			IDEX_RS <= 0;
 			IDEX_RT <= 0;
@@ -197,16 +205,18 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 			EXMEMC_REGWRITE <= 0;
 			EXMEMC_WWD <= 0;
 			EXMEMC_NEWINST <= 0;
+			EXMEMC_HALTED <= 0;
 
 			MEMWBC_MEMTOREG <= 0;
 			MEMWBC_PCTOREG <= 0;
 			MEMWBC_REGWRITE <= 0;
 			MEMWBC_WWD <= 0;
 			MEMWBC_NEWINST <= 0;
+			MEMWBC_HALTED <= 0;
 		end
 		else begin
 			
-			if (!if_stall && !is_jpr_stall) begin
+			if (!if_stall && !is_jpr_stall && !is_branch_stall) begin
 				case (c_pcsrc)
 					0: PRE_PC <= id_next_pc;
 					1: PRE_PC <= id_bcond ? id_next_pc_branch : id_next_pc;
@@ -215,7 +225,7 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 					default: PRE_PC <= id_next_pc;
 				endcase
 				IFID_PC <= PRE_PC;
-				IFID_INSTR <= id_flush ? 16'h4000 : data1; // adi x0 0
+				IFID_INSTR <= (id_flush || is_branch_stall) ? 16'h0000 : data1;
 			end
 			
 
@@ -238,7 +248,7 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 				IDEX_REG1 <=0;
 				IDEX_REG2 <= 0;
 				IDEX_PC <= 0;
-				IDEX_INSTR <= 16'h4000;
+				IDEX_INSTR <= 16'h0000;
 			end
 
 			EXMEM_ALUOUT <= ex_alu_output;
@@ -290,12 +300,14 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 			EXMEMC_REGWRITE <= IDEXC_REGWRITE;
 			EXMEMC_WWD <= IDEXC_WWD;
 			EXMEMC_NEWINST <= IDEXC_NEWINST;
+			EXMEMC_HALTED <= IDEXC_HALTED;
 
 			MEMWBC_MEMTOREG <= EXMEMC_MEMTOREG;
 			MEMWBC_PCTOREG <= EXMEMC_PCTOREG;
 			MEMWBC_REGWRITE <= EXMEMC_REGWRITE;
 			MEMWBC_WWD <= EXMEMC_WWD;
 			MEMWBC_NEWINST <= EXMEMC_NEWINST;
+			MEMWBC_HALTED <= EXMEMC_HALTED;
 
 			if (MEMWBC_NEWINST)
 				num_inst <= num_inst + 1;
