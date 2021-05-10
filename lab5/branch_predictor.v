@@ -24,7 +24,7 @@ module branch_predictor(clk, reset_n, PC, instruction, ifid_branch, bcond, next_
 
 	always @(posedge clk) begin
 		if (!reset_n) begin
-			saturation <= 2'b01;
+			saturation <= 2'b10;
 		end	
 
 		if (ifid_branch) begin
