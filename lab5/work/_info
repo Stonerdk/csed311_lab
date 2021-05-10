@@ -3,38 +3,39 @@ K4
 z0
 !s11f vlog 2020.3 2020.07, Jul 22 2020
 valu
-Z0 !s110 1620626904
+Z0 !s110 1620659096
 !i10b 1
-!s100 LnRm2W]oTj[L<YnT_9K9K0
+!s100 Ti]J@gcZDEN9nfaCB7PgO3
 Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
-I2U5;PNSG4Q]kJjbnVIlA82
+I=DmCC_PZWBbEi6Yl7QkKR0
 Z2 dC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5
 Z3 w1620535157
 Z4 8alu.v
 Z5 Falu.v
-!i122 3
+!i122 21
 L0 18 23
 Z6 VDg1SIo80bB@j0V0VzS_@n1
 Z7 OV;L;2020.3;71
 r1
 !s85 0
 31
-Z8 !s108 1620626904.000000
-!s107 register_file.v|opcodes.v|Memory.v|hazard.v|datapath.v|cpu_TB.v|cpu.v|control_unit.v|branch_predictor.v|alu.v|
-Z9 !s90 alu.v|branch_predictor.v|control_unit.v|cpu.v|cpu_TB.v|datapath.v|hazard.v|Memory.v|opcodes.v|register_file.v|
+Z8 !s108 1620659096.000000
+!s107 hazard.v|branch_predictor.v|control_unit.v|alu.v|register_file.v|opcodes.v|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/datapath.v|
+Z9 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/datapath.v|
 !i113 1
-Z10 tCvgOpt 0
+Z10 o-work work
+Z11 tCvgOpt 0
 vbranch_alu
 R0
 !i10b 1
-!s100 MG<1Q>KJz0f7jQk^C]]bL3
+!s100 B9?U4lDVGgOEZic?XMX_g3
 R1
-IlklC5JeF77lH:??`V;K8`1
+IGQHbb96AFkIh2Qf:8n]?03
 R2
 R3
 R4
 R5
-!i122 3
+!i122 21
 L0 3 14
 R6
 R7
@@ -42,21 +43,22 @@ r1
 !s85 0
 31
 R8
-Z11 !s107 register_file.v|opcodes.v|Memory.v|hazard.v|datapath.v|cpu_TB.v|cpu.v|control_unit.v|branch_predictor.v|alu.v|
+Z12 !s107 hazard.v|branch_predictor.v|control_unit.v|alu.v|register_file.v|opcodes.v|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/datapath.v|
 R9
 !i113 1
 R10
+R11
 vbranch_predictor
 R0
 !i10b 1
-!s100 `UA;N3N_]m:8^_XzZPT9D2
+!s100 INXPL1kODSG7ZIN@fdE<o3
 R1
-IUAj=QnZFg11fN:S7B26if2
+IS^5XQ]aeZchRzTUBKj]773
 R2
 w1620626900
 8branch_predictor.v
 Fbranch_predictor.v
-!i122 3
+!i122 21
 L0 3 35
 R6
 R7
@@ -64,34 +66,36 @@ r1
 !s85 0
 31
 R8
-R11
+R12
 R9
 !i113 1
 R10
+R11
 vcontrol_unit
 R0
 !i10b 1
-!s100 j38?fKfmolHAneg<8Klmc3
+!s100 4KW<N`P?mCT]XT6YA4kAB2
 R1
-I>c02X8lOJB^30C^jkmFhX1
+IkfA?EllIf@=3aX__4il4M1
 R2
-w1620626590
+w1620647541
 8control_unit.v
 Fcontrol_unit.v
-!i122 3
-L0 1 44
+!i122 21
+L0 1 47
 R6
 R7
 r1
 !s85 0
 31
 R8
-R11
+R12
 R9
 !i113 1
 R10
+R11
 vcpu
-R0
+Z13 !s110 1620657320
 !i10b 1
 !s100 0L^819a7<P_X;6We_BDk:1
 R1
@@ -100,20 +104,20 @@ R2
 w1620570204
 8cpu.v
 Fcpu.v
-!i122 3
+!i122 16
 L0 5 22
 R6
 R7
 r1
 !s85 0
 31
-R8
-R11
-R9
+Z14 !s108 1620657320.000000
+Z15 !s107 register_file.v|opcodes.v|Memory.v|hazard.v|datapath.v|cpu_TB.v|cpu.v|control_unit.v|branch_predictor.v|alu.v|
+Z16 !s90 alu.v|branch_predictor.v|control_unit.v|cpu.v|cpu_TB.v|datapath.v|hazard.v|Memory.v|opcodes.v|register_file.v|
 !i113 1
-R10
+R11
 vcpu_TB
-R0
+R13
 !i10b 1
 !s100 SL`[e<3DcncYj1OEad1Ek2
 R1
@@ -122,119 +126,122 @@ R2
 w1619798043
 8cpu_TB.v
 Fcpu_TB.v
-!i122 3
+!i122 16
 L0 8 149
 R6
 R7
 r1
 !s85 0
 31
-R8
-R11
-R9
+R14
+R15
+R16
 !i113 1
-R10
+R11
 ncpu_@t@b
 vdatapath
 R0
 !i10b 1
-!s100 <>GGlo`>aa@JC>P3;^G;<3
+!s100 UWV8:887GMlmbR7amAQ`I1
 R1
-IgI7JZH@nLza2f;8W;]91R2
+IOUS0>eaIh6b]7h?a1O^hb3
 R2
-w1620626313
-8datapath.v
-Fdatapath.v
-!i122 3
-L0 8 328
+w1620659093
+8C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/datapath.v
+FC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/datapath.v
+!i122 21
+L0 8 337
 R6
 R7
 r1
 !s85 0
 31
 R8
-R11
+R12
 R9
 !i113 1
 R10
+R11
 vforwarding
 R0
 !i10b 1
-!s100 _<Gc`G@^M<KUKGDALgR=11
+!s100 hnW9B;oD=0cXePccAS8SF0
 R1
-IEAUF15Y?48eL<n7ZciB6T2
+I1Dm3jhWiERZEl7CAIMN1E0
 R2
-Z12 w1620626779
-Z13 8hazard.v
-Z14 Fhazard.v
-!i122 3
-L0 3 11
+Z17 w1620649201
+Z18 8hazard.v
+Z19 Fhazard.v
+!i122 21
+L0 3 18
 R6
 R7
 r1
 !s85 0
 31
 R8
-R11
+R12
 R9
 !i113 1
 R10
+R11
 vhazard_detect
 R0
 !i10b 1
-!s100 hmB;lR`Lm5zbM>GTF_7_51
+!s100 ;8lnhX[kRE=6R<0CKZ]hd1
 R1
-I^dFE^JoX[?RC8[BOVH^HJ3
+I5DL3IEU9klddUCn]mb>Ud2
 R2
-R12
-R13
-R14
-!i122 3
-L0 15 17
+R17
+R18
+R19
+!i122 21
+L0 22 18
 R6
 R7
 r1
 !s85 0
 31
 R8
-R11
+R12
 R9
 !i113 1
 R10
+R11
 vMemory
-R0
+R13
 !i10b 1
 !s100 7EEiel<70G1^Y==>hC`BC3
 R1
 IdOTgaal5jS5h[9o>Ioe4a1
 R2
-Z15 w1620530905
+Z20 w1620530905
 8Memory.v
 FMemory.v
-!i122 3
+!i122 16
 L0 7 236
 R6
 R7
 r1
 !s85 0
 31
-R8
-R11
-R9
+R14
+R15
+R16
 !i113 1
-R10
+R11
 n@memory
 vregister_file
 R0
 !i10b 1
-!s100 cbL[O[Z;^[iEoDPdihUzi0
+!s100 a4D>IlYMZg:iSF`0aPTI>1
 R1
-I]:d@d13WUl3QCebUNz5LP1
+IM3W8:3?Jd1F=IJ:6cWITM2
 R2
-R15
+R20
 8register_file.v
 Fregister_file.v
-!i122 3
+!i122 21
 L0 3 40
 R6
 R7
@@ -242,7 +249,8 @@ r1
 !s85 0
 31
 R8
-R11
+R12
 R9
 !i113 1
 R10
+R11

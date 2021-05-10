@@ -1,5 +1,11 @@
-# vsim -c cpu_TB 
-# Start time: 15:08:29 on May 10,2021
+# Compile of branch_predictor.v was successful.
+# Compile of control_unit.v was successful.
+# Compile of datapath.v was successful.
+# Compile of hazard.v was successful.
+# 4 compiles, 0 failed with no errors.
+vsim -gui work.cpu_TB
+# vsim -gui work.cpu_TB 
+# Start time: 23:58:05 on May 10,2021
 # Loading work.cpu_TB
 # Loading work.cpu
 # Loading work.datapath
@@ -11,10 +17,121 @@
 # Loading work.alu
 # Loading work.forwarding
 # Loading work.Memory
-# Clock # 1505
+add wave -position insertpoint  \
+sim:/cpu_TB/clk
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: stkd3  Hostname: LAPTOP-NTUKN4JD  ProcessID: 1224
+#           Attempting to use alternate WLF file "./wlft7i88vk".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlft7i88vk
+add wave -position insertpoint  \
+sim:/cpu_TB/UUT/main/PRE_PC
+add wave -position insertpoint  \
+sim:/cpu_TB/UUT/main/data1
+add wave -position insertpoint  \
+sim:/cpu_TB/UUT/main/IFID_PC
+add wave -position insertpoint  \
+sim:/cpu_TB/UUT/main/IFID_INSTR
+add wave -position insertpoint  \
+sim:/cpu_TB/UUT/main/IDEX_INSTR
+add wave -position insertpoint  \
+sim:/cpu_TB/UUT/main/EXMEM_INSTR
+add wave -position insertpoint  \
+sim:/cpu_TB/UUT/main/MEMWB_INSTR
+add wave -position insertpoint  \
+sim:/cpu_TB/UUT/main/id_flush
+add wave -position insertpoint  \
+sim:/cpu_TB/UUT/main/unit_register/register
+add wave -position insertpoint  \
+sim:/cpu_TB/UUT/main/ex_writedata
+add wave -position insertpoint  \
+sim:/cpu_TB/UUT/main/wb_writedata
+run -all
+# Test # 19-1 has been failed!
+# output_port = 0x1 (Ans : 0xffff)
+# Clock #  142
+# The testbench is finished. Summarizing...
+# Test # 19-1 :     Wrong
+# Test # 19-2 : No Result
+# Test # 19-3 : No Result
+# Test #   20 : No Result
+# Pass : 52/56
+# ** Note: $finish    : cpu_TB.v(153)
+#    Time: 14350 ns  Iteration: 2  Instance: /cpu_TB
+# 1
+# Break in Module cpu_TB at cpu_TB.v line 153
+add wave -position insertpoint  \
+sim:/cpu_TB/UUT/main/IDEX_PC
+add wave -position insertpoint  \
+sim:/cpu_TB/UUT/main/EXMEM_PC
+add wave -position insertpoint  \
+sim:/cpu_TB/UUT/main/MEMWB_PC
+add wave -position insertpoint  \
+sim:/cpu_TB/UUT/main/IDEXC_PCTOREG
+add wave -position insertpoint  \
+sim:/cpu_TB/UUT/main/EXMEMC_PCTOREG
+add wave -position insertpoint  \
+sim:/cpu_TB/UUT/main/MEMWBC_PCTOREG
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+run -all
+# GetModuleFileName: 지정된 모듈을 찾을 수 없습니다.
+# 
+# 
+# Test # 19-1 has been failed!
+# output_port = 0x1 (Ans : 0xffff)
+# Clock #  142
+# The testbench is finished. Summarizing...
+# Test # 19-1 :     Wrong
+# Test # 19-2 : No Result
+# Test # 19-3 : No Result
+# Test #   20 : No Result
+# Pass : 52/56
+# ** Note: $finish    : cpu_TB.v(153)
+#    Time: 14350 ns  Iteration: 2  Instance: /cpu_TB
+# 1
+# Break in Module cpu_TB at cpu_TB.v line 153
+add wave -position insertpoint  \
+sim:/cpu_TB/UUT/main/id1_sel
+add wave -position insertpoint  \
+sim:/cpu_TB/UUT/main/id2_sel
+restart
+run -all
+# GetModuleFileName: 지정된 모듈을 찾을 수 없습니다.
+# 
+# 
+# Test # 19-1 has been failed!
+# output_port = 0x1 (Ans : 0xffff)
+# Clock #  142
+# The testbench is finished. Summarizing...
+# Test # 19-1 :     Wrong
+# Test # 19-2 : No Result
+# Test # 19-3 : No Result
+# Test #   20 : No Result
+# Pass : 52/56
+# ** Note: $finish    : cpu_TB.v(153)
+#    Time: 14350 ns  Iteration: 2  Instance: /cpu_TB
+# 1
+# Break in Module cpu_TB at cpu_TB.v line 153
+# Compile of datapath.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.datapath
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.branch_predictor
+# Loading work.branch_alu
+# Loading work.hazard_detect
+# Loading work.alu
+# Loading work.forwarding
+run -all
+# GetModuleFileName: 지정된 모듈을 찾을 수 없습니다.
+# 
+# 
+# Clock # 1295
 # The testbench is finished. Summarizing...
 # All Pass!
 # ** Note: $finish    : cpu_TB.v(153)
-#    Time: 150650 ns  Iteration: 2  Instance: /cpu_TB
-# End time: 15:08:31 on May 10,2021, Elapsed time: 0:00:02
-# Errors: 0, Warnings: 0
+#    Time: 129650 ns  Iteration: 2  Instance: /cpu_TB
+# 1
+# Break in Module cpu_TB at cpu_TB.v line 153
