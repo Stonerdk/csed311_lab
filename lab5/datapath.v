@@ -34,10 +34,10 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 	reg MEMWBC_PCTOREG, MEMWBC_WWD, MEMWBC_NEWINST, MEMWBC_MEMTOREG, MEMWBC_REGWRITE, MEMWBC_HALTED, MEMWBC_AVAILABLE;
 	reg [1:0] IDEX_RS, IDEX_RT, IDEX_RDEST, EXMEM_RDEST, MEMWB_RDEST; 
 
-	wire c_alusrc, c_memwrite, c_regwrite, c_memread, c_memtoreg, c_pctoreg, c_wwd, c_newinst, c_branch, c_alu, c_halted, c_available;
+	wire c_alusrc, c_memwrite, c_regwrite, c_memread, c_memtoreg, c_pctoreg, c_wwd, c_newinst, c_branch, c_alu, c_halted, c_available, c_users, c_usert;
 	wire [3:0] c_aluop;
 	wire [1:0] c_pcsrc, c_regdst;
-	wire c_jpr, c_real_branch;
+	wire c_jr;
 	wire if_stall;
 	wire if_isbranch, if_predict;
 	wire [`WORD_SIZE-1:0] if_bp_next_pc;
@@ -94,6 +94,7 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 	control_unit unit_control(
 		.opcode(id_instr_opcode), 
 		.func_code(id_instr_func), 
+		.is_available(c_available),
 		.clk(clk), 
 		.reset_n(reset_n), 
 		.branch(c_branch), 
@@ -108,7 +109,10 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 		.halt(c_halted), 
 		.wwd(c_wwd), 
 		.reg_write(c_regwrite),
-		.alu(c_alu)
+		.alu(c_alu),
+		.jr(c_jr),
+		.use_rs(c_users),
+		.use_rt(c_usert)
 	);
 	assign c_available = (id_instruction != 0);
 	assign wb_writedata = MEMWBC_PCTOREG ? MEMWB_PC + 1 : MEMWB_OUT; 
@@ -125,15 +129,13 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 	);
 	assign if_isbranch = data1[15] == 0 && data1[14] == 0 && data1 != 0;
 	assign id_bp_flush = id_bcond != IFID_EVAL_BCOND;
-	assign id_flush = (c_pcsrc[1] || c_pcsrc[0] && id_bp_flush) && c_available;
+	assign id_flush = c_pcsrc[1] || c_pcsrc[0] && id_bp_flush;
 	branch_predictor unit_bp(clk, reset_n, PRE_PC, data1, if_isbranch, id_bcond, if_bp_next_pc, if_predict);
 	branch_alu unit_branch_alu(id_reg1, id_reg2, id_instr_opcode, id_bcond);
 
-	
-	assign c_jpr = c_pcsrc[0] && c_pcsrc[1];
-	assign c_real_branch = c_branch && c_available;
+	//assign c_jpr = c_pcsrc[0] && c_pcsrc[1];
 
-	hazard_detect unit_hazard(id_instr_rs, id_instr_rd, c_jpr, c_real_branch, IDEXC_MEMREAD, IDEX_RDEST, IDEXC_AVAILABLE, EXMEM_RDEST, EXMEMC_AVAILABLE, MEMWB_RDEST, MEMWBC_AVAILABLE, ex_datahazard, id_datahazard);
+	hazard_detect unit_hazard(id_instr_rs, id_instr_rd, c_jr, c_branch, c_users, c_usert, IDEXC_MEMREAD, IDEX_RDEST, IDEXC_REGWRITE, EXMEM_RDEST, EXMEMC_REGWRITE, MEMWB_RDEST, MEMWBC_REGWRITE, ex_datahazard, id_datahazard);
 	assign c_newinst = !(id_datahazard || ex_datahazard || id_flush);
 
 	

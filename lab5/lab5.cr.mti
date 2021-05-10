@@ -14,13 +14,6 @@ Top level modules:
 	branch_predictor
 	cpu
 
-} {} {}} {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/control_unit.v} {1 {vlog -work work -stats=none {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/control_unit.v}
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
--- Compiling module control_unit
-
-Top level modules:
-	control_unit
-
 } {} {}} {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v} {1 {vlog -work work -stats=none {C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.3 Compiler 2020.07 Jul 22 2020
 -- Compiling module cpu_TB

@@ -12,25 +12,20 @@ module forwarding(IDEX_rs, IDEX_rt, EXMEM_rdest, MEMWB_rdest, EXMEMC_regwrite, M
 
 endmodule
 
-module hazard_detect(id_rs, id_rt, id_jpr, id_branch, idex_memread, idex_rd, idex_av, exmem_rd, exmem_av, memwb_rd, memwb_av, ex_datahazard, id_datahazard);
+module hazard_detect(id_rs, id_rt, id_jpr, id_branch, id_users, id_usert, idex_memread, idex_rd, idex_rw, exmem_rd, exmem_rw, memwb_rd, memwb_rw, ex_datahazard, id_datahazard);
 
 	input [1:0] id_rs, id_rt;
-	input id_jpr, id_branch, idex_memread;
+	input id_users, id_usert, id_jpr, id_branch, idex_memread;
 	input [1:0] idex_rd, exmem_rd, memwb_rd;
-	input idex_av, exmem_av, memwb_av;
+	input idex_rw, exmem_rw, memwb_rw;
 
 	output ex_datahazard;
 	output id_datahazard;
-	wire jpr_datahazard, branch_datahazard;
+	wire ieh, emh, mwh;
 	//(c_pcsrc[0] && c_pcsrc[1])
-	assign ex_datahazard = idex_memread && (idex_rd == id_rs || idex_rd == id_rt) && idex_av;
-	assign jpr_datahazard = id_jpr && 
-		((id_rs == idex_rd && idex_av)
-		|| (id_rs == exmem_rd && exmem_av)
-		|| (id_rs == memwb_rd && memwb_av));
-	assign branch_datahazard = id_branch && 
-		(((id_rs == idex_rd || id_rt == idex_rd)  && idex_av) ||
-		((id_rs == exmem_rd || id_rt == exmem_rd)  && exmem_av) ||
-		((id_rs == memwb_rd || id_rt == memwb_rd)  && memwb_av));
-	assign id_datahazard = jpr_datahazard || branch_datahazard;
+	assign ieh = (idex_rd == id_rs && id_users || idex_rd == id_rt && id_usert) && idex_rw;
+	assign emh = (exmem_rd == id_rs && id_users || exmem_rd == id_rt && id_usert) && exmem_rw;
+	assign mwh = (memwb_rd == id_rs && id_users || memwb_rd == id_rt && id_usert) && memwb_rw;
+	assign ex_datahazard = idex_memread && ieh;
+	assign id_datahazard = (id_jpr || id_branch) && (ieh || emh || mwh);
 endmodule
