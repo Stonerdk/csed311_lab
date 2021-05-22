@@ -1,5 +1,5 @@
 # vsim -c cpu_TB 
-# Start time: 06:55:41 on May 11,2021
+# Start time: 03:41:12 on May 11,2021
 # Loading work.cpu_TB
 # Loading work.cpu
 # Loading work.datapath
@@ -16,5 +16,5 @@
 # All Pass!
 # ** Note: $finish    : cpu_TB.v(153)
 #    Time: 128050 ns  Iteration: 2  Instance: /cpu_TB
-# End time: 06:55:42 on May 11,2021, Elapsed time: 0:00:01
+# End time: 03:41:15 on May 11,2021, Elapsed time: 0:00:03
 # Errors: 0, Warnings: 0
