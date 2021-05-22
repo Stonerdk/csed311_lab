@@ -247,9 +247,17 @@ module Memory(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, address
 				memory[16'hc6] <= 16'hf01d;
 			end
 		else begin
-			if(read_m1)data1 <= (write_m2 & address1==address2)?data2:memory[address1];
 			// if(read_m2)output_data2 <= memory[address2];
 			// if(write_m2)memory[address2] <= data2;	
+
+			if (read_m1_delay == 0) begin
+				if (read_m1)
+					read_m1_delay <= 1;
+			end
+			else if (read_m1_delay == 1) begin
+				data1 <= (write_m2 & address1==address2)?data2:memory[address1];
+				read_m1_delay <= 0;
+			end
 
 			if (read_m2_delay == 0) begin
 				if (read_m2)

@@ -234,7 +234,7 @@ module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, addre
 					IFID_PC <= PRE_PC;
 					IFID_INSTR <= (is_flush) ? 16'h0000 : data1;
 				end
-				mem_stall <= IDEXC_MEMREAD || IDEXC_MEMWRITE;
+				mem_stall <= 1;
 
 				IDEX_RS <= datahazard ? 0 : id_instr_rs;
 				IDEX_RT <= datahazard ? 0 : id_instr_rt;
