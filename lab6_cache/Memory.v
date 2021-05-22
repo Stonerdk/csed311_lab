@@ -24,6 +24,12 @@ module Memory(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, address
 	wire [`WORD_SIZE-1:0] address2;
 	inout data2;
 	wire [`WORD_SIZE-1:0] data2;
+
+	/*input memory_stall;
+	wire memory_stall;
+
+	output reg[`WORD_SIZE-1:0] stall;
+	*/
 	
 	reg [`WORD_SIZE-1:0] memory [0:`MEMORY_SIZE-1];
 	reg [`WORD_SIZE-1:0] output_data2;
@@ -34,6 +40,8 @@ module Memory(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, address
 
 	reg read_m1_temp, read_m2_temp, write_m2_temp;
 	assign data2 = read_m2?output_data2:`WORD_SIZE'bz;
+
+	//reg mem_stall;
 	
 	always@(posedge clk)
 		if(!reset_n)
@@ -247,34 +255,42 @@ module Memory(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, address
 				memory[16'hc6] <= 16'hf01d;
 			end
 		else begin
-			// if(read_m2)output_data2 <= memory[address2];
-			// if(write_m2)memory[address2] <= data2;	
+			/*
+			if(memory_stall == 1) begin
 
+			end
+			*/
 			if (read_m1_delay == 0) begin
 				if (read_m1)
 					read_m1_delay <= 1;
+					//mem_stall <= 1;
 			end
 			else if (read_m1_delay == 1) begin
 				data1 <= (write_m2 & address1==address2)?data2:memory[address1];
 				read_m1_delay <= 0;
+				//mem_stall <= 0;
 			end
 
 			if (read_m2_delay == 0) begin
 				if (read_m2)
 					read_m2_delay <= 1;
+					//mem_stall <= 1;
 			end
 			else if (read_m2_delay == 1) begin
 				output_data2 <= memory[address2];
 				read_m2_delay <= 0;
+				//mem_stall <= 0;
 			end
 
 			if (write_m2_delay == 0) begin
 				if (write_m2)
 					write_m2_delay <= 1;
+					//mem_stall <= 1;
 			end
 			else if (write_m2_delay == 1) begin
 				memory[address2] <= data2;
 				write_m2_delay <= 0;
+				//mem_stall <= 0;
 			end									  
 		end
 endmodule
