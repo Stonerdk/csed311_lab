@@ -5,20 +5,17 @@
 `include "branch_predictor.v"
 `include "hazard.v"
 
-module datapath(clk, reset_n, wb_data1, wb_data2, cache_stall, cpu_read_m1, cpu_read_m2, cpu_write_m2, cpu_address1, cpu_address2, cpu_data, num_inst, output_port, is_halted);
+module datapath(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, address2, data2, num_inst, output_port, is_halted);
 	input clk;
 	input reset_n;
-	input [`WORD_SIZE-1:0] wb_data1;
-	input [`WORD_SIZE-1:0] wb_data2; 
-	input cache_stall; 
-
-	output cpu_read_m1;
-	output cpu_read_m2; 
-	output cpu_write_m2; 
-	output [`WORD_SIZE-1:0] cpu_address1;
-	output [`WORD_SIZE-1:0] cpu_address2; 
-	output [`WORD_SIZE-1:0] cpu_data; 
-	output reg [`WORD_SIZE-1:0] num_inst; 
+	output read_m1;
+	output [`WORD_SIZE-1:0] address1;
+	output read_m2;
+	output write_m2;
+	output [`WORD_SIZE-1:0] address2;
+	input [`WORD_SIZE-1:0] data1;
+	inout [`WORD_SIZE-1:0] data2;
+	output reg [`WORD_SIZE-1:0] num_inst;
 	output reg [`WORD_SIZE-1:0] output_port;
 	output is_halted;
 
@@ -67,6 +64,8 @@ module datapath(clk, reset_n, wb_data1, wb_data2, cache_stall, cpu_read_m1, cpu_
 	wire [`WORD_SIZE-1:0] ex_alu2_temp;
 	wire [`WORD_SIZE-1:0] ex_writedata;
 
+	reg mem_stall;
+
 	wire [`WORD_SIZE-1:0] wb_writedata;
 
 	assign address1 = PRE_PC;
@@ -80,11 +79,11 @@ module datapath(clk, reset_n, wb_data1, wb_data2, cache_stall, cpu_read_m1, cpu_
 	assign id_immediate[7:0] = id_instruction[7:0];
 	assign id_immediate[15:8] = id_instruction[7] == 1 ? 8'hff : 8'h00;
 	
-	assign cpu_data = cpu_write_m2 ? EXMEM_REG2 : 16'bz;
+	assign data2 = write_m2 ? EXMEM_REG2 : 16'bz;
 	assign address2 = reset_n ? EXMEM_ALUOUT : 0;
-	assign cpu_read_m1 = 1;
-	assign cpu_read_m2 = reset_n && EXMEMC_MEMREAD;
-	assign cpu_write_m2 = reset_n && EXMEMC_MEMWRITE;
+	assign read_m1 = 1;
+	assign read_m2 = reset_n && EXMEMC_MEMREAD;
+	assign write_m2 = reset_n && EXMEMC_MEMWRITE;
 	assign is_halted = MEMWBC_HALTED;
 
 	assign c_available = (id_instruction != 0);
@@ -121,16 +120,48 @@ module datapath(clk, reset_n, wb_data1, wb_data2, cache_stall, cpu_read_m1, cpu_
 						   ex_alu_sel2 == 2'b10 ? ex_writedata : ex_alu2_temp;
 
 
-	control_unit unit_control(id_instr_opcode, id_instr_func, c_available, clk, reset_n, c_branch, c_regdst, c_aluop, c_alusrc, 
-	c_memwrite, c_memread, c_memtoreg, c_pcsrc, c_pctoreg, c_halted, c_wwd, c_regwrite, c_alu, c_jr, c_users, c_usert, c_id_users, c_id_usert);
-	register_file unit_register(id_reg1, id_reg2, id_instr_rs, id_instr_rt, MEMWB_RDEST, wb_writedata, MEMWBC_REGWRITE, clk, reset_n);
+	control_unit unit_control(
+		.opcode(id_instr_opcode), 
+		.func_code(id_instr_func), 
+		.is_available(c_available),
+		.clk(clk), 
+		.reset_n(reset_n), 
+		.branch(c_branch), 
+		.reg_dst(c_regdst), 
+		.alu_op(c_aluop), 
+		.alu_src(c_alusrc), 
+		.mem_write(c_memwrite), 
+		.mem_read(c_memread), 
+		.mem_to_reg(c_memtoreg), 
+		.pc_src(c_pcsrc), 
+		.pc_to_reg(c_pctoreg), 
+		.halt(c_halted), 
+		.wwd(c_wwd), 
+		.reg_write(c_regwrite),
+		.alu(c_alu),
+		.jr(c_jr),
+		.use_rs(c_users),
+		.use_rt(c_usert),
+		.id_use_rs(c_id_users),
+		.id_use_rt(c_id_usert)
+	);
+	register_file unit_register(
+		.read_out1(id_reg1), 
+		.read_out2(id_reg2), 
+		.read1(id_instr_rs), 
+		.read2(id_instr_rt), 
+		.dest(MEMWB_RDEST),
+		.write_data(wb_writedata),
+		.reg_write(MEMWBC_REGWRITE),
+		.clk(clk), 
+		.reset_n(reset_n)
+	);
+
 	branch_predictor unit_bp(clk, reset_n, PRE_PC, is_flush, id_bcond, id_datahazard, c_branch, c_pcsrc[1], actual_next_pc, IFID_PC, next_PC);
 	branch_alu unit_branch_alu(id_bj_input1, id_bj_input2, id_instr_opcode, id_bcond);
-	hazard_detect unit_hazard(id_instr_rs, id_instr_rd, c_jr, c_branch, c_users, c_usert, IDEXC_MEMREAD, EXMEMC_MEMREAD, 
-		IDEX_RDEST, IDEXC_REGWRITE, EXMEM_RDEST, EXMEMC_REGWRITE, ex_datahazard, id_datahazard);	
+	hazard_detect unit_hazard(id_instr_rs, id_instr_rd, c_jr, c_branch, c_users, c_usert, IDEXC_MEMREAD, EXMEMC_MEMREAD, IDEX_RDEST, IDEXC_REGWRITE, EXMEM_RDEST, EXMEMC_REGWRITE, ex_datahazard, id_datahazard);	
 	alu unit_alu(ex_alu_input1, ex_alu_input2, IDEXC_ALUOP,ex_alu_output);
-	forwarding forwarding_unit(IDEX_RS, IDEX_RT, id_instr_rs, id_instr_rt, c_id_users, c_id_usert, IDEXC_USERS, IDEXC_USERT, 
-		EXMEM_RDEST, MEMWB_RDEST, EXMEMC_REGWRITE, MEMWBC_REGWRITE, ex_alu_sel1, ex_alu_sel2, id1_sel, id2_sel);
+	forwarding forwarding_unit(IDEX_RS, IDEX_RT, id_instr_rs, id_instr_rt, c_id_users, c_id_usert, IDEXC_USERS, IDEXC_USERT, EXMEM_RDEST, MEMWB_RDEST, EXMEMC_REGWRITE, MEMWBC_REGWRITE, ex_alu_sel1, ex_alu_sel2, id1_sel, id2_sel);
 
 	always @(posedge clk) begin
 		if (!reset_n) begin
@@ -160,6 +191,7 @@ module datapath(clk, reset_n, wb_data1, wb_data2, cache_stall, cpu_read_m1, cpu_
 			MEMWB_OUT <= 0;
 			MEMWB_RDEST <= 0;
 			MEMWB_PC <= 0;
+			mem_stall <= 0;
 
 			IDEXC_REGDST <= 0;
 			IDEXC_ALUOP <= 0;
@@ -196,13 +228,15 @@ module datapath(clk, reset_n, wb_data1, wb_data2, cache_stall, cpu_read_m1, cpu_
 			MEMWBC_AVAILABLE <= 0;
 		end
 		else begin
-			if (!cache_stall) begin	
+			if (!mem_stall) begin	
 				if (!datahazard) begin
 					PRE_PC <= next_PC;
 					IFID_PC <= PRE_PC;
-					IFID_INSTR <= (is_flush) ? 16'h0000 : wb_data1;
+					IFID_INSTR <= (is_flush) ? 16'h0000 : data1;
 				end
-
+				//mem_stall <= IDEXC_MEMREAD || IDEXC_MEMWRITE;
+				mem_stall <= 1;
+				
 				IDEX_RS <= datahazard ? 0 : id_instr_rs;
 				IDEX_RT <= datahazard ? 0 : id_instr_rt;
 				IDEX_RDEST <= datahazard ? 0 : id_rdest;
@@ -247,8 +281,8 @@ module datapath(clk, reset_n, wb_data1, wb_data2, cache_stall, cpu_read_m1, cpu_
 				EXMEMC_HALTED <= IDEXC_HALTED;
 				EXMEMC_AVAILABLE <= IDEXC_AVAILABLE;
 
-				MEMWB_MEMOUT <= wb_data2;
-				MEMWB_OUT <= EXMEMC_MEMTOREG ? wb_data2 : EXMEM_ALUOUT;
+				MEMWB_MEMOUT <= data2;
+				MEMWB_OUT <= EXMEMC_MEMTOREG ? data2 : EXMEM_ALUOUT;
 				MEMWB_RDEST <= EXMEM_RDEST;
 				MEMWB_PC <= EXMEM_PC;
 				MEMWB_INSTR <= EXMEM_INSTR;
@@ -263,6 +297,7 @@ module datapath(clk, reset_n, wb_data1, wb_data2, cache_stall, cpu_read_m1, cpu_
 
 			end
 			else begin
+				mem_stall <= 0;
 				MEMWBC_NEWINST <= 0;
 			end
 			
