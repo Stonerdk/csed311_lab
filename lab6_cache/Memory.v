@@ -15,23 +15,22 @@ module Memory(clk, reset_n, read_m1, read_m2, write_m2, address1, address2, data
 	input wire [`WORD_SIZE-1:0] address2;
 	input wire [`WORD_SIZE-1:0] data2_in;
 	
-	output reg [`WORD_SIZE-1:0] data1_out [0:3];
-	output reg [`WORD_SIZE-1:0] data2_out [0:3];
+	output reg [63:0] data1_out;
+	output [63:0] data2_out;	
 	output reg signal;
 
-	/*input memory_stall;
-	wire memory_stall;
-	output reg[`WORD_SIZE-1:0] stall;
-	*/
-	
 	reg [`WORD_SIZE-1:0] memory [0:`MEMORY_SIZE-1];
-	reg [`WORD_SIZE-1:0] output_data2;
+	reg [`WORD_SIZE-1:0] output_data2 [0:3];
 	
 	reg [3:0] read_m1_delay;
 	reg [3:0] read_m2_delay;
 	reg [3:0] write_m2_delay;
 
-	assign data2 = read_m2?output_data2:`WORD_SIZE'bz;
+	assign data2_out[15:0] = read_m2 ? output_data2[0] : `WORD_SIZE'bz;
+	assign data2_out[31:16] = read_m2 ? output_data2[1] : `WORD_SIZE'bz;
+	assign data2_out[47:32] = read_m2 ? output_data2[2] : `WORD_SIZE'bz;
+	assign data2_out[63:48] = read_m2 ? output_data2[3] : `WORD_SIZE'bz;
+
 	//reg mem_stall;
 	
 	always@(posedge clk) begin
@@ -40,10 +39,13 @@ module Memory(clk, reset_n, read_m1, read_m2, write_m2, address1, address2, data
 				read_m1_delay <= 0;
 				read_m2_delay <= 0;
 				write_m2_delay <= 0;
+				data1_out[0] <= `WORD_SIZE'bz;
+				data1_out[1] <= `WORD_SIZE'bz;
+				data1_out[2] <= `WORD_SIZE'bz;
+				data1_out[3] <= `WORD_SIZE'bz;
+				signal <= 0;
+				//output_data2 ?
 
-				read_m1_temp <= 0;
-				read_m2_temp <= 0;
-				write_m2_temp <= 0;
 
 				memory[16'h0] <= 16'h9023;
 				memory[16'h1] <= 16'h1;
@@ -246,16 +248,18 @@ module Memory(clk, reset_n, read_m1, read_m2, write_m2, address1, address2, data
 				memory[16'hc6] <= 16'hf01d;
 			end
 		else begin
+			if (signal == 1)
+				signal <= 0;
 
 			if (read_m1_delay == 0) 
 				read_m1_delay <= read_m1;
 			else if (read_m1_delay > 0 && read_m1_delay < `DEF_DELAY)
 				read_m1_delay <= read_m1_delay + 1;
 			else if (read_m1_delay == `DEF_DELAY) begin
-				data1_out[0] <= (write_m2 & address1 == address2) ? data2_out[0] : memory[{address1[15:2], 2'b00}];
-				data1_out[1] <= (write_m2 & address1 == address2) ? data2_out[1] : memory[{address1[15:2], 2'b01}];
-				data1_out[2] <= (write_m2 & address1 == address2) ? data2_out[2] : memory[{address1[15:2], 2'b10}];
-				data1_out[3] <= (write_m2 & address1 == address2) ? data2_out[3] : memory[{address1[15:2], 2'b11}];
+				data1_out[15:0] <= (write_m2 & address1 == address2) ? data2_out[15:0] : memory[{address1[15:2], 2'b00}];
+				data1_out[31:16] <= (write_m2 & address1 == address2) ? data2_out[31:16] : memory[{address1[15:2], 2'b01}];
+				data1_out[47:32] <= (write_m2 & address1 == address2) ? data2_out[47:32] : memory[{address1[15:2], 2'b10}];
+				data1_out[63:48] <= (write_m2 & address1 == address2) ? data2_out[63:48] : memory[{address1[15:2], 2'b11}];
 				read_m1_delay <= 0;
 				signal <= 1;
 			end
@@ -264,21 +268,20 @@ module Memory(clk, reset_n, read_m1, read_m2, write_m2, address1, address2, data
 				read_m2_delay <= read_m2;
 			else if (read_m2_delay > 0 && read_m2_delay < `DEF_DELAY)
 				read_m2_delay <= read_m2_delay + 1;
-			else if (read_m2_delay == 1) begin
-				data2_out[0] <= memory[{address2[15:2], 2'b00}];
-				data2_out[1] <= memory[{address2[15:2], 2'b01}];
-				data2_out[2] <= memory[{address2[15:2], 2'b10}];
-				data2_out[3] <= memory[{address2[15:2], 2'b11}]; 
+			else if (read_m2_delay == `DEF_DELAY) begin
+				output_data2[0] <= memory[{address2[15:2], 2'b00}];
+				output_data2[1] <= memory[{address2[15:2], 2'b01}];
+				output_data2[2] <= memory[{address2[15:2], 2'b10}];
+				output_data2[3] <= memory[{address2[15:2], 2'b11}]; 
 				read_m2_delay <= 0;
 				signal <= 1;
-				//mem_stall <= 0;
 			end
 
 			if (write_m2_delay == 0)
 				write_m2_delay <= write_m2;
 			else if (write_m2_delay > 0 && write_m2_delay < `DEF_DELAY)
 				write_m2_delay <= write_m2_delay + 1;
-			else if (write_m2_delay == 1) begin
+			else if (write_m2_delay == `DEF_DELAY) begin
 				memory[address2] <= data2_in;
 				write_m2_delay <= 0;
 				signal <= 1;
@@ -286,7 +289,5 @@ module Memory(clk, reset_n, read_m1, read_m2, write_m2, address1, address2, data
 		end
 	end
 
-	always @(negedge clk) begin
-		signal <= 0;
-	end
+
 endmodule

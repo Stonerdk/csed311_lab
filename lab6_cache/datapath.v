@@ -69,7 +69,7 @@ module datapath(clk, reset_n, wb_data1, wb_data2, cache_stall, cpu_read_m1, cpu_
 
 	wire [`WORD_SIZE-1:0] wb_writedata;
 
-	assign address1 = PRE_PC;
+	assign cpu_address1 = PRE_PC;
 	assign id_instruction = IFID_INSTR;
 	assign id_instr_opcode = id_instruction[15:12];
 	assign id_instr_rs = id_instruction[11:10];
@@ -81,7 +81,7 @@ module datapath(clk, reset_n, wb_data1, wb_data2, cache_stall, cpu_read_m1, cpu_
 	assign id_immediate[15:8] = id_instruction[7] == 1 ? 8'hff : 8'h00;
 	
 	assign cpu_data = cpu_write_m2 ? EXMEM_REG2 : 16'bz;
-	assign address2 = reset_n ? EXMEM_ALUOUT : 0;
+	assign cpu_address2 = reset_n ? EXMEM_ALUOUT : 0;
 	assign cpu_read_m1 = 1;
 	assign cpu_read_m2 = reset_n && EXMEMC_MEMREAD;
 	assign cpu_write_m2 = reset_n && EXMEMC_MEMWRITE;

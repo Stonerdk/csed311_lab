@@ -7,9 +7,9 @@ module cpu(clk, reset_n, mem_signal, mem_data1, mem_data2, read_m1, read_m2, wri
 	input clk;
 	input reset_n;
 	input mem_signal;
-	input [`WORD_SIZE-1:0] mem_data1 [0:3];
-	input [`WORD_SIZE-1:0] mem_data2 [0:3];
-	
+	input [63:0] mem_data1;
+	input [63:0] mem_data2;
+
 	output read_m1;
 	output read_m2;
 	output write_m2;
@@ -51,6 +51,6 @@ module cpu(clk, reset_n, mem_signal, mem_data1, mem_data2, read_m1, read_m2, wri
         wb_data1,
         wb_data2
     );
-endmodul.
+endmodule
 
 

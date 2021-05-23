@@ -11,11 +11,11 @@ module cpu_TB();
 	
 	wire read_m1;
 	wire [`WORD_SIZE-1:0] address1;
-	wire [`WORD_SIZE-1:0] mem_data1 [0:3];
+	wire [63:0] mem_data1;
 	wire read_m2;
 	wire write_m2;
 	wire [`WORD_SIZE-1:0] address2;
-	wire [`WORD_SIZE-1:0] mem_data2 [0:3];
+	wire [63:0] mem_data2;
 	wire [`WORD_SIZE-1:0] mem_write_data; 
 	wire mem_signal;
 
@@ -26,7 +26,7 @@ module cpu_TB();
 
 	// instantiate the unit under test
 	cpu UUT (clk, reset_n, mem_signal, mem_data1, mem_data2, read_m1, read_m2, write_m2, address1, address2, mem_write_data, num_inst, output_port, is_halted);
-	Memory NUUT(!clk, reset_n, read_m1, read_m2, write_m2, address1, address2, mem_write_data, mem_data1, mem_data2, signal);
+	Memory NUUT(!clk, reset_n, read_m1, read_m2, write_m2, address1, address2, mem_write_data, mem_data1, mem_data2, mem_signal);
 
 	// initialize inputs
 	initial begin
