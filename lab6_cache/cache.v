@@ -47,6 +47,8 @@ module cache (
     wire [`WORD_SIZE-1:0]   addr1_data, addr2_data;
     wire [`WORD_SIZE-1:0]   addr1_mem_data, addr2_mem_data;
     integer i;
+    integer hit_count;
+    integer miss_count;
 
     assign address1_tag = address1[15:4];
     assign address1_index = address1[3:2];
@@ -89,6 +91,8 @@ module cache (
     always @(posedge clk) begin
         if (!reset_n) begin
             hit <= 0;
+            hit_count <= 0;
+            miss_count <= 0;
             for (i = 0; i < `IDX_SIZE; i = i + 1) begin
                 set1_valid[i] <= 0;
                 set1_tag[i] <= 0;
@@ -109,6 +113,12 @@ module cache (
         end
         else begin
             if (!stall) begin
+                if(addr1_hit) begin
+                    hit_count <= hit_count + 1;
+                end
+                else begin
+                    miss_count <= miss_count + 1;
+                end
                 if (mem_read_m1) begin
                     if (set1_lru[address1_index] >= set2_lru[address1_index]) begin
                         set1_data[address1_index][0] <= mem_data1[15:0]; 
