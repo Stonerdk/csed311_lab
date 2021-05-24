@@ -46,6 +46,8 @@ module cache (
     wire [`WORD_SIZE-1:0]   addr1_data, addr2_data;
     wire [`WORD_SIZE-1:0]   addr1_mem_data, addr2_mem_data;
     integer i;
+    integer hit_count;
+    integer miss_count;
 
     assign address1_tag     = address1[15:4];
     assign address1_index   = address1[3:2];
