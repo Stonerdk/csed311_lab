@@ -1,5 +1,5 @@
 # vsim -c cpu_TB 
-# Start time: 20:53:15 on May 23,2021
+# Start time: 13:48:38 on May 24,2021
 # Loading work.cpu_TB
 # Loading work.cpu
 # Loading work.datapath
@@ -15,7 +15,8 @@
 # Clock # 2467
 # The testbench is finished. Summarizing...
 # All Pass!
-# ** Note: $finish    : cpu_TB.v(155)
+# Cache Hit : 1216, Cache Miss : 91
+# ** Note: $finish    : cpu_TB.v(160)
 #    Time: 246850 ns  Iteration: 2  Instance: /cpu_TB
-# End time: 20:53:17 on May 23,2021, Elapsed time: 0:00:02
+# End time: 13:48:41 on May 24,2021, Elapsed time: 0:00:03
 # Errors: 0, Warnings: 0

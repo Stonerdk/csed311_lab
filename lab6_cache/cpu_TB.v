@@ -24,8 +24,11 @@ module cpu_TB();
 	wire [`WORD_SIZE-1:0] output_port;	// this will be used for a "WWD" instruction
 	wire is_halted;				// set if the cpu is halted
 
+	wire [`WORD_SIZE-1:0] num_hit;
+	wire [`WORD_SIZE-1:0] num_miss;
+
 	// instantiate the unit under test
-	cpu UUT (clk, reset_n, mem_signal, mem_data1, mem_data2, read_m1, read_m2, write_m2, address1, address2, mem_write_data, num_inst, output_port, is_halted);
+	cpu UUT (clk, reset_n, mem_signal, mem_data1, mem_data2, read_m1, read_m2, write_m2, address1, address2, mem_write_data, num_inst, output_port, is_halted, num_hit, num_miss);
 	Memory NUUT(!clk, reset_n, read_m1, read_m2, write_m2, address1, address2, mem_write_data, mem_data1, mem_data2, mem_signal);
 
 	// initialize inputs
@@ -148,8 +151,10 @@ module cpu_TB();
 			else									   
 				$display("Test #%s : %s", TestID[i], (TestPassed[i] === 0)?"Wrong" : "No Result");
 		end
-		if (Passed == `NUM_TEST)
+		if (Passed == `NUM_TEST) begin
 			$display("All Pass!");
+			$display("Cache Hit : %0d, Cache Miss : %0d", num_hit, num_miss);
+		end
 		else
 			$display("Pass : %0d/%0d", Passed, `NUM_TEST);
 		$finish;

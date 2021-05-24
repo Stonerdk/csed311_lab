@@ -2,7 +2,7 @@
 
 `include "datapath.v"
 
-module cpu(clk, reset_n, mem_signal, mem_data1, mem_data2, read_m1, read_m2, write_m2, mem_address1, mem_address2, mem_write_data, num_inst, output_port, is_halted);
+module cpu(clk, reset_n, mem_signal, mem_data1, mem_data2, read_m1, read_m2, write_m2, mem_address1, mem_address2, mem_write_data, num_inst, output_port, is_halted, num_hit, num_miss);
 
 	input clk;
 	input reset_n;
@@ -19,6 +19,8 @@ module cpu(clk, reset_n, mem_signal, mem_data1, mem_data2, read_m1, read_m2, wri
 	output [`WORD_SIZE-1:0] num_inst;
 	output [`WORD_SIZE-1:0] output_port;
 	output is_halted;
+	output [`WORD_SIZE-1:0] num_hit;
+	output [`WORD_SIZE-1:0] num_miss;
 
 	wire [`WORD_SIZE-1:0] cpu_address1;
 	wire [`WORD_SIZE-1:0] cpu_address2;
@@ -49,7 +51,9 @@ module cpu(clk, reset_n, mem_signal, mem_data1, mem_data2, read_m1, read_m2, wri
         mem_address2,
 		mem_write_data,
         wb_data1,
-        wb_data2
+        wb_data2,
+		num_hit,
+		num_miss
     );
 endmodule
 
