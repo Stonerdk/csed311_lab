@@ -32,6 +32,7 @@ initial begin
     index_ = 0;
     br_ = 0;
     mtoe_ = 0;
+    dma_end_ = 0;
 end
 /////////////////
 
@@ -45,7 +46,7 @@ always@(posedge clk) begin
     if(begin_dma)begin
         br_ <= 1;    // bus request
     end
-    if(dma_emd_) begin
+    if(dma_end_) begin
         dma_end_ <= 0;
     end
 
