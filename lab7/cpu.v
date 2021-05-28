@@ -3,7 +3,7 @@
 `include "datapath.v"
 
 module cpu(clk, reset_n, mem_signal, mem_data1, mem_data2, 
-		interrupt_fromexternaldevice, br, target_address, length, bg, begin_dma,
+		interrupt_fromexternaldevice, br, target_address, length, bg, begin_dma,dma_end,
 		read_m1, read_m2, write_m2, mem_address1, mem_address2, mem_write_data, num_inst, output_port, is_halted);
 
 	input clk;
@@ -17,6 +17,8 @@ module cpu(clk, reset_n, mem_signal, mem_data1, mem_data2,
 	wire interrupt_fromexternaldevice;
 	input br;
 	wire br;
+	input dma_end;
+	wire dma_end;
 	
 	output [`WORD_SIZE-1 :0] target_address;
 	wire [`WORD_SIZE-1 :0] target_address;
@@ -62,16 +64,14 @@ module cpu(clk, reset_n, mem_signal, mem_data1, mem_data2,
 		if(br) begin
 			bg_ <= 1;
 		end
-		else begin
-			bg_ <= 0;
-		end
 		if(begin_dma_) begin
 			begin_dma_ <= 0;
 		end
-		
-		
 	end
 
+	always@(negedge br) begin
+		bg_ <= 0;
+	end
 	always@(posedge interrupt_fromexternaldevice) begin
 		begin_dma_ <= 1;
 	end

@@ -50,6 +50,9 @@ always @(posedge clk) begin
 		if(num_clk == 200) begin
 			interrupt <= 1;
 		end
+		else if(num_clk == 295) begin
+			interrupt <= 0;
+		end
 	end
 end
 endmodule
