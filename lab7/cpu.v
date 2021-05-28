@@ -24,8 +24,10 @@ module cpu(clk, reset_n, mem_signal, mem_data1, mem_data2,
 	wire [`WORD_SIZE-1 :0] length;
 	output bg;
 	wire bg; reg bg_;
+
 	output begin_dma;
 	wire begin_dma;
+
 	reg begin_dma_;
 
 	///////////////////////////////////
@@ -44,16 +46,18 @@ module cpu(clk, reset_n, mem_signal, mem_data1, mem_data2,
 	wire [`WORD_SIZE-1:0] wb_data1, wb_data2, cpu_data;
 	wire cpu_read_m1, cpu_read_m2, cpu_write_m2;
 	wire cache_stall;
-
+	
 
 	// for dma //
 	initial begin
-	assign bg_ = 0;
+		begin_dma_ = 0;
+		bg_ =0;
 	end
 	assign length = 12;
-	assign target_address = 16'he; // 아무것도 없는 memory
+	assign target_address = 16'hb; // 아무것도 없는 memory
 	assign bg = bg_;
-	assign beign_dma = begin_dma_;
+	assign begin_dma = begin_dma_;
+
 	always@(posedge clk) begin
 		if(br) begin
 			bg_ <= 1;
@@ -61,15 +65,17 @@ module cpu(clk, reset_n, mem_signal, mem_data1, mem_data2,
 		else begin
 			bg_ <= 0;
 		end
-		
-		if(begin_dma_ == 1) begin
+		if(begin_dma_) begin
 			begin_dma_ <= 0;
 		end
+		
+		
 	end
 
 	always@(posedge interrupt_fromexternaldevice) begin
 		begin_dma_ <= 1;
 	end
+
 
 
 	datapath main(clk, reset_n, wb_data1, wb_data2, cache_stall, cpu_read_m1, cpu_read_m2, cpu_write_m2, cpu_address1, cpu_address2, cpu_data, num_inst, output_port, is_halted);

@@ -41,12 +41,14 @@ module cpu_TB();
 
 	wire write;
 
-	wire [`WORD_SIZE -1 : 0] adress_with_dma;
+	wire [`WORD_SIZE -1 : 0] address_with_dma;
+	wire [`WORD_SIZE -1 : 0] data_with_dma;
+
 	assign address_with_dma = mtoe ? memory_address : address2;
 	assign data_with_dma = mtoe ? transfer_data : mem_write_data;
 	assign write = write_m2 || mtoe;
 
-	dma dma(clk, begin_dma, length, target_address, bg, memory_address, br, mtoe, index);
+	dma dma(clk, begin_dma, length, target_address, bg, mem_signal, memory_address, br, mtoe, index);
 	external_device ed(clk, reset_n, mtoe, index, interrupt_fromexternaldevice, transfer_data);
 	cpu UUT(clk, reset_n, mem_signal, mem_data1, mem_data2, 
 		interrupt_fromexternaldevice, br, target_address, length, bg, begin_dma,
