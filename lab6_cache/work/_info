@@ -1,0 +1,277 @@
+m255
+K4
+z2
+!s11f vlog 2020.3 2020.07, Jul 22 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA_pro/20.4
+valu
+Z0 !s110 1621831700
+!i10b 1
+!s100 LnRm2W]oTj[L<YnT_9K9K0
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I2U5;PNSG4Q]kJjbnVIlA82
+Z2 dC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab6_cache
+Z3 w1620535157
+Z4 8alu.v
+Z5 Falu.v
+!i122 88
+L0 18 23
+Z6 VDg1SIo80bB@j0V0VzS_@n1
+Z7 OV;L;2020.3;71
+r1
+!s85 0
+31
+Z8 !s108 1621831699.000000
+!s107 register_file.v|opcodes.v|Memory.v|hazard.v|datapath.v|cpu_TB.v|cpu.v|control_unit.v|cache.v|branch_predictor.v|alu.v|
+Z9 !s90 alu.v|branch_predictor.v|cache.v|control_unit.v|cpu.v|cpu_TB.v|datapath.v|hazard.v|Memory.v|opcodes.v|register_file.v|
+!i113 1
+Z10 tCvgOpt 0
+vbranch_alu
+R0
+!i10b 1
+!s100 MG<1Q>KJz0f7jQk^C]]bL3
+R1
+IlklC5JeF77lH:??`V;K8`1
+R2
+R3
+R4
+R5
+!i122 88
+L0 3 14
+R6
+R7
+r1
+!s85 0
+31
+R8
+Z11 !s107 register_file.v|opcodes.v|Memory.v|hazard.v|datapath.v|cpu_TB.v|cpu.v|control_unit.v|cache.v|branch_predictor.v|alu.v|
+R9
+!i113 1
+R10
+vbranch_predictor
+R0
+!i10b 1
+!s100 IolNh7=ek@PNASH^1L6O80
+R1
+Ia;BBO`YaKN<]6AI;=mSo32
+R2
+Z12 w1620695010
+8branch_predictor.v
+Fbranch_predictor.v
+!i122 88
+L0 3 61
+R6
+R7
+r1
+!s85 0
+31
+R8
+R11
+R9
+!i113 1
+R10
+vcache
+R0
+!i10b 1
+!s100 Ll<fb2AOEaUaPTX0dPXBE2
+R1
+I>S[ZAM5mAmE5]B6TDJna52
+R2
+w1621831564
+8cache.v
+Fcache.v
+!i122 88
+L0 4 178
+R6
+R7
+r1
+!s85 0
+31
+R8
+R11
+R9
+!i113 1
+R10
+vcontrol_unit
+R0
+!i10b 1
+!s100 o8g>85IlLTXML4VGj4b=73
+R1
+I0ojf:igcc;7547^VgJ6[I2
+R2
+R12
+8control_unit.v
+Fcontrol_unit.v
+!i122 88
+L0 1 49
+R6
+R7
+r1
+!s85 0
+31
+R8
+R11
+R9
+!i113 1
+R10
+vcpu
+R0
+!i10b 1
+!s100 1bl]YE14keDj_z7hjQB=H2
+R1
+IDkNO`JR_INZiWNB_VgZX62
+R2
+w1621831604
+8cpu.v
+Fcpu.v
+!i122 88
+L0 5 54
+R6
+R7
+r1
+!s85 0
+31
+R8
+R11
+R9
+!i113 1
+R10
+vcpu_TB
+R0
+!i10b 1
+!s100 S[<`F?EQaWob02BV6@<;h3
+R1
+IIDYac^KDQ1;99NU_ZclH00
+R2
+w1621831696
+8cpu_TB.v
+Fcpu_TB.v
+!i122 88
+L0 8 156
+R6
+R7
+r1
+!s85 0
+31
+R8
+R11
+R9
+!i113 1
+R10
+ncpu_@t@b
+vdatapath
+R0
+!i10b 1
+!s100 b6XP8W>^^P`ifdK;zKNTa2
+R1
+IA`5DLEoenIohIR<Od:_og1
+R2
+w1621755856
+8datapath.v
+Fdatapath.v
+!i122 88
+L0 8 270
+R6
+R7
+r1
+!s85 0
+31
+R8
+R11
+R9
+!i113 1
+R10
+vforwarding
+R0
+!i10b 1
+!s100 :hI_R`01I2MfiD3iJLjf<1
+R1
+IfYka]V0TfB^YohEZRL?hN3
+R2
+R12
+Z13 8hazard.v
+Z14 Fhazard.v
+!i122 88
+L0 3 18
+R6
+R7
+r1
+!s85 0
+31
+R8
+R11
+R9
+!i113 1
+R10
+vhazard_detect
+R0
+!i10b 1
+!s100 UV=ljneK1:GOQbI>Yld`90
+R1
+I<LIM^i72J7cVzin8iPk8g0
+R2
+R12
+R13
+R14
+!i122 88
+L0 22 16
+R6
+R7
+r1
+!s85 0
+31
+R8
+R11
+R9
+!i113 1
+R10
+vMemory
+R0
+!i10b 1
+!s100 5[?[ibhoN]n`S;M?4ZZ@<2
+R1
+Idl9l56N6K<4e4E4T[O9Ya0
+R2
+w1621753439
+8Memory.v
+FMemory.v
+!i122 88
+L0 8 286
+R6
+R7
+r1
+!s85 0
+31
+R8
+R11
+R9
+!i113 1
+R10
+n@memory
+vregister_file
+R0
+!i10b 1
+!s100 cbL[O[Z;^[iEoDPdihUzi0
+R1
+I]:d@d13WUl3QCebUNz5LP1
+R2
+w1620530905
+8register_file.v
+Fregister_file.v
+!i122 88
+L0 3 40
+R6
+R7
+r1
+!s85 0
+31
+R8
+R11
+R9
+!i113 1
+R10

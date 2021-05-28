@@ -179,7 +179,7 @@ SIMPLE1:	JPR	$2
 
 PREFIB1:	JAL	PREFIB2
 
-FIB:		ADI	$1, $0, -1
+FIB:	ADI	$1, $0, -1
 		BGZ	$1, FIBRECUR
 		LHI	$0, 0
 		ORI	$0, $0, 1

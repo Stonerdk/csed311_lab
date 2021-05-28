@@ -2,37 +2,51 @@
 `define PERIOD1 100
 `define MEMORY_SIZE 256	//	size of memory is 2^8 words (reduced size)
 `define WORD_SIZE 16	//	instead of 2^16 words to reduce memory
+`define DEF_DELAY 6
 			//	requirements in the Active-HDL simulator 
 
-module Memory(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, address2, data2);
-	input clk;
-	wire clk;
-	input reset_n;
-	wire reset_n;
+module Memory(clk, reset_n, read_m1, read_m2, write_m2, address1, address2, data2_in, data1_out, data2_out, signal);
+	input wire clk;
+	input wire reset_n;
+	input wire read_m1;
+	input wire read_m2;
+	input wire write_m2;
+	input wire [`WORD_SIZE-1:0] address1;
+	input wire [`WORD_SIZE-1:0] address2;
+	input wire [`WORD_SIZE-1:0] data2_in;
 	
-	input read_m1;
-	wire read_m1;
-	input [`WORD_SIZE-1:0] address1;
-	wire [`WORD_SIZE-1:0] address1;
-	output reg [`WORD_SIZE-1:0] data1;
-	
-	input read_m2;
-	wire read_m2;
-	input write_m2;
-	wire write_m2;
-	input [`WORD_SIZE-1:0] address2;
-	wire [`WORD_SIZE-1:0] address2;
-	inout data2;
-	wire [`WORD_SIZE-1:0] data2;
-	
+	output reg [63:0] data1_out;
+	output [63:0] data2_out;	
+	output reg signal;
+
 	reg [`WORD_SIZE-1:0] memory [0:`MEMORY_SIZE-1];
-	reg [`WORD_SIZE-1:0] output_data2;
+	reg [`WORD_SIZE-1:0] output_data2 [0:3];
 	
-	assign data2 = read_m2?output_data2:`WORD_SIZE'bz;
+	reg [3:0] read_m1_delay;
+	reg [3:0] read_m2_delay;
+	reg [3:0] write_m2_delay;
+
+	assign data2_out[15:0] = read_m2 ? output_data2[0] : `WORD_SIZE'bz;
+	assign data2_out[31:16] = read_m2 ? output_data2[1] : `WORD_SIZE'bz;
+	assign data2_out[47:32] = read_m2 ? output_data2[2] : `WORD_SIZE'bz;
+	assign data2_out[63:48] = read_m2 ? output_data2[3] : `WORD_SIZE'bz;
+
+	//reg mem_stall;
 	
-	always@(posedge clk)
+	always@(posedge clk) begin
 		if(!reset_n)
 			begin
+				read_m1_delay <= 0;
+				read_m2_delay <= 0;
+				write_m2_delay <= 0;
+				data1_out[0] <= `WORD_SIZE'bz;
+				data1_out[1] <= `WORD_SIZE'bz;
+				data1_out[2] <= `WORD_SIZE'bz;
+				data1_out[3] <= `WORD_SIZE'bz;
+				signal <= 0;
+				//output_data2 ?
+
+
 				memory[16'h0] <= 16'h9023;
 				memory[16'h1] <= 16'h1;
 				memory[16'h2] <= 16'hffff;
@@ -233,10 +247,47 @@ module Memory(clk, reset_n, read_m1, address1, data1, read_m2, write_m2, address
 				memory[16'hc5] <= 16'hf819;
 				memory[16'hc6] <= 16'hf01d;
 			end
-		else
-			begin
-				if(read_m1)data1 <= (write_m2 & address1==address2)?data2:memory[address1];
-				if(read_m2)output_data2 <= memory[address2];
-				if(write_m2)memory[address2] <= data2;															  
+		else begin
+			if (signal == 1)
+				signal <= 0;
+
+			if (read_m1_delay == 0) 
+				read_m1_delay <= read_m1;
+			else if (read_m1_delay > 0 && read_m1_delay < `DEF_DELAY)
+				read_m1_delay <= read_m1_delay + 1;
+			else if (read_m1_delay == `DEF_DELAY) begin
+				data1_out[15:0] <= (write_m2 & address1 == address2) ? data2_out[15:0] : memory[{address1[15:2], 2'b00}];
+				data1_out[31:16] <= (write_m2 & address1 == address2) ? data2_out[31:16] : memory[{address1[15:2], 2'b01}];
+				data1_out[47:32] <= (write_m2 & address1 == address2) ? data2_out[47:32] : memory[{address1[15:2], 2'b10}];
+				data1_out[63:48] <= (write_m2 & address1 == address2) ? data2_out[63:48] : memory[{address1[15:2], 2'b11}];
+				read_m1_delay <= 0;
+				signal <= 1;
 			end
+
+			if (read_m2_delay == 0) 
+				read_m2_delay <= read_m2;
+			else if (read_m2_delay > 0 && read_m2_delay < `DEF_DELAY)
+				read_m2_delay <= read_m2_delay + 1;
+			else if (read_m2_delay == `DEF_DELAY) begin
+				output_data2[0] <= memory[{address2[15:2], 2'b00}];
+				output_data2[1] <= memory[{address2[15:2], 2'b01}];
+				output_data2[2] <= memory[{address2[15:2], 2'b10}];
+				output_data2[3] <= memory[{address2[15:2], 2'b11}]; 
+				read_m2_delay <= 0;
+				signal <= 1;
+			end
+
+			if (write_m2_delay == 0)
+				write_m2_delay <= write_m2;
+			else if (write_m2_delay > 0 && write_m2_delay < `DEF_DELAY)
+				write_m2_delay <= write_m2_delay + 1;
+			else if (write_m2_delay == `DEF_DELAY) begin
+				memory[address2] <= data2_in;
+				write_m2_delay <= 0;
+				signal <= 1;
+			end									  
+		end
+	end
+
+
 endmodule

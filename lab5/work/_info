@@ -1,0 +1,259 @@
+m255
+K4
+z0
+!s11f vlog 2020.3 2020.07, Jul 22 2020
+valu
+Z0 !s110 1621758338
+!i10b 1
+!s100 Ti]J@gcZDEN9nfaCB7PgO3
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I=DmCC_PZWBbEi6Yl7QkKR0
+Z2 dC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5
+Z3 w1620535157
+Z4 8alu.v
+Z5 Falu.v
+!i122 99
+L0 18 23
+Z6 VDg1SIo80bB@j0V0VzS_@n1
+Z7 OV;L;2020.3;71
+r1
+!s85 0
+31
+Z8 !s108 1621758338.000000
+!s107 hazard.v|branch_predictor.v|control_unit.v|alu.v|register_file.v|opcodes.v|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/datapath.v|
+Z9 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/datapath.v|
+!i113 1
+Z10 o-work work
+Z11 tCvgOpt 0
+vbranch_alu
+R0
+!i10b 1
+!s100 B9?U4lDVGgOEZic?XMX_g3
+R1
+IGQHbb96AFkIh2Qf:8n]?03
+R2
+R3
+R4
+R5
+!i122 99
+L0 3 14
+R6
+R7
+r1
+!s85 0
+31
+R8
+Z12 !s107 hazard.v|branch_predictor.v|control_unit.v|alu.v|register_file.v|opcodes.v|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/datapath.v|
+R9
+!i113 1
+R10
+R11
+vbranch_predictor
+R0
+!i10b 1
+!s100 EAlhi5lD;HTk6DUD=BC^>1
+R1
+IY6`N:0imo1RG5V;aC<:<Q0
+R2
+w1621758333
+8branch_predictor.v
+Fbranch_predictor.v
+!i122 99
+L0 3 61
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+vcontrol_unit
+R0
+!i10b 1
+!s100 Oo>:^]N;;R:IUmDk_cFNM2
+R1
+Ida:f7ARnH==Y99<=h6[n90
+R2
+Z13 w1620695010
+8control_unit.v
+Fcontrol_unit.v
+!i122 99
+L0 1 49
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+vcpu
+R0
+!i10b 1
+!s100 0L^819a7<P_X;6We_BDk:1
+R1
+IaO:;X0DC[i4HYgX@oSTg>1
+R2
+w1620570204
+8C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu.v
+FC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu.v
+!i122 98
+L0 5 22
+R6
+R7
+r1
+!s85 0
+31
+R8
+!s107 hazard.v|branch_predictor.v|control_unit.v|alu.v|register_file.v|opcodes.v|datapath.v|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu.v|
+!i113 1
+R10
+R11
+vcpu_TB
+!s110 1621758029
+!i10b 1
+!s100 SL`[e<3DcncYj1OEad1Ek2
+R1
+Ik>jnn^_UmbjWm>inoP[E32
+R2
+w1619798043
+8C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v
+FC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v
+!i122 91
+L0 8 149
+R6
+R7
+r1
+!s85 0
+31
+!s108 1621758029.000000
+!s107 C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/cpu_TB.v|
+!i113 1
+R10
+R11
+ncpu_@t@b
+vdatapath
+R0
+!i10b 1
+!s100 Mc?G1WToWzJ5OTkjPTCHm2
+R1
+I`9UJ5lUX58^<B>SmW7jiS3
+R2
+R13
+8C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/datapath.v
+FC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/datapath.v
+!i122 99
+L0 8 321
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+vforwarding
+R0
+!i10b 1
+!s100 m<H5?XTUdV9VaXX>W=VLN1
+R1
+IS?oO6>I[OH?jNBEZF5W[P2
+R2
+R13
+Z14 8hazard.v
+Z15 Fhazard.v
+!i122 99
+L0 3 18
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+vhazard_detect
+R0
+!i10b 1
+!s100 i3LnKdmh:e[Q7YVWcK`EI0
+R1
+IMbjIROQRFkb?=kV9cANXV2
+R2
+R13
+R14
+R15
+!i122 99
+L0 22 16
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+vMemory
+!s110 1621758030
+!i10b 1
+!s100 7EEiel<70G1^Y==>hC`BC3
+R1
+IGEMkR0S5>YOQ<b@`TNiXO3
+R2
+Z16 w1620530905
+8C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/Memory.v
+FC:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/Memory.v
+!i122 94
+L0 7 236
+R6
+R7
+r1
+!s85 0
+31
+!s108 1621758030.000000
+!s107 C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/Memory.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/stkd3/Desktop/3-1/Computer Architecture/Lab/lab5/Memory.v|
+!i113 1
+R10
+R11
+n@memory
+vregister_file
+R0
+!i10b 1
+!s100 a4D>IlYMZg:iSF`0aPTI>1
+R1
+IM3W8:3?Jd1F=IJ:6cWITM2
+R2
+R16
+8register_file.v
+Fregister_file.v
+!i122 99
+L0 3 40
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
