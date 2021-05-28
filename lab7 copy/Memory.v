@@ -13,7 +13,7 @@ module Memory(clk, reset_n, read_m1, read_m2, write_m2, address1, address2, data
 	input wire write_m2;
 	input wire [`WORD_SIZE-1:0] address1;
 	input wire [`WORD_SIZE-1:0] address2;
-	input wire [63:0] data2_in;
+	input wire [`WORD_SIZE-1:0] data2_in;
 	
 	output reg [63:0] data1_out;
 	output [63:0] data2_out;	
@@ -282,10 +282,7 @@ module Memory(clk, reset_n, read_m1, read_m2, write_m2, address1, address2, data
 			else if (write_m2_delay > 0 && write_m2_delay < `DEF_DELAY)
 				write_m2_delay <= write_m2_delay + 1;
 			else if (write_m2_delay == `DEF_DELAY) begin
-				memory[{address2[15:2], 2'b00}] <= data2_in[15:0];
-				memory[{address2[15:2], 2'b01}] <= data2_in[31:16];
-				memory[{address2[15:2], 2'b10}] <= data2_in[47:32];
-				memory[{address2[15:2], 2'b11}] <= data2_in[63:48];
+				memory[address2] <= data2_in;
 				write_m2_delay <= 0;
 				signal <= 1;
 			end									  
