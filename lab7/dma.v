@@ -54,7 +54,7 @@ always@(posedge clk) begin
         if( index_ < length) begin
             index_ <= i;
             mtoe_ <= 1;
-            i <= i + 1;
+            i <= i + 4;
         end
         else begin
             i <= 0;

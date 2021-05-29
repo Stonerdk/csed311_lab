@@ -15,7 +15,8 @@ input [5:0] index;
 
 output reg interrupt;
 
-output [`WORD_SIZE-1 : 0] transfer_data;
+output [63 : 0] transfer_data;
+wire [63 : 0] transfer_data;
 
 reg [`WORD_SIZE-1:0] num_clk; // num_clk to count cycles and trigger interrupt at appropriate cycle
 reg [`WORD_SIZE-1:0] data [0:`WORD_SIZE-1]; // data to transfer
@@ -25,7 +26,10 @@ always @(*) begin
 	// TODO: implement your combinational logic
 end
 
-	assign transfer_data = mtoe ? data[index] : 0;
+	assign transfer_data[15:0] = mtoe ? data[index] : 0;
+	assign transfer_data[31:16] = mtoe ? data[index + 1] : 0;
+	assign transfer_data[47:32] = mtoe ? data[index + 2] : 0;
+	assign transfer_data[63:48] = mtoe ? data[index + 3] : 0;
 
 always @(posedge clk) begin
 	if(!reset_n) begin
@@ -50,9 +54,11 @@ always @(posedge clk) begin
 		if(num_clk == 200) begin
 			interrupt <= 1;
 		end
-		else if(num_clk == 295) begin
+
+		else if(num_clk == 430) begin
 			interrupt <= 0;
-		end
+			end
+		
 	end
 end
 endmodule

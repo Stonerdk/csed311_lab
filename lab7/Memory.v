@@ -5,7 +5,7 @@
 `define DEF_DELAY 6
 			//	requirements in the Active-HDL simulator 
 
-module Memory(clk, reset_n, read_m1, read_m2, write_m2, address1, address2, data2_in, data1_out, data2_out, signal);
+module Memory(clk, reset_n, read_m1, read_m2, write_m2, address1, address2, data2_in, data1_out, data2_out, signal,mtoe);
 	input wire clk;
 	input wire reset_n;
 	input wire read_m1;
@@ -18,6 +18,7 @@ module Memory(clk, reset_n, read_m1, read_m2, write_m2, address1, address2, data
 	output reg [63:0] data1_out;
 	output [63:0] data2_out;	
 	output reg signal;
+	output mtoe;
 
 	reg [`WORD_SIZE-1:0] memory [0:`MEMORY_SIZE-1];
 	reg [`WORD_SIZE-1:0] output_data2 [0:3];
@@ -282,13 +283,18 @@ module Memory(clk, reset_n, read_m1, read_m2, write_m2, address1, address2, data
 			else if (write_m2_delay > 0 && write_m2_delay < `DEF_DELAY)
 				write_m2_delay <= write_m2_delay + 1;
 			else if (write_m2_delay == `DEF_DELAY) begin
-				memory[{address2[15:2], 2'b00}] <= data2_in[15:0];
-				memory[{address2[15:2], 2'b01}] <= data2_in[31:16];
-				memory[{address2[15:2], 2'b10}] <= data2_in[47:32];
-				memory[{address2[15:2], 2'b11}] <= data2_in[63:48];
-				write_m2_delay <= 0;
-				signal <= 1;
-			end									  
+				if(mtoe) begin
+					memory[address2] <= data2_in[15:0];
+					memory[address2+1] <= data2_in[31:16];
+					memory[address2+2] <= data2_in[47:32];
+					memory[address2+3] <= data2_in[63:48];
+				end
+				else begin
+					memory[address2] <= data2_in[15:0];
+				end
+					write_m2_delay <= 0;
+					signal <= 1;
+			end								  
 		end
 	end
 

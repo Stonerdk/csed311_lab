@@ -34,7 +34,7 @@ module cpu_TB();
 	wire [`WORD_SIZE-1 :0] length;
 	wire [`WORD_SIZE-1 :0] target_address;
 	wire [`WORD_SIZE-1 :0] memory_address;
-	wire [`WORD_SIZE-1 :0] transfer_data;
+	wire [63 :0] transfer_data;
 	wire mtoe;
 	wire [5 :0] index;
 	wire br; wire bg;
@@ -43,7 +43,7 @@ module cpu_TB();
 	wire dma_end;
 
 	wire [`WORD_SIZE -1 : 0] address_with_dma;
-	wire [`WORD_SIZE -1 : 0] data_with_dma;
+	wire [63 : 0] data_with_dma;
 
 	assign address_with_dma = mtoe ? memory_address : address2;
 	assign data_with_dma = mtoe ? transfer_data : mem_write_data;
@@ -54,7 +54,7 @@ module cpu_TB();
 	cpu UUT(clk, reset_n, mem_signal, mem_data1, mem_data2, 
 		interrupt_fromexternaldevice, br, target_address, length, bg, begin_dma, dma_end,
 		read_m1, read_m2, write_m2, address1, address2, mem_write_data, num_inst, output_port, is_halted);
-	Memory NUUT(!clk, reset_n, read_m1, read_m2, write, address1, address_with_dma, data_with_dma, mem_data1, mem_data2, mem_signal);
+	Memory NUUT(!clk, reset_n, read_m1, read_m2, write, address1, address_with_dma, data_with_dma, mem_data1, mem_data2, mem_signal,mtoe);
 
 	// initialize inputs
 	initial begin
