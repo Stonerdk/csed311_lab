@@ -247,6 +247,7 @@ module Memory(clk, reset_n, read_m1, read_m2, write_m2, address1, address2, data
 				memory[16'hc4] <= 16'h4ffe;
 				memory[16'hc5] <= 16'hf819;
 				memory[16'hc6] <= 16'hf01d;
+
 			end
 		else begin
 			if (signal == 1)

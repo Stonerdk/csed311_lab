@@ -51,7 +51,7 @@ always @(posedge clk) begin
 	else begin
 		num_clk <= num_clk+1;
 		// TODO: implement your sequential logic
-		if(num_clk == 200) begin
+		if(num_clk == 300) begin
 			interrupt <= 1;
 		end
 

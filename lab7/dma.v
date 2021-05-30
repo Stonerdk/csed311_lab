@@ -24,6 +24,7 @@ output dma_end;
 wire dma_end;
 reg dma_end_;
 
+reg [5 : 0] prepare_dma;
 // index 4개식
 reg [5:0] i;
 
@@ -33,6 +34,7 @@ initial begin
     br_ = 0;
     mtoe_ = 0;
     dma_end_ = 0;
+    prepare_dma = 0;
 end
 /////////////////
 
@@ -50,17 +52,29 @@ always@(posedge clk) begin
         dma_end_ <= 0;
     end
 
-    if( bg == 1 && mem_signal ) begin
-        if( index_ < length) begin
-            index_ <= i;
-            mtoe_ <= 1;
-            i <= i + 4;
+    if(bg == 1) begin
+        prepare_dma <= prepare_dma +1 ;
+        if(prepare_dma == 10) begin
+            if(index_ == 0)begin
+                mtoe_ <= 1;
+                index_ <= i;
+                i <= i + 4;
+            end
         end
-        else begin
-            i <= 0;
-            br_ <= 0;
-            mtoe_ <= 0;
-            dma_end_ <= 1;
+        else if ( prepare_dma > 10 )begin
+            if(mem_signal) begin
+                if( index_ < length) begin
+                    mtoe_ <= 1;
+                    index_ <= i;
+                    i <= i + 4;
+                end
+                else begin
+                    i <= 0;
+                    br_ <= 0;
+                    mtoe_ <= 0;
+                    dma_end_ <= 1;
+                end
+            end
         end
     end
 
