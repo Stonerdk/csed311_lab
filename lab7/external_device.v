@@ -55,7 +55,7 @@ always @(posedge clk) begin
 			interrupt <= 1;
 		end
 
-		else if(num_clk == 430) begin
+		else if(num_clk == 660) begin
 			interrupt <= 0;
 			end
 		
