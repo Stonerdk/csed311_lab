@@ -77,7 +77,6 @@ always@(posedge clk) begin
             end
         end
     end
-
 end
 
 

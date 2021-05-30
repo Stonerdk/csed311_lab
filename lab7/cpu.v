@@ -22,8 +22,10 @@ module cpu(clk, reset_n, mem_signal, mem_data1, mem_data2,
 	
 	output [`WORD_SIZE-1 :0] target_address;
 	wire [`WORD_SIZE-1 :0] target_address;
+	reg [`WORD_SIZE-1 :0] target_address_;
 	output [`WORD_SIZE-1 :0] length;
 	wire [`WORD_SIZE-1 :0] length;
+	reg [`WORD_SIZE-1 :0] length_;
 	output bg;
 	wire bg; reg bg_;
 
@@ -54,11 +56,14 @@ module cpu(clk, reset_n, mem_signal, mem_data1, mem_data2,
 	initial begin
 		begin_dma_ = 0;
 		bg_ =0;
+		length_ = 0;
+		target_address_ = 0;
 	end
-	assign length = 12;
-	assign target_address = 16'hb; // 아무것도 없는 memory
+	
 	assign bg = bg_;
 	assign begin_dma = begin_dma_;
+	assign length = length_;
+	assign target_address = target_address_;
 
 	always@(posedge clk) begin
 		if(br) begin
@@ -69,11 +74,13 @@ module cpu(clk, reset_n, mem_signal, mem_data1, mem_data2,
 		end
 	end
 
-	always@(negedge br) begin
+	always@(dma_end) begin
 		bg_ <= 0;
 	end
 	always@(posedge interrupt_fromexternaldevice) begin
 		begin_dma_ <= 1;
+		length_ <= 12;
+		target_address_ <= 16'hb; // 아무것도 없는 memory
 	end
 
 
